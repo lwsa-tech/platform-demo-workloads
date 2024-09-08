@@ -25,13 +25,6 @@ services:
       enabled: true
     image: cilium/echoserver
 
-  - name: phpmyadmin
-    ingress:
-      enabled: true
-    image: phpmyadmin
-    plan: micro
-    port: 80
-
   - name: pgadmin
     ingress:
       enabled: true
