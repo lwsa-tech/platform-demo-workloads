@@ -1,11 +1,11 @@
 configmaps:
-  - name: mapa1
+  - name: mapa
     data:
       nome: Giba
       empresa: LWSA
   - name: outromapa
     data:
-      xi: co
+      foo: bar
 secrets:
   - name: segredo
     namespace: nextcloud
@@ -26,11 +26,11 @@ services:
           mappings:
             CHAVE: chave
       configMaps:
-        - name: outromapa
-        - name: mapa1
+        - name: mapa
           mappings:
             NAME: nome
             COMPANY: empresa
+        - name: outromapa
     mountVolumes:
       - name: nextcloud-vol
         path: /var/www/html
@@ -53,6 +53,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_LISTEN_PORT: "10000"
 dbServers:
+
   - name: nextcloud-db
     type: cnpg
     version: "15"
@@ -60,11 +61,13 @@ dbServers:
     size: 50Gi
     expose:
       enabled: true
+
   - name: redis
     type: dragonfly
     plan: micro
     passwordAuth:
       enable: true
+
 volumes:
   - name: nextcloud-vol
     size: 50Gi

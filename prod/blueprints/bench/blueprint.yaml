@@ -19,6 +19,7 @@ services:
     allowToServices:
       - namespace: portal
         name: wp
+
   - name: webserver
     image: registry.k8s.io/hpa-example
     plan: nano

@@ -47,6 +47,7 @@ services:
       - namespace: bench
         name: console
 dbServers:
+
   - name: wp-db
     type: pxc
     replicas: 3
@@ -54,12 +55,17 @@ dbServers:
     version: "8.0"
     plan: small
     size: 60Gi
+
   - name: cache
     type: dragonfly
     replicas: 2
     plan: micro
     memcached:
       enabled: true
+    snapshot:
+      enabled: true
+      size: 2Gi
+
 volumes:
   - name: wp-vol
     size: 100Gi
