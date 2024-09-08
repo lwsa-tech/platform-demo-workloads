@@ -25,6 +25,12 @@ services:
       enabled: true
     image: cilium/echoserver
 
+  - name: phpmyadmin
+    ingress:
+      enabled: true
+    image: phpmyadmin
+    plan: micro
+
   - name: pgadmin
     ingress:
       enabled: true
