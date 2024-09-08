@@ -50,16 +50,6 @@ services:
           POSTGRES_PASSWORD: password
           CONNECTION_STRING: url
 
-  - name: pgadmin
-    ingress:
-      enabled: true
-    image: dpage/pgadmin4:8.5
-    plan: micro
-    envVars:
-      PGADMIN_DEFAULT_EMAIL: gilberto.mautner@locaweb.com.br
-      PGADMIN_DEFAULT_PASSWORD: admin
-      PGADMIN_LISTEN_PORT: "10000"
-
 dbServers:
 
   - name: nextcloud-db
