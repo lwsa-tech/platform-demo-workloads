@@ -17,7 +17,6 @@ services:
         - pattern: '*.locaweb.com.br'
           port: 443
           protocol: TCP
-      toFQDNs:
         - pattern: '*.ubuntu.com'
 
   - name: echo
