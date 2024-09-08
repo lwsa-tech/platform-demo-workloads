@@ -32,9 +32,8 @@ services:
     image: dpage/pgadmin4:8.5
     plan: micro
     envVars:
-      # TODO: apagar
-      # PGADMIN_DEFAULT_EMAIL: gilberto.mautner@locaweb.com.br
-      # PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: gilberto.mautner@locaweb.com.br
+      PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_LISTEN_PORT: "10000"
 
 dbServers:
