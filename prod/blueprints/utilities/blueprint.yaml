@@ -30,6 +30,7 @@ services:
       enabled: true
     image: phpmyadmin
     plan: micro
+    port: 80
 
   - name: pgadmin
     ingress:
