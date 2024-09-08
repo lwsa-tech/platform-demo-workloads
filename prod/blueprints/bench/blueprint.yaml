@@ -9,6 +9,7 @@
 # (observe que a config. correspondente `allowFromServices` já foi colocada no blueprint do portal)
 
 services:
+
   - name: console
     image: busybox
     plan: small

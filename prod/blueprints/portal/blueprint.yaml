@@ -8,6 +8,7 @@
 # memcached ativado via opção memcached.enabled, caso contrário Dragonfly roda como Redis
 
 services:
+
   - name: wp
     ingress:
       enabled: true

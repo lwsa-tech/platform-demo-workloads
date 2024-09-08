@@ -1,17 +1,23 @@
 configmaps:
+
   - name: mapa
     data:
       nome: Giba
       empresa: LWSA
+
   - name: outromapa
     data:
       foo: bar
+
 secrets:
+
   - name: segredo
     namespace: nextcloud
     data:
       chave: AgBE/R116AxpYaFUd4UIIrsLT7ZtYSLtZxSD/Rz+HQhXeJ4EOr9rFfRBTpzz88EpbzTnCEZBY40rGDPWED7VJtT0kFXdyUV03BPvBf40kiqZODhjgPGoZaRdBfSV9lAb9vRl2MnDwIaJAp2IrsojXitIL1EDmEc5R2SKee2AMSzRKB/zNG1VcpO8KXsNlWcN4VkJiKM5gQx/DpxINZmwEi5/3O5N6hOUyv+pNCWgJO7vgFUwY2AKCkp97BqmJm2F7BD8ZSrtMWU+9jKMpoE5Pk5TcWHW7xZmmMS5lC6WMUbVOkt+qQE3Uzlo7z8Mp9qsX6KftPEYOMvlsyzFyvzQDjlHdpM/7zP+TMfwh2smEaVEeb73yjQhdU3gPTDrKyScxTfrnPwSME7B8bgbU4J8YMtgURAh6EVPyPBSNPRN2Mlo51lqe/eURUt85zFq+TWdWXkOKBX4EwT8L/HAtIXMVXkiBm7pXejnS6P1t19x/Mf0SvNLYjwa7l205qB2NPb7PU10szZShfXa+4nuIcqB9OsMZ9eub+WiV+d+qeULBegxuwbhr+R58orAAMIxH1epXmW3zU+TpjpdaW48OURsccErO6k6fzSjMWvPMmGpC7td6J03N4+yVLiVy0wvfmd+Bs8Su114roRETWnFp9/0OqHjmB7AdIQCFR/nh2nXW2n6vw11fRQsZOyHpHuPpeE+IQHekO8zAQeO/mw=
+
 services:
+
   - name: nextcloud
     plan: micro
     port: 80
@@ -43,6 +49,7 @@ services:
           POSTGRES_USER: user
           POSTGRES_PASSWORD: password
           CONNECTION_STRING: url
+
   - name: pgadmin
     ingress:
       enabled: true
@@ -52,6 +59,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: gilberto.mautner@locaweb.com.br
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_LISTEN_PORT: "10000"
+
 dbServers:
 
   - name: nextcloud-db
@@ -69,5 +77,6 @@ dbServers:
       enable: true
 
 volumes:
+
   - name: nextcloud-vol
     size: 50Gi
