@@ -1,5 +1,4 @@
 services:
-
   - name: nextcloud
     plan: micro
     port: 80
@@ -27,7 +26,6 @@ services:
           REDIS_HOST_PASSWORD: password
 
 dbServers:
-
   - name: nextcloud-db
     type: cnpg
     version: "15"
@@ -43,6 +41,5 @@ dbServers:
       enabled: true
 
 volumes:
-
   - name: nextcloud-vol
     size: 50Gi
