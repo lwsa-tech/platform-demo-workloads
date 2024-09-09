@@ -1,21 +1,3 @@
-configmaps:
-
-  - name: mapa
-    data:
-      nome: Giba
-      empresa: LWSA
-
-  - name: outromapa
-    data:
-      foo: bar
-
-secrets:
-
-  - name: segredo
-    namespace: nextcloud
-    data:
-      chave: AgA9WyIJaoz3cqzM1xz3LKmycNB7RawzE9YCoJSn2BYHpBXnUOcJ0r+pKOcz2Ax88IKtde1RKBpU0nLS19F9Ix42WIVa0FGOReX2xO0EqYCardQ0xCGKI1svmRrWJPPs7WYp3xSfM/8xJFXy22gyhlnHW4OvTJp4z7q1/2SR1NEJqQkGswuKY+kIBS6NkQNRErDnPtKhlZfIKBgt+rAb297JnQ0YkXoii+Z8K2/XaYJQ/XTFS+ITbgWKufWxw9gXuokSiZ1Hm0wwXHEI0JM139zlOXhyr79aiiFRoGpVjzjGM+WOjCf3Piz8WQZOM27ffx5fcymOhXuZ6tn6Vuuwh64/jzwVS23XYrephJc4j4bzdic3ndtgho+1QbFiT+RgXu/r3W/V1SPPgP97gTxsFvmoE3ajyS4t1oLA5CDkru0i4fwKGTElDx1zj3/lO75DypZ8sWk3DgzUh1jcXw3n/5/ZBBS39KdJ+ALDil1zNuu6IhmJpb0oy0c8QyMRG35D5n8WIfEUU2f+Dz8VO0YfmkpayAhoxwOkRzwhegbJZjrSr/mr0YOQPzGWGhtJlBczeDCf+HTfQ32QdR+MdPuNaYJQ8u2XTm9ADwzLS6sn/8rC8aRrcHF1nUY0oq0qQi7tFdq/yee/5Z7aKtsqXWnWPf/aSyTSqkyFtAJW/x6kNZR2u1tvG7iIZgZ9LWSdWTQHfnz4KcjnNqWvUcZZ3A==
-
 services:
 
   - name: nextcloud
@@ -26,17 +8,6 @@ services:
     image: nextcloud:29.0
     envVars:
       POSTGRES_DB: admin
-    envVarsFrom:
-      secrets:
-        - name: segredo
-          mappings:
-            CHAVE: chave
-      configMaps:
-        - name: mapa
-          mappings:
-            NAME: nome
-            COMPANY: empresa
-        - name: outromapa
     mountVolumes:
       - name: nextcloud-vol
         path: /var/www/html
