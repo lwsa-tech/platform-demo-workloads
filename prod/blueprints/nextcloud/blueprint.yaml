@@ -49,6 +49,11 @@ services:
           POSTGRES_USER: user
           POSTGRES_PASSWORD: password
           CONNECTION_STRING: url
+      - name: redis
+        type: dragonfly
+        envVarMappings:
+          REDIS_HOST: host
+          REDIS_HOST_PASSWORD: password
 
 dbServers:
 
