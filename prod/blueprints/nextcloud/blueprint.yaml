@@ -69,7 +69,7 @@ dbServers:
     type: dragonfly
     plan: micro
     passwordAuth:
-      enable: true
+      enabled: true
 
 volumes:
 
