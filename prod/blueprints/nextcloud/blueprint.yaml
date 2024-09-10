@@ -30,8 +30,6 @@ dbServers:
     version: "15"
     plan: micro
     size: 50Gi
-    expose:
-      enabled: true
 
   - name: redis
     type: dragonfly

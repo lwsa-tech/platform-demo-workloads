@@ -78,3 +78,6 @@ dbServers:
     version: "16"
     plan: micro
     size: 90Gi
+    expose:
+      enabled: true
+    pause: false
