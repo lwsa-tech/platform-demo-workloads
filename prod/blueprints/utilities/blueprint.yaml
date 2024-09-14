@@ -67,7 +67,7 @@ dbServers:
     type: pxc
     version: "8.0"
     plan: large
-    size: 60Gi
+    size: 200Gi
     expose:
       enabled: true
     # quando true, desliga banco, sem apagar dados. Serve para economizar recursos quando não precisa
