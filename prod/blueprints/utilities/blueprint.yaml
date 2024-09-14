@@ -63,7 +63,7 @@ services:
 
 dbServers:
   - name: mydb
-    replicas: 3
+    replicas: 1
     type: pxc
     version: "8.0"
     plan: large
