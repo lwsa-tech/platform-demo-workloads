@@ -74,7 +74,7 @@ dbServers:
     pause: false
 
   - name: newdb
-    replicas: 1
+    replicas: 3
     type: pxc
     version: "8.0"
     plan: 2xlarge
