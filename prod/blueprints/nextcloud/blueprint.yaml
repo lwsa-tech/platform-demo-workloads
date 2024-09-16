@@ -24,6 +24,14 @@ services:
           REDIS_HOST: host
           REDIS_HOST_PASSWORD: password
 
+  - name: ubuntu
+    plan: micro
+    image: ubuntu
+    command:
+      - /bin/sh
+      - -c
+      - while :; do sleep 86400; done
+
 dbServers:
   - name: nextcloud-db
     type: cnpg
