@@ -79,6 +79,8 @@ dbServers:
     version: "8.0"
     plan: 2xlarge
     size: 200Gi
+    expose:
+      enabled: true
 
   - name: pg
     type: cnpg
