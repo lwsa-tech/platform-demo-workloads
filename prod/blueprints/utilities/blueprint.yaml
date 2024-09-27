@@ -22,17 +22,17 @@ services:
       - /bin/sh
       - -c
       - while :; do sleep 86400; done
-    egress:
-      enabled: true
-      toCIDRs:
-        - range: 1.1.1.1/32
-          port: 53
-          protocol: UDP
-      toFQDNs:
-        - pattern: '*.locaweb.com.br'
-          port: 443
-          protocol: TCP
-        - pattern: '*.ubuntu.com'
+    # egress:
+    #   enabled: true
+    #   toCIDRs:
+    #     - range: 1.1.1.1/32
+    #       port: 53
+    #       protocol: UDP
+    #   toFQDNs:
+    #     - pattern: '*.locaweb.com.br'
+    #       port: 443
+    #       protocol: TCP
+    #     - pattern: '*.ubuntu.com'
     envVarsFrom:
       secrets:
         - name: segredo
