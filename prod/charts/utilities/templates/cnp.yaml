@@ -7,6 +7,8 @@ spec:
   egress:
   - {}
   - toEntities:
+      - kube-apiserver            
+  - toEntities:
     - world
   endpointSelector:
     matchLabels:
