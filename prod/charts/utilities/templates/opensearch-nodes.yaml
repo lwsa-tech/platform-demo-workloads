@@ -125,6 +125,3 @@ spec:
     terminationGracePeriod: 120
 
     sysctlVmMaxMapCount: 262144
-
-    sysctl:
-      enabled: true
