@@ -11,7 +11,7 @@ spec:
   - toEntities:
     - world
   endpointSelector:
-    matchLabels:
-      job-name: helm-install-opensearch-nodes
+    matchExpressions:
+      - {key: job-name, operator: In, values: [helm-install-opensearch-nodes, helm-install-opensearch-dashboards]}
   ingress:
   - {}
