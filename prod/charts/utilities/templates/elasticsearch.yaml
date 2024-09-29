@@ -29,3 +29,13 @@ spec:
           requests:
             storage: 50Gi
         storageClassName: {{ $.Values.global.dbStorageClassName }}
+---
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: quickstart
+spec:
+  version: 8.15.2
+  count: 1
+  elasticsearchRef:
+    name: quickstart
