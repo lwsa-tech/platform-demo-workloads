@@ -47,7 +47,7 @@ spec:
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: helm-install-opensearch-nodes
+  name: kibana
 spec:
   egress:
   - {}
