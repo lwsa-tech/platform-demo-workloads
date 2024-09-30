@@ -51,10 +51,14 @@ metadata:
 spec:
   egress:
   - {}
-  - toEntities:
-    - world
+  - toFQDNs:
+      - matchPattern: '*.elastic.co'
+    toPorts:
+      - ports:
+          - port: "443"
+            protocol: TCP
   endpointSelector:
-    matchExpressions:
-      - {key: kibana.k8s.elastic.co/name, operator: In, values: [quickstart]}
+    matchLabels:
+      kibana.k8s.elastic.co/name: quickstart
   ingress:
   - {}
