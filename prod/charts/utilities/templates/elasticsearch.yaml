@@ -1,0 +1,144 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: quickstart
+spec:
+  version: 8.15.2
+  nodeSets:
+    - name: master
+      config:
+        node.roles: ["master"]
+      count: 3
+      # https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-managing-compute-resources.html#k8s-compute-resources-elasticsearch
+      podTemplate:
+        spec:
+          containers:
+            - name: elasticsearch
+              resources:
+                requests:
+                  memory: 4Gi
+                  cpu: 300m
+                limits:
+                  memory: 4Gi
+                  cpu: '2'
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 80Gi
+            storageClassName: {{ $.Values.global.dbStorageClassName }}
+    - name: nodes
+      config:
+        # Como na AWS OpenSearch, atribuimos todos os roles além de master
+        node.roles: ["data", "ingest", "remote_cluster_client", "ml", "transform"]
+      count: 3
+      # https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-managing-compute-resources.html#k8s-compute-resources-elasticsearch
+      podTemplate:
+        spec:
+          containers:
+            - name: elasticsearch
+              resources:
+                requests:
+                  memory: 4Gi
+                  cpu: 300m
+                limits:
+                  memory: 4Gi
+                  cpu: '2'
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 80Gi
+            storageClassName: {{ $.Values.global.dbStorageClassName }}
+---
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: quickstart
+spec:
+  version: 8.15.2
+  count: 1
+  elasticsearchRef:
+    name: quickstart
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
+  podTemplate:
+    spec:
+      containers:
+        - name: kibana
+          resources:
+            requests:
+              memory: 4Gi
+              cpu: 300m
+            limits:
+              memory: 4Gi
+              cpu: '2'
+---
+# Já visto em forums que Kibana procura acessar metadados em 169.254.x.x, o que não faz sentido
+# Tentativas aparecerão como dropped no Grafana. Aceitaremos.
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: kibana
+spec:
+  egress:
+  - {}
+  - toFQDNs:
+      - matchPattern: '*.elastic.co'
+    toPorts:
+      - ports:
+          - port: "443"
+            protocol: TCP
+  endpointSelector:
+    matchLabels:
+      kibana.k8s.elastic.co/name: quickstart
+  ingress:
+  - {}
+---
+# TODO: flag expose ElasticSearch
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: quickstart
+  annotations:
+    {{- toYaml $.Values.global.ingress.issuerAnnotations | nindent 4 }}
+{{/*
+
+  {{- if .sourceRanges }}
+    nginx.ingress.kubernetes.io/whitelist-source-range: {{ .sourceRanges | join "," }}
+  {{- end }}
+
+*/}}
+spec:
+  rules:
+  - host: {{ $.Release.Namespace }}-kibana-quickstart.{{ $.Values.global.clusterDomain }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: quickstart-kb-http
+            port:
+              number: 5601
+  - host: {{ $.Release.Namespace }}-kibana-quickstart.{{ $.Values.global.globalDomain }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: quickstart-kb-http
+            port:
+              number: 5601
+  ingressClassName: {{ $.Values.global.ingress.ingressClassName }}
