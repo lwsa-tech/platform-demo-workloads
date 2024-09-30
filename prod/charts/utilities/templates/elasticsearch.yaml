@@ -43,9 +43,9 @@ spec:
     tls:
       selfSignedCertificate:
         disabled: true
-  config:
-    telemetry.optIn: false
 ---
+# Já visto em forums que Kibana procura acessar metadados em 169.254.x.x, o que não faz sentido
+# Tentativas aparecerão como dropped no Grafana. Aceitaremos.
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
