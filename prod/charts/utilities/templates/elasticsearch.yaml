@@ -158,24 +158,18 @@ stringData:
   roles.yml: |-
     external-user-role:
       cluster:
-        - monitor
+        - 'monitor'
       indices:
         - names:
-            - external-user-*
+            - 'external-user-*'
           privileges:
-            - all
-          allow_restricted_indices: false
+            - 'all'
       applications:
-        - application: kibana-.kibana
+        - application: 'kibana-.kibana'
           privileges:
-            - all
+            - 'all'
           resources:
             - '*'
-      run_as: []
-      metadata: {}
-      transient_metadata:
-        enabled: true
-      description: Role for external user
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
