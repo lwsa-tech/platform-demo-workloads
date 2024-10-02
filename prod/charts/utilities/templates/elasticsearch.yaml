@@ -257,8 +257,8 @@ spec:
     template:
       engineVersion: v2
       data:
-        s3.client.backup.access_key: {{ `{{ .AWS_ACCESS_KEY_ID }}` }}
-        s3.client.backup.secret_key: {{ `{{ .AWS_SECRET_ACCESS_KEY }}` }}
+        s3.client.backup.access_key: "{{ `{{ .AWS_ACCESS_KEY_ID }}` }}"
+        s3.client.backup.secret_key: "{{ `{{ .AWS_SECRET_ACCESS_KEY }}` }}"
   dataFrom:
   - extract:
       key: {{ $.Values.global.backup.secret }}
