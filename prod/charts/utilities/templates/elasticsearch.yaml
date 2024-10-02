@@ -163,6 +163,7 @@ stringData:
           - external-user-*
         privileges:
           - all
+        allow_restricted_indices: false
     applications:
       - application: kibana-.kibana
         privileges:
