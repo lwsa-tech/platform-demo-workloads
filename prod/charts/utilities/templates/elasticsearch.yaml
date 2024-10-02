@@ -156,25 +156,26 @@ metadata:
   name: quickstart-external-user-role
 stringData:
   roles.yml: |-
-    cluster:
-      - monitor
-    indices:
-      - names:
-          - external-user-*
-        privileges:
-          - all
-        allow_restricted_indices: false
-    applications:
-      - application: kibana-.kibana
-        privileges:
-          - all
-        resources:
-          - '*'
-    run_as: []
-    metadata: {}
-    transient_metadata:
-      enabled: true
-    description: Role for gmautner user
+    external-user-role:
+      cluster:
+        - monitor
+      indices:
+        - names:
+            - external-user-*
+          privileges:
+            - all
+          allow_restricted_indices: false
+      applications:
+        - application: kibana-.kibana
+          privileges:
+            - all
+          resources:
+            - '*'
+      run_as: []
+      metadata: {}
+      transient_metadata:
+        enabled: true
+      description: Role for external user
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
