@@ -169,6 +169,11 @@ stringData:
           - all
         resources:
           - '*'
+    run_as: []
+    metadata: {}
+    transient_metadata:
+      enabled: true
+    description: Role for gmautner user
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
