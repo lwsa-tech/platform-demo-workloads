@@ -161,6 +161,20 @@ stringData:
       indices:
         - names: [ 'external-user-*' ]
           privileges: [ 'all' ]
+      kibana:
+        feature:
+          discover:
+            - all
+          visualize:
+            - all
+          dashboard:
+            - all
+          dev_tools:
+            - read
+          advancedSettings:
+            - read
+        spaces:
+          - *
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
