@@ -232,6 +232,50 @@ spec:
                 "disable_chunked_encoding": true
               }
             }'
+
+          sleep 3
+
+          curl -X PUT "https://quickstart-es-http:9200/_slm/policy/daily-snapshots" \
+            -k -H "Content-Type: application/json" \
+            -u "elastic:${ELASTIC_PASSWORD}" \
+            -d '{
+              "schedule": "0 30 7 * * ?", 
+              "name": "<daily-snap-{now/d}>", 
+              "repository": "backup", 
+              "config": { 
+                "indices": ["*"], 
+                "ignore_unavailable": false,
+                "include_global_state": true
+              },
+              "retention": { 
+                "expire_after": "30d", 
+                "min_count": 3, 
+                "max_count": 10 
+              }
+              }
+            }'
+
+          sleep 3
+
+          curl -X PUT "https://quickstart-es-http:9200/_slm/policy/hourly-snapshots" \
+            -k -H "Content-Type: application/json" \
+            -u "elastic:${ELASTIC_PASSWORD}" \
+            -d '{
+              "schedule": "0 20 * * * ?", 
+              "name": "<hourly-snap-{now/d}>", 
+              "repository": "backup", 
+              "config": { 
+                "indices": ["*"], 
+                "ignore_unavailable": false,
+                "include_global_state": true
+              },
+              "retention": { 
+                "expire_after": "30d", 
+                "min_count": 3, 
+                "max_count": 12 
+              }
+              }
+            }'
         env:
           - name: ELASTIC_PASSWORD
             valueFrom:
