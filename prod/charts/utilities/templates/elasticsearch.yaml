@@ -224,6 +224,7 @@ spec:
           curl -X PUT "https://quickstart-es-http:9200/_snapshot/backup" \
             -k -H "Content-Type: application/json" \
             -u "elastic:${ELASTIC_PASSWORD}" \
+            --fail-with-body \
             -d '{
               "type": "s3",
               "settings": {
@@ -242,6 +243,7 @@ spec:
           curl -X PUT "https://quickstart-es-http:9200/_slm/policy/daily-snapshots" \
             -k -H "Content-Type: application/json" \
             -u "elastic:${ELASTIC_PASSWORD}" \
+            --fail-with-body \
             -d '{
               "schedule": "0 30 7 * * ?", 
               "name": "<daily-snap-{now/d}>", 
@@ -264,6 +266,7 @@ spec:
           curl -X PUT "https://quickstart-es-http:9200/_slm/policy/hourly-snapshots" \
             -k -H "Content-Type: application/json" \
             -u "elastic:${ELASTIC_PASSWORD}" \
+            --fail-with-body \
             -d '{
               "schedule": "0 20 * * * ?", 
               "name": "<hourly-snap-{now/d}>", 
