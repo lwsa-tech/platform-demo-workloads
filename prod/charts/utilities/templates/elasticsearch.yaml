@@ -4,6 +4,9 @@ metadata:
   name: quickstart
 spec:
   version: 8.15.2
+  auth:
+    roles:
+      - secretName: quickstart-elastic-user-role
   nodeSets:
     - name: master
       config:
@@ -59,6 +62,7 @@ spec:
                 storage: 80Gi
             storageClassName: {{ $.Values.global.dbStorageClassName }}
 ---
+# TODO: sync-wave Kibana após ElasticSearch
 apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
 metadata:
@@ -115,13 +119,13 @@ metadata:
 {{/*
 
   {{- if .sourceRanges }}
-    nginx.ingress.kubernetes.io/whitelist-source-range: {{ .sourceRanges | join "," }}
+    nginx.ingress.kubernetes.io/whitelist-source-range: '{{ .sourceRanges | join "," }}'
   {{- end }}
 
 */}}
 spec:
   rules:
-  - host: {{ $.Release.Namespace }}-kibana-quickstart.{{ $.Values.global.clusterDomain }}
+  - host: {{ $.Release.Namespace }}-quickstart-kb.{{ $.Values.global.clusterDomain }}
     http:
       paths:
       - path: /
@@ -131,7 +135,7 @@ spec:
             name: quickstart-kb-http
             port:
               number: 5601
-  - host: {{ $.Release.Namespace }}-kibana-quickstart.{{ $.Values.global.globalDomain }}
+  - host: {{ $.Release.Namespace }}-quickstart-kb.{{ $.Values.global.globalDomain }}
     http:
       paths:
       - path: /
@@ -142,3 +146,38 @@ spec:
             port:
               number: 5601
   ingressClassName: {{ $.Values.global.ingress.ingressClassName }}
+---
+# https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-users-and-roles.html
+kind: Secret
+apiVersion: v1
+metadata:
+  name: quickstart-elastic-user-role
+stringData:
+  roles.yml: |-
+    elastic-user-role:
+      cluster: [ 'monitor' ]
+      indices:
+        - names: [ 'elastic-user-*' ]
+          privileges: [ 'all' ]
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: quickstart-elastic-user
+spec:
+  refreshInterval: "0s" # não modifica depois de gerado
+  target:
+    name: quickstart-elastic-user
+    template:
+      engineVersion: v2
+      data:
+        users: |
+          {{ `{{ (printf "%s" (htpasswd "elastic-user" .password)) }}` }}
+        users_roles: |
+          elastic-user-role:elastic-user
+  dataFrom:
+    - sourceRef:
+        generatorRef:
+          apiVersion: generators.external-secrets.io/v1alpha1
+          kind: Password
+          name: "password-generator"
