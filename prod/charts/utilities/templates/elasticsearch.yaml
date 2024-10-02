@@ -162,6 +162,7 @@ stringData:
         - names: [ 'external-user-*' ]
           privileges: [ 'all' ]
       kibana:
+        base:
         feature:
           discover:
             - all
