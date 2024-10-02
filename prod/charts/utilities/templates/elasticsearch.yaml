@@ -197,6 +197,10 @@ spec:
           kind: Password
           name: "password-generator"
 ---
+# https://www.elastic.co/guide/en/elasticsearch/reference/8.15/repository-s3.html
+# https://www.elastic.co/guide/en/elasticsearch/reference/8.15/snapshots-take-snapshot.html#create-slm-policy
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-put-policy.html
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/api-conventions.html#api-cron-expressions
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -283,6 +287,7 @@ spec:
                 name: quickstart-es-elastic-user
                 key: elastic
 ---
+# https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-es-secure-settings.html
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
