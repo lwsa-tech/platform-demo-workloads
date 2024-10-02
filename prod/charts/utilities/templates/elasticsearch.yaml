@@ -5,8 +5,10 @@ metadata:
 spec:
   version: 8.15.2
   auth:
+    fileRealm:
+      - secretName: quickstart-external-user
     roles:
-      - secretName: quickstart-elastic-user-role
+      - secretName: quickstart-external-user-role
   nodeSets:
     - name: master
       config:
@@ -151,30 +153,30 @@ spec:
 kind: Secret
 apiVersion: v1
 metadata:
-  name: quickstart-elastic-user-role
+  name: quickstart-external-user-role
 stringData:
   roles.yml: |-
-    elastic-user-role:
+    external-user-role:
       cluster: [ 'monitor' ]
       indices:
-        - names: [ 'elastic-user-*' ]
+        - names: [ 'external-user-*' ]
           privileges: [ 'all' ]
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: quickstart-elastic-user
+  name: quickstart-external-user
 spec:
   refreshInterval: "0s" # não modifica depois de gerado
   target:
-    name: quickstart-elastic-user
+    name: quickstart-external-user
     template:
       engineVersion: v2
+      type: kubernetes.io/basic-auth
       data:
-        users: |
-          {{ `{{ (printf "%s" (htpasswd "elastic-user" .password)) }}` }}
-        users_roles: |
-          elastic-user-role:elastic-user
+        username: external-user
+        password: {{ .password }}
+        roles: external-user-role
   dataFrom:
     - sourceRef:
         generatorRef:
