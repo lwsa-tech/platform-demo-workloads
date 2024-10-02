@@ -156,11 +156,19 @@ metadata:
   name: quickstart-external-user-role
 stringData:
   roles.yml: |-
-    external-user-role:
-      cluster: [ 'monitor' ]
-      indices:
-        - names: [ 'external-user-*' ]
-          privileges: [ 'all' ]
+    cluster:
+      - monitor
+    indices:
+      - names:
+          - external-user-*
+        privileges:
+          - all
+    applications:
+      - application: kibana-.kibana
+        privileges:
+          - all
+        resources:
+          - '*'
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
