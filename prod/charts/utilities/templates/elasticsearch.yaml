@@ -9,6 +9,8 @@ spec:
       - secretName: quickstart-external-user
     roles:
       - secretName: quickstart-external-user-role
+  secureSettings:
+    - secretName: {{ $.Release.Name }}-elastic-backup-creds
   nodeSets:
     - name: master
       config:
@@ -214,17 +216,16 @@ spec:
         args:
         - |
           set -euox pipefail
-          
+
           curl -X PUT "https://quickstart-es-http:9200/_snapshot/backup" \
             -k -H "Content-Type: application/json" \
             -u "elastic:${ELASTIC_PASSWORD}" \
             -d '{
               "type": "s3",
               "settings": {
+                "client": "backup",
                 "bucket": "{{ $.Values.global.backup.bucket }}",
                 "base_path": "{{ printf "elasticsearch/%s-%s-%s" $.Release.Namespace $.Release.Name "quickstart" }}",
-                "access_key": "${AWS_SECRET_ACCESS_KEY}",
-                "secret_key": "${AWS_ACCESS_KEY_ID}",
                 "endpoint": "{{ $.Values.global.backup.endpoint }}",
                 "region": "{{ $.Values.global.backup.region }}",
                 "path_style_access": true,
@@ -237,6 +238,27 @@ spec:
               secretKeyRef:
                 name: quickstart-es-elastic-user
                 key: elastic
-        envFrom:
-          - secretRef:
-              name: utilities-blueprint-backup-creds
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: {{ $.Release.Name }}-elastic-backup-creds
+  annotations:
+    # credenciais precedem recovery
+    argocd.argoproj.io/sync-wave: "-150"
+spec:
+  refreshInterval: 5m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: {{ $.Values.global.externalSecrets.clusterSecretStoreName }}
+  target:
+    name: {{ $.Release.Name }}-elastic-backup-creds
+    creationPolicy: Owner
+    template:
+      engineVersion: v2
+      data:
+        s3.client.backup.access_key: {{ `{{ .AWS_ACCESS_KEY_ID }}` }}
+        s3.client.backup.secret_key: {{ `{{ .AWS_SECRET_ACCESS_KEY }}` }}
+  dataFrom:
+  - extract:
+      key: {{ $.Values.global.backup.secret }}
