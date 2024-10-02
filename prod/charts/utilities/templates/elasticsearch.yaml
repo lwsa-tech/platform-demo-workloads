@@ -150,6 +150,8 @@ spec:
   ingressClassName: {{ $.Values.global.ingress.ingressClassName }}
 ---
 # https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-users-and-roles.html
+# IMPORTANTE: user e role criados desta forma não aparecem no dashboard do Kibana, mas funcionam normalmente.
+# https://github.com/elastic/cloud-on-k8s/issues/4738
 kind: Secret
 apiVersion: v1
 metadata:
@@ -161,7 +163,7 @@ stringData:
         - 'monitor'
       indices:
         - names:
-            - 'external-user-*'
+            - '*'
           privileges:
             - 'all'
       applications:
