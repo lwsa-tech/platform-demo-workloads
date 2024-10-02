@@ -210,10 +210,11 @@ spec:
       containers:
       - name: create-backup-repo
         image: curlimages/curl
-        command: ["/bin/sh"]
+        command: ["/bin/sh", "-c"]
         args:
-        - -c
         - |
+          set -euox pipefail
+          
           curl -X PUT "https://quickstart-es-http:9200/_snapshot/backup" \
             -k -H "Content-Type: application/json" \
             -u "elastic:${ELASTIC_PASSWORD}" \
