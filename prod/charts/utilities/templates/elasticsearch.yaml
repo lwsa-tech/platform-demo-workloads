@@ -238,4 +238,4 @@ spec:
                 key: elastic
         envFrom:
           - secretRef:
-              name: {{ $.Release.Name }}-backup-creds
+              name: utilities-blueprint-backup-creds
