@@ -91,26 +91,26 @@ dbServers:
       enabled: true
     pause: false
 
-# searches:
-#   - name: mysearch
-#     type: elasticsearch
-#     version: "8.15.2"
-#     expose:
-#       enabled: true
-#       sourceRanges:
-#         - "189.0.0.0/8"
-#     nodes:
-#       master:
-#         replicas: 3
-#         plan: medium
-#         size: 80Gi
-#       data:
-#         replicas: 3
-#         plan: large
-#         size: 160Gi
-#     dashboard:
-#       enabled: true
-#       sourceRanges:
-#         - "189.0.0.0/8"
-#       replicas: 1
-#       plan: small
+searches:
+  - name: mysearch
+    type: elasticsearch
+    version: "8.15.2"
+    expose:
+      enabled: true
+      sourceRanges:
+        - "189.0.0.0/8"
+    nodes:
+      master:
+        replicas: 3
+        plan: medium
+        size: 80Gi
+      data:
+        replicas: 3
+        plan: large
+        size: 160Gi
+    dashboard:
+      enabled: true
+      sourceRanges:
+        - "189.0.0.0/8"
+      replicas: 1
+      plan: small
