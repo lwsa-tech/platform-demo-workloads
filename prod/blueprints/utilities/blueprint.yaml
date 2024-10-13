@@ -29,10 +29,11 @@ services:
           port: 53
           protocol: UDP
       toFQDNs:
-        - pattern: '*.locaweb.com.br'
+        - pattern: '*.ubuntu.com'
           port: 443
           protocol: TCP
-        - pattern: '*.ubuntu.com'
+        # na ausência de port/protocol, conexões para qualquer porta e protocolo são permitidas
+        - host: 'www.locaweb.com.br'
     envVarsFrom:
       secrets:
         - name: segredo
@@ -43,12 +44,17 @@ services:
           mappings:
             NAME: nome
             COMPANY: empresa
+        # na ausência de mappings, chaves do segredo são mapeadas diretamente para nomes das variáveis de ambiente
         - name: outromapa
 
   - name: echo
     plan: nano
     ingress:
       enabled: true
+      sourceRanges:
+        - "189.0.0.0/8"
+        - "186.0.0.0/8"
+        - "187.0.0.0/8"
     image: cilium/echoserver
 
   - name: pgadmin
