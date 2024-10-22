@@ -97,6 +97,14 @@ dbServers:
       enabled: true
     pause: false
 
+  - name: pg-copy
+    type: cnpg
+    version: "16"
+    plan: micro
+    size: 90Gi
+    restoreFrom:
+      name: pg
+
 searches:
   - name: mysearch
     type: elasticsearch
