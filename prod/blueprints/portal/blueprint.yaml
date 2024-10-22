@@ -56,15 +56,15 @@ dbServers:
     plan: small
     size: 60Gi
 
-  # - name: wp-copy
-  #   type: pxc
-  #   replicas: 1
-  #   # "8,0" ou "5.7"
-  #   version: "8.0"
-  #   plan: small
-  #   size: 60Gi
-  #   restoreFrom:
-  #     name: wp-db
+  - name: wp-copy
+    type: pxc
+    replicas: 1
+    # "8,0" ou "5.7"
+    version: "8.0"
+    plan: small
+    size: 60Gi
+    restoreFrom:
+      name: wp-db
 
   - name: cache
     type: dragonfly
