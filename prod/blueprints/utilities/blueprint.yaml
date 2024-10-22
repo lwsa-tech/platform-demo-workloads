@@ -79,6 +79,15 @@ dbServers:
     # quando true, desliga banco, sem apagar dados. Serve para economizar recursos quando não precisa
     pause: false
 
+  # - name: mydb-copy
+  #   replicas: 1
+  #   type: pxc
+  #   version: "8.0"
+  #   plan: large
+  #   size: 200Gi
+  #   restoreFrom:
+  #     name: mydb
+
   - name: newdb
     replicas: 1
     type: pxc
@@ -97,13 +106,13 @@ dbServers:
       enabled: true
     pause: false
 
-  - name: pg-copy
-    type: cnpg
-    version: "16"
-    plan: micro
-    size: 90Gi
-    restoreFrom:
-      name: pg
+  # - name: pg-copy
+  #   type: cnpg
+  #   version: "16"
+  #   plan: micro
+  #   size: 90Gi
+  #   restoreFrom:
+  #     name: pg
 
 searches:
   - name: mysearch
