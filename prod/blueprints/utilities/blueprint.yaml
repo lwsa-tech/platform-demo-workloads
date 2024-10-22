@@ -6,7 +6,7 @@ configmaps:
 
   - name: outromapa
     data:
-      fu: ba
+      foo: bar
 
 secrets:
   - name: segredo
