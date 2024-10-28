@@ -31,10 +31,10 @@ services:
           type: pxc
           # Variáveis de ambiente são criadas via estes mapeamentos adicionalmente às descritas acima
           mappings:
-            WORDPRESS_DB_NAME: database
-            WORDPRESS_DB_HOST: host
-            WORDPRESS_DB_USER: user
-            WORDPRESS_DB_PASSWORD: password
+            WORDPRESS_DB_NAME: DB_NAME
+            WORDPRESS_DB_HOST: DB_HOST
+            WORDPRESS_DB_USER: DB_USER
+            WORDPRESS_DB_PASSWORD: DB_PASSWORD
             # URL_BANCO: url
         - name: cache
           type: dragonfly

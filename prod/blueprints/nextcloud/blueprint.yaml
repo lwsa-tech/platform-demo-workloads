@@ -13,17 +13,16 @@ services:
         - name: nextcloud-db
           type: cnpg
           mappings:
-            POSTGRES_HOST: host
-            POSTGRES_READ: host_read
-            POSTGRES_USER: user
-            POSTGRES_PASSWORD: password
-            POSTGRES_DB: database
-            CONNECTION_STRING: url
+            POSTGRES_HOST: DB_HOST
+            POSTGRES_READ: DB_HOST_READ
+            POSTGRES_USER: DB_USER
+            POSTGRES_PASSWORD: DB_PASSWORD
+            POSTGRES_DB: DB_NAME
+            CONNECTION_STRING: DATABASE_URL
         - name: redis
           type: dragonfly
           mappings:
-            REDIS_HOST: host
-            REDIS_HOST_PASSWORD: password
+            REDIS_HOST_PASSWORD: REDIS_PASSWORD
 
   - name: ubuntu
     plan: micro
