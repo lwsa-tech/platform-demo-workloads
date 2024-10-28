@@ -8,21 +8,22 @@ services:
     mountVolumes:
       - name: nextcloud-vol
         path: /var/www/html
-    dbConnections:
-      - name: nextcloud-db
-        type: cnpg
-        envVarMappings:
-          POSTGRES_HOST: host
-          POSTGRES_READ: host_read
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: database
-          CONNECTION_STRING: url
-      - name: redis
-        type: dragonfly
-        envVarMappings:
-          REDIS_HOST: host
-          REDIS_HOST_PASSWORD: password
+    envVarsFrom:
+      dbServers:
+        - name: nextcloud-db
+          type: cnpg
+          mappings:
+            POSTGRES_HOST: host
+            POSTGRES_READ: host_read
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: database
+            CONNECTION_STRING: url
+        - name: redis
+          type: dragonfly
+          mappings:
+            REDIS_HOST: host
+            REDIS_HOST_PASSWORD: password
 
   - name: ubuntu
     plan: micro

@@ -24,19 +24,20 @@ services:
     # replicas: 1
     port: 80
     plan: small
-    dbConnections:
-      # name e type sempre obrigatórios e devem bater com as definições em dbServers abaixo
-      - name: wp-db
-        type: pxc
-        # Variáveis de ambiente são criadas via estes mapeamentos adicionalmente às descritas acima
-        envVarMappings:
-          WORDPRESS_DB_NAME: database
-          WORDPRESS_DB_HOST: host
-          WORDPRESS_DB_USER: user
-          WORDPRESS_DB_PASSWORD: password
-          # URL_BANCO: url
-      - name: cache
-        type: dragonfly
+    envVarsFrom:
+      dbServers:
+        # name e type sempre obrigatórios e devem bater com as definições em dbServers abaixo
+        - name: wp-db
+          type: pxc
+          # Variáveis de ambiente são criadas via estes mapeamentos adicionalmente às descritas acima
+          mappings:
+            WORDPRESS_DB_NAME: database
+            WORDPRESS_DB_HOST: host
+            WORDPRESS_DB_USER: user
+            WORDPRESS_DB_PASSWORD: password
+            # URL_BANCO: url
+        - name: cache
+          type: dragonfly
     # Volume deve estar definido em volumes abaixo com mesmo nome.
     # Proibido caso replicas maior que 1
     mountVolumes:
