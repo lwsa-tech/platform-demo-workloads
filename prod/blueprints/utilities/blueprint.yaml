@@ -46,6 +46,9 @@ services:
             COMPANY: empresa
         # na ausência de mappings, chaves do segredo são mapeadas diretamente para nomes das variáveis de ambiente
         - name: outromapa
+      searches:
+        - name: mysearch
+          type: elasticsearch
 
   - name: echo
     plan: nano
