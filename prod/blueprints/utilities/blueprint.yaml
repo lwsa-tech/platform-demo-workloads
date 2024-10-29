@@ -49,6 +49,12 @@ services:
       searches:
         - name: mysearch
           type: elasticsearch
+          mappings:
+            ES_HOST: ELASTICSEARCH_HOST
+            ES_PORT: ELASTICSEARCH_PORT
+            ES_USER: ELASTICSEARCH_USER
+            ES_PASSWORD: ELASTICSEARCH_PASSWORD
+            ES_URI: ELASTICSEARCH_URL
 
   - name: echo
     plan: nano
