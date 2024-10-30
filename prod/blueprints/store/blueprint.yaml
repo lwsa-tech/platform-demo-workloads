@@ -8,7 +8,7 @@ configmaps:
       MAGENTO_SKIP_BOOTSTRAP: "yes"
 
 services:
-  - name: magentod
+  - name: magento
     plan: micro
     image: bitnami/magento:2.4.7
     egress:
