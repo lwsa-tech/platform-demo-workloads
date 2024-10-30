@@ -5,9 +5,10 @@ configmaps:
       MAGENTO_ELASTICSEARCH_USE_HTTPS: "yes"
       MAGENTO_ELASTICSEARCH_ENABLE_AUTH: "yes"
       MAGENTO_EXTRA_INSTALL_ARGS: "--verbose=3"
+      MAGENTO_SKIP_BOOTSTRAP: "yes"
 
 services:
-  - name: magento
+  - name: magentod
     plan: micro
     image: bitnami/magento:2.4.7
     egress:
