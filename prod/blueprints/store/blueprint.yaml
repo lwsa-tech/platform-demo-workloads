@@ -42,7 +42,7 @@ dbServers:
 searches:
   - name: magento
     type: elasticsearch
-    version: "7.17.25"
+    version: "8.15.3"
     nodes:
       master:
         replicas: 3
