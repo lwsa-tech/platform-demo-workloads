@@ -55,6 +55,9 @@ services:
             ES_USER: ELASTICSEARCH_USER
             ES_PASSWORD: ELASTICSEARCH_PASSWORD
             ES_URI: ELASTICSEARCH_URL
+      dbServers:
+        - name: docdb
+          type: ferretdb
 
   - name: echo
     plan: nano
@@ -122,6 +125,12 @@ dbServers:
   #   size: 90Gi
   #   restoreFrom:
   #     name: pg
+
+  - name: docdb
+    type: ferretdb
+    version: "17"
+    plan: micro
+    size: 90Gi
 
 searches:
   - name: mysearch
