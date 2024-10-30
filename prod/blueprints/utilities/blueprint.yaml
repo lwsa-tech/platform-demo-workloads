@@ -131,6 +131,8 @@ dbServers:
     version: "17"
     plan: micro
     size: 90Gi
+    expose:
+      enabled: true
 
 searches:
   - name: mysearch
