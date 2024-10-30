@@ -11,6 +11,9 @@ services:
     image: bitnami/magento:2.4.7
     egress:
       enabled: true
+    mountVolumes:
+      - name: magento
+        path: /bitnami/magento
     envVarsFrom:
       configMaps:
         - name: magento
@@ -56,3 +59,7 @@ searches:
       enabled: true
       replicas: 1
       plan: small
+
+volumes:
+  - name: magento
+    size: 100Gi
