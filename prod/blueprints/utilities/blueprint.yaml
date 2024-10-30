@@ -29,11 +29,11 @@ services:
           port: 53
           protocol: UDP
       toFQDNs:
+        # na ausência de port/protocol, conexões para qualquer porta e protocolo são permitidas
         - pattern: '*.ubuntu.com'
+        - host: 'www.locaweb.com.br'
           port: 443
           protocol: TCP
-        # na ausência de port/protocol, conexões para qualquer porta e protocolo são permitidas
-        - host: 'www.locaweb.com.br'
     envVarsFrom:
       secrets:
         - name: segredo
