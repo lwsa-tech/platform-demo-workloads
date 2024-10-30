@@ -31,7 +31,7 @@ services:
       toFQDNs:
         # na ausência de port/protocol, conexões para qualquer porta e protocolo são permitidas
         - pattern: '*.ubuntu.com'
-        - host: 'www.locaweb.com.br'
+        - host: 'downloads.mongodb.com'
           port: 443
           protocol: TCP
     envVarsFrom:
