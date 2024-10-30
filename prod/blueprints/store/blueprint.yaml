@@ -4,6 +4,7 @@ configmaps:
       MAGENTO_ELASTICSEARCH_PORT_NUMBER: "9200"
       MAGENTO_ELASTICSEARCH_USE_HTTPS: "yes"
       MAGENTO_ELASTICSEARCH_ENABLE_AUTH: "yes"
+      MAGENTO_EXTRA_INSTALL_ARGS: "-vvv"
 
 services:
   - name: magento
