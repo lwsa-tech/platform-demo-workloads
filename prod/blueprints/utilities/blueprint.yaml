@@ -131,6 +131,7 @@ dbServers:
     version: "17"
     plan: micro
     size: 90Gi
+    replicas: 3
     expose:
       enabled: true
       sourceRanges:
