@@ -24,16 +24,16 @@ services:
       - while :; do sleep 86400; done
     egress:
       enabled: true
-      toCIDRs:
-        - range: 1.1.1.1/32
-          port: 53
-          protocol: UDP
-      toFQDNs:
-        # na ausência de port/protocol, conexões para qualquer porta e protocolo são permitidas
-        - pattern: '*.ubuntu.com'
-        - host: 'downloads.mongodb.com'
-          port: 443
-          protocol: TCP
+      # toCIDRs:
+      #   - range: 1.1.1.1/32
+      #     port: 53
+      #     protocol: UDP
+      # toFQDNs:
+      #   # na ausência de port/protocol, conexões para qualquer porta e protocolo são permitidas
+      #   - pattern: '*.ubuntu.com'
+      #   - host: 'downloads.mongodb.com'
+      #     port: 443
+      #     protocol: TCP
     envVarsFrom:
       secrets:
         - name: segredo
