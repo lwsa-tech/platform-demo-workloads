@@ -112,7 +112,7 @@ dbServers:
   - name: pg
     type: cnpg
     version: "16"
-    plan: micro
+    plan: 2xlarge
     size: 300Gi
     expose:
       enabled: true
