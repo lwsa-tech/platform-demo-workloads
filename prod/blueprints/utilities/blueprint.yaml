@@ -113,7 +113,7 @@ dbServers:
     type: cnpg
     version: "16"
     plan: micro
-    size: 90Gi
+    size: 300Gi
     expose:
       enabled: true
     pause: false
