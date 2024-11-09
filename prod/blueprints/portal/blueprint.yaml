@@ -1,7 +1,7 @@
 # WordPress, com volume persistente, MySQL com 3 replicas e memcached com 2 replicas
 # Replicas podem ser usadas em services e dbServers, se não especificadas se assume 1 replica por default
 # Acessível incluster via via http://<name>.<namespace> ex. http://wp.portal
-# Com ingress.enabled acessível externamente via https://portal-wp.global.staging.idp-lab.ingress.sh e certificado auto-renovado
+# Com ingress.enabled acessível externamente via https://<name>.<namespace>.<env>.<proj>.ingress.sh, ex. https://portal-wp.global.prod.demo.ingress.sh e certificado auto-renovado
 # Passa variável de ambiente PORT=10000 por padrão para container, que podemos sobrescrever com parâmetro port como é o caso aqui, pois a imagem WordPress é hardcoded para ouvir na porta 80.
 # Ao definir as conexões abaixo, são passadas variáveis de ambiente DB_NAME, DB_HOST, DB_USER, DB_PASSWORD e DATABASE_URL para o container
 # Para type dragonfly são passadas automaticamente as variáveis de ambiente "REDIS_HOST", "MEMCACHED_HOST", "REDIS_PASSWORD", "REDIS_URL"
@@ -13,7 +13,7 @@ services:
       enabled: true
       # Se adicionados, um ou mais hosts terão certificados gerenciados automaticamente com validação http-01
       # Obrigatório criar registro CNAME apontando para https://<namespace>-<name>.global.<env>.<project>.ingress.sh ou certificado não validará, ex:
-      # www CNAME portal-wp.global.staging.idp-lab.ingress.sh
+      # www CNAME portal-wp.global.prod.demo.ingress.sh
       # Não instala certificado se cluster em recovery ou standby
       # hosts:
       #   - www.giba.tech
@@ -35,7 +35,6 @@ services:
             WORDPRESS_DB_HOST: DB_HOST
             WORDPRESS_DB_USER: DB_USER
             WORDPRESS_DB_PASSWORD: DB_PASSWORD
-            # URL_BANCO: url
         - name: cache
           type: dragonfly
     # Volume deve estar definido em volumes abaixo com mesmo nome.
