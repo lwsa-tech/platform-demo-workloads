@@ -1,0 +1,12 @@
+{
+  "packages": [
+    "awscli2@2",
+    "kubeseal@latest",
+    "kubelogin-oidc@latest",
+    "kubectl@latest",
+    "kubernetes-helm@latest",
+    "cilium-cli@latest",
+    "k9s@latest",
+    "jq@latest"
+  ]
+}
