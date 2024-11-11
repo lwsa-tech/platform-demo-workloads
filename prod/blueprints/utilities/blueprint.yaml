@@ -68,7 +68,7 @@ services:
         - "186.0.0.0/8"
         - "187.0.0.0/8"
     image: cilium/echoserver
-    replicas: 12
+    replicas: 8
     plan: large
 
   - name: pgadmin
