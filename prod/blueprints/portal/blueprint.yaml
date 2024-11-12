@@ -55,9 +55,12 @@ dbServers:
     version: "8.0"
     plan: small
     size: 60Gi
+    # Default 1 replica. Para prod usar sempre 3
+    # replicas: 3
 
   - name: cache
     type: dragonfly
+    # Default 1 replica. Para prod usar ao menos 2
     replicas: 2
     plan: micro
     memcached:
