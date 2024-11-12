@@ -38,12 +38,16 @@ dbServers:
     version: "15"
     plan: micro
     size: 50Gi
+    # Default 1 replica. Para prod usar sempre 3
+    # replicas: 3
 
   - name: redis
     type: dragonfly
     plan: micro
     passwordAuth:
       enabled: true
+    # Default 1 replica. Para prod usar ao menos 2
+    # replicas: 2
 
 volumes:
   - name: nextcloud-vol
