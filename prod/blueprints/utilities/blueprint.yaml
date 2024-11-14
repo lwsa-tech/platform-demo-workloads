@@ -106,7 +106,7 @@ dbServers:
     type: pxc
     version: "8.0"
     plan: 2xlarge
-    size: 300Gi
+    size: 600Gi
     expose:
       enabled: true
 
