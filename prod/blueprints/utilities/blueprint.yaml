@@ -102,7 +102,7 @@ dbServers:
   #     name: mydb
 
   - name: newdb
-    replicas: 1
+    replicas: 3
     type: pxc
     version: "8.0"
     plan: 2xlarge
@@ -118,6 +118,7 @@ dbServers:
     expose:
       enabled: true
     pause: false
+    replicas: 3
 
   # - name: pg-copy
   #   type: cnpg
