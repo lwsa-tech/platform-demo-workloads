@@ -32,6 +32,7 @@ services:
       toFQDNs:
         # na ausência de port/protocol, conexões para qualquer porta e protocolo são permitidas
         - pattern: '*.ubuntu.com'
+        - pattern: '*.amazonaws.com'
         - host: 'poc.object-storage.sh'
         - host: 'downloads.mongodb.com'
           port: 443
