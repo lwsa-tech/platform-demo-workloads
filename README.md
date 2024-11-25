@@ -80,7 +80,7 @@ Use a _URL_ fornecida para acessar o _Grafana_. Para persistir _dashboards_, sal
 _Dashboards_ recomendados:
 - _Kubernetes / Compute Resources / Cluster_: para monitorar capacidade agregada do _cluster_
 - _Kubernetes / Compute Resources / Namespaces (Workloads)_: para monitorar uso agregado por _namespace_
-- _monitoring_ / _Trivy Operator Dashboard_: para monitorar _CVE_s
+- _monitoring_ / _Trivy Operator Dashboard_: para monitorar _CVEs_
 
 ### Argo CD
 
