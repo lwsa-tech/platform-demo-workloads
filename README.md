@@ -12,16 +12,14 @@
   - [Grafana](#grafana)
   - [Argo CD](#argo-cd)
     - [Webhook](#webhook)
-  - [Kubeseal](#kubeseal)
-    - [Charts](#charts)
 - [Operação](#operação)
   - [Criar novo blueprint](#criar-novo-blueprint)
     - [Catálogo de planos](#catálogo-de-planos)
     - [Recomendações para produção](#recomendações-para-produção)
     - [Segredos via kubeseal](#segredos-via-kubeseal)
+      - [Charts](#charts)
   - [Criar novo chart](#criar-novo-chart)
     - [Values embutidos](#values-embutidos)
-  - [Grafana](#grafana-1)
   - [Slack](#slack)
   - [Horários de backups e reboots](#horários-de-backups-e-reboots)
 
@@ -79,6 +77,11 @@ E alternar entre os clusters via `kubectl config use-context <nome do cluster>` 
 
 Use a _URL_ fornecida para acessar o _Grafana_. Para persistir _dashboards_, salve-os no formato _json_ e encaminhe para o time de _Platform Engineering_.
 
+_Dashboards_ recomendados:
+- _Kubernetes / Compute Resources / Cluster_: para monitorar capacidade agregada do _cluster_
+- _Kubernetes / Compute Resources / Namespaces (Workloads)_: para monitorar uso agregado por _namespace_
+- _monitoring_ / _Trivy Operator Dashboard_: para monitorar _CVE_s
+
 ### Argo CD
 
 Use a _URL_ fornecida para acessar o _Argo CD_.
@@ -90,7 +93,37 @@ Opcionalmente, você pode configurar um _webhook_ de forma que, a cada _push_ no
 
 Mais informações: https://argo-cd.readthedocs.io/en/stable/operator-manual/webhook/
 
-### Kubeseal
+## Operação
+
+### Criar novo blueprint
+
+Copie os arquivos de exemplo a adapte-os para o seu caso. Leia os arquivos de exemplo para entender as opções disponíveis.
+
+#### Catálogo de planos
+
+| Plano | CPU | Memória |
+|-------|-----|---------|
+| femto | 125m | 128Mi |
+| pico | 250m | 256Mi |
+| nano | 500m | 512Mi |
+| micro | 1 | 1Gi |
+| small | 1 | 2Gi |
+| medium | 2 | 4Gi |
+| large | 2 | 8Gi |
+| xlarge | 4 | 16Gi |
+| 2xlarge | 8 | 32Gi |
+| 4xlarge | 16 | 64Gi |
+
+#### Recomendações para produção
+- Para bancos de dados `cnpg` (_Postgres_) e `pxc` (_MySQL_), use sempre 3 réplicas.
+- Para bancos de dados `dragongly` (_Redis_), use ao menos 2 réplicas.
+- Para serviços sem estado, use 2 ao menos réplicas. Para serviços com estado, que montam volumes, só é possível usar 1 réplica.
+- Para _searches_, use 3 réplicas nos _nodes_ `master` e `data`.
+
+Em ambiente de _staging_ ou outros não-produtivos, pode-se usar apenas 1 réplica para os itens acima.
+
+#### Segredos via kubeseal
+
 Usamos a ferramenta _Sealed Secrets_ para permitir a publicação de segredos de forma segura nos repositórios de _blueprints_ e _charts_.
 
 Você receberá um arquivo `cert.pem` contendo um certificado para criptogarfar e publicar seus segredos. Para isto:
@@ -115,43 +148,37 @@ secrets:
 
 __Nota__: Como o _namespace_ faz parte do valor criptografado, é necessário incluí-lo no _blueprint_ para que fique explícito. A aplicação falhará se o _blueprint_ for carregado num _namespace_ diferente daquele para o qual o segredo foi destinado. Esta é uma medida de segurança para evitar que o segredo possa ser descriptografado num _namespace_ diferente. Note também que o nome fornecido no parâmetro `--name` precisa ser igual à da entrada `name` do _blueprint_.
 
-#### Charts
+##### Charts
 
 Digitar: `(secret=$(read -s; echo $REPLY); echo -n "$secret" | kubectl create secret generic mysecret --namespace=giba --dry-run=client --from-file=foo=/dev/stdin -o yaml | kubeseal --cert ~/cert.pem)`
 
 (substitua `giba`, `mysecret` e `foo` pelo _namespace_, segredo e chave respectivos)
 
-## Operação
-
-### Criar novo blueprint
-
-Copie os arquivos de exemplo a adapte-os para o seu caso. Leia os arquivos de exemplo para entender as opções disponíveis.
-
-#### Catálogo de planos
-
-| Plano | CPU | Memória |
-|-------|-----|---------|
-| femto | 125m | 128Mi |
-| pico | 250m | 256Mi |
-| nano | 500m | 512Mi |
-| micro | 1 | 1Gi |
-| small | 1 | 2Gi |
-| medium | 2 | 4Gi |
-| large | 2 | 8Gi |
-| xlarge | 4 | 16Gi |
-| 2xlarge | 8 | 32Gi |
-| 4xlarge | 16 | 64Gi |
-
-#### Recomendações para produção
-Replicas
-#### Segredos via kubeseal
 ### Criar novo chart
+
+Para criar um novo chart:
+
+1. Crie uma pasta com o nome do _namespace_ desejado dentro do diretório `charts/`
+
+2. Dentro desta pasta, crie um arquivo `Chart.yaml` com o conteúdo mínimo:
+```yaml
+apiVersion: v2
+name: nome_do_namespace
+version: 0.1.0
+```
+3. Manifestos _Kubernetes_ nativos devem ser colocados na pasta `templates/` sob o diretório do _namespace_.
+
 #### Values embutidos
-### Grafana
-- cluster
-- namespaces (sizing)
-- CVEs
-- Network policies
+
+Na interface do _Argo CD_, é possível visualizar quais _values_ foram embutidos no chart para utilização nos manifestos na aba _Parameters_.
+
+Por exemplo, `<nome_do_servico>.{{ .Values.global.clusterDomain }}` pode ser usado em recursos de _Ingress_ para configurar um endereço onde um serviço será exposto.
+
 ### Slack
-Alarmes que podem ser ignorados
+Alarmes que podem ser ignorados:
+- "An alert that should always be firing to certify that Alertmanager is working properly."
+- "Cluster has overcommitted memory resource requests." (em ambientes com _Autoscaling_ ou _Karpenter_ não é necessário haver sobra de recursos)
+
 ### Horários de backups e reboots
+- Backups de bancos de dados são realizados 4:00-5:59 Brasil/7:00-8:59 UTC
+- Reboots de _nodes_ são realizados 2:00-3:59 Brasil/5:00-6:59 UTC
