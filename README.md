@@ -64,14 +64,32 @@ devbox shell
 ```
 
 ### Kubeconfig
+
+Para usar o arquivo _kubeconfig_ recebido, copie-o para o diretório de sua escolha e exporte a variável de ambiente:
+```bash
+export KUBECONFIG=<caminho para o kubeconfig>
+```
+Caso você gerencie vários clusters, você pode configurar `KUBECONFIG` na forma:
+```bash
+export KUBECONFIG=/Users/gmautner/eks-04-n7n5uagr:/Users/gmautner/eks-05-9tesxlff:/Users/gmautner/hetzner-03-n71u1dz8:/Users/gmautner/cs-06-ux9w1ae2:/Users/gmautner/eks-06-8mrd1nnn:/Users/gmautner/cs-08-5gztbqei
+```
+E alternar entre os clusters via `kubectl config use-context <nome do cluster>` ou `:ctx` no _k9s_.
+
 ### Grafana
+
+Use a _URL_ fornecida para acessar o _Grafana_. Para persistir _dashboards_, salve-os no formato _json_ e encaminhe para o time de _Platform Engineering_.
+
 ### Argo CD
+
+Use a _URL_ fornecida para acessar o _Argo CD_.
+
 #### Webhook
 O _Argo CD_ sincroniza automaticamente _charts_ e _blueprints_ a cada 3 minutos, ou manualmente via botão _Refresh_ dentro de cada _Application_.
 
 Opcionalmente, você pode configurar um _webhook_ de forma que, a cada _push_ no repositório, é disparada uma sincronização. Para isto, crie o _webhook_ informado, lembrando de alterar _Content type_ para `application/json`.
 
 Mais informações: https://argo-cd.readthedocs.io/en/stable/operator-manual/webhook/
+
 ### Kubeseal
 Usamos a ferramenta _Sealed Secrets_ para permitir a publicação de segredos de forma segura nos repositórios de _blueprints_ e _charts_.
 
@@ -104,8 +122,26 @@ Digitar: `(secret=$(read -s; echo $REPLY); echo -n "$secret" | kubectl create se
 (substitua `giba`, `mysecret` e `foo` pelo _namespace_, segredo e chave respectivos)
 
 ## Operação
+
 ### Criar novo blueprint
+
+Copie os arquivos de exemplo a adapte-os para o seu caso. Leia os arquivos de exemplo para entender as opções disponíveis.
+
 #### Catálogo de planos
+
+| Plano | CPU | Memória |
+|-------|-----|---------|
+| femto | 125m | 128Mi |
+| pico | 250m | 256Mi |
+| nano | 500m | 512Mi |
+| micro | 1 | 1Gi |
+| small | 1 | 2Gi |
+| medium | 2 | 4Gi |
+| large | 2 | 8Gi |
+| xlarge | 4 | 16Gi |
+| 2xlarge | 8 | 32Gi |
+| 4xlarge | 16 | 64Gi |
+
 #### Recomendações para produção
 Replicas
 #### Segredos via kubeseal
