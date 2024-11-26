@@ -1,0 +1,17 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: helm-install-opensearch-nodes
+spec:
+  egress:
+  - {}
+  - toEntities:
+      - kube-apiserver            
+  - toEntities:
+    - world
+  endpointSelector:
+    matchExpressions:
+      - {key: job-name, operator: In, values: [helm-install-opensearch-nodes, helm-install-opensearch-dashboards]}
+  ingress:
+  - {}
