@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wekan-fix-permissions
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: fix-permissions
+        image: busybox
+        command:
+        - sh
+        - -c
+        - |
+          chown -R 999:999 /data && \
+          echo "Permissions updated successfully"
+        securityContext:
+          runAsUser: 0 # Run as root to be able to chown
+        volumeMounts:
+        - name: wekan-files-volume
+          mountPath: /data
+      volumes:
+      - name: wekan-files-volume
+        persistentVolumeClaim:
+          claimName: wekan-files
