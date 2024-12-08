@@ -1,0 +1,30 @@
+services:
+  - name: wekan
+    plan: micro
+    port: 8080
+    ingress:
+      enabled: true
+    image: wekanteam/wekan:v7.72
+    mountVolumes:
+      - name: wekan-files
+        path: /data
+    envVars:
+      WRITABLE_PATH: "/data"
+    envVarsFrom:
+      dbServers:
+        - name: wekandb
+          type: ferretdb
+          mappings:
+            MONGO_URL: MONGODB_URI
+
+dbServers:
+  - name: wekandb
+    type: ferretdb
+    version: "17"
+    plan: micro
+    size: 100Gi
+    replicas: 3
+
+volumes:
+  - name: wekan-files
+    size: 100Gi
