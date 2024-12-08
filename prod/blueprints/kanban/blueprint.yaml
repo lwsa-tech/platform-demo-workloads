@@ -9,7 +9,7 @@ services:
       - name: wekan-files
         path: /data
     envVars:
-      WRITABLE_PATH: "/data"
+      # WRITABLE_PATH: "/data"
       ROOT_URL: "https://kanban-wekan.global.prod.demo.ingress.sh"
     envVarsFrom:
       dbServers:
