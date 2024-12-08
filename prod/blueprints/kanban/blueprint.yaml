@@ -7,9 +7,9 @@ services:
     image: wekanteam/wekan:v7.72
     mountVolumes:
       - name: wekan-files
-        path: /data
+        path: /dados
     envVars:
-      # WRITABLE_PATH: "/data"
+      WRITABLE_PATH: "/dados"
       ROOT_URL: "https://kanban-wekan.global.prod.demo.ingress.sh"
     envVarsFrom:
       dbServers:
