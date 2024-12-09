@@ -103,12 +103,12 @@ dbServers:
   #   restoreFrom:
   #     name: mydb
 
-  # - name: testedb
-  #   replicas: 1
-  #   type: pxc
-  #   version: "8.0"
-  #   plan: micro
-  #   size: 60Gi
+  - name: testedb-2
+    replicas: 1
+    type: pxc
+    version: "8.0"
+    plan: micro
+    size: 60Gi
 
   - name: newdb
     replicas: 3
