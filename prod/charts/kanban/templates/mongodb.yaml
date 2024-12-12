@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: {{ printf "%s-%s-%s-mongodb" $.Release.Namespace $.Release.Name "wekan-db" }}
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -14,15 +16,16 @@ spec:
         global:
           defaultStorageClass: {{ $.Values.global.dbStorageClassName }}
         architecture: standalone
-        useStatefulSet: true
+        useStatefulSet: false
         auth:
           rootPassword: "senha_root"
           usernames:
             - app_owner
-          passwords:
-            - senha_app_owner
           databases:
             - app_data
+          existingSecret: kanban-kanban-chart-wekan-db-mongodb
+          # passwords:
+          #   - senha_app_owner
         resources:
           requests:
             cpu: 150m
@@ -32,6 +35,8 @@ spec:
             memory: 2Gi
         persistence:
           size: 20Gi
+        networkPolicy:
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: kanban
