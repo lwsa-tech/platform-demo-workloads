@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/bitnami/charts.git
-    targetRevision: "main"
-    path: bitnami/mongodb
+    repoURL: oci://registry-1.docker.io/bitnamicharts
+    targetRevision: "16.4.0"
+    chart: mongodb
     helm:
       valuesObject:
         global:
