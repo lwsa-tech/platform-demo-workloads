@@ -34,7 +34,7 @@ spec:
             cpu: 1
             memory: 2Gi
         persistence:
-          size: 20Gi
+          size: 30Gi
         networkPolicy:
           enabled: false
   destination:
