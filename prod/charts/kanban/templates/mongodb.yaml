@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ printf "%s-%s-%s-mongodb" $.Release.Namespace $.Release.Name "wekan-db" }}
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/bitnami/charts.git
+    targetRevision: "mongodb/16.4.0"
+    path: bitnami/mongodb
+    helm:
+      valuesObject:
+        global:
+          defaultStorageClass: {{ $.Values.global.dbStorageClassName }}
+        architecture: standalone
+        useStatefulSet: true
+        auth:
+          rootPassword: "senha_root"
+          usernames:
+            - app_owner
+          passwords:
+            - senha_app_owner
+          databases:
+            - app_data
+        resources:
+          requests:
+            cpu: 150m
+            memory: 2Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kanban
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - CreateNamespace=true
+    - RespectIgnoreDifferences=true
+    - ApplyOutOfSyncOnly=true
