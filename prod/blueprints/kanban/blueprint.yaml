@@ -30,7 +30,7 @@ dbServers:
     type: psmdb
     plan: micro
     size: 100Gi
-    replicas: 3
+    replicas: 1
     pause: false
     expose:
       enabled: false
