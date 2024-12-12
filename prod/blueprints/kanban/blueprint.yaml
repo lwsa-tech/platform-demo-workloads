@@ -13,8 +13,8 @@ services:
       ROOT_URL: "https://kanban-wekan.global.prod.demo.ingress.sh"
     envVarsFrom:
       dbServers:
-        - name: wekandb
-          type: ferretdb
+        - name: wekan-mongodb
+          type: psmdb
           mappings:
             MONGO_URL: MONGODB_URI
 
