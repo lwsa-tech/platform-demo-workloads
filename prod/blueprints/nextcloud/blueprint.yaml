@@ -41,14 +41,6 @@ dbServers:
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
 
-  - name: nextcloud-copy-2
-    type: cnpg
-    version: "15"
-    plan: micro
-    size: 60Gi
-    restoreFrom:
-      name: nextcloud-db
-
   - name: redis
     type: dragonfly
     plan: micro
