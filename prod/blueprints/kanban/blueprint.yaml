@@ -13,7 +13,7 @@ services:
   #     ROOT_URL: "https://kanban-wekan.global.prod.demo.ingress.sh"
   #   envVarsFrom:
   #     dbServers:
-  #       - name: wekan-mongodb
+  #       - name: wekan-banco
   #         type: psmdb
   #         mappings:
   #           MONGO_URL: MONGODB_URI
@@ -26,10 +26,10 @@ dbServers:
     size: 100Gi
     replicas: 3
 
-  # - name: wekan-mongodb
-  #   type: psmdb
-  #   plan: micro
-  #   size: 100Gi
+  - name: wekan-banco
+    type: psmdb
+    plan: micro
+    size: 100Gi
     # replicas: 1
     # pause: false
     # expose:
@@ -41,6 +41,6 @@ dbServers:
     #     - "185.0.0.0/8"
     #     - "177.0.0.0/8"
 
-# volumes:
-#   - name: wekan-files
-#     size: 100Gi
+volumes:
+  - name: wekan-files
+    size: 100Gi
