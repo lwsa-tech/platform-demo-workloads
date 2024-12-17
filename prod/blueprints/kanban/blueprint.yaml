@@ -1,22 +1,22 @@
 services:
-  # - name: wekan
-  #   plan: micro
-  #   port: 8080
-  #   ingress:
-  #     enabled: true
-  #   image: wekanteam/wekan:v7.72
-  #   mountVolumes:
-  #     - name: wekan-files
-  #       path: /dados
-  #   envVars:
-  #     WRITABLE_PATH: "/dados"
-  #     ROOT_URL: "https://kanban-wekan.global.prod.demo.ingress.sh"
-  #   envVarsFrom:
-  #     dbServers:
-  #       - name: wekan-banco
-  #         type: psmdb
-  #         mappings:
-  #           MONGO_URL: MONGODB_URI
+  - name: wekan
+    plan: micro
+    port: 8080
+    ingress:
+      enabled: true
+    image: wekanteam/wekan:v7.72
+    mountVolumes:
+      - name: wekan-files
+        path: /dados
+    envVars:
+      WRITABLE_PATH: "/dados"
+      ROOT_URL: "https://kanban-wekan.global.prod.demo.ingress.sh"
+    envVarsFrom:
+      dbServers:
+        - name: wekan-banco
+          type: psmdb
+          mappings:
+            MONGO_URL: MONGODB_URI
 
 dbServers:
   - name: wekandb
