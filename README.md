@@ -16,6 +16,7 @@
   - [Criar novo blueprint](#criar-novo-blueprint)
     - [Catálogo de planos](#catálogo-de-planos)
     - [Recomendações para produção](#recomendações-para-produção)
+    - [Prune resources](#prune-resources)
     - [Segredos via kubeseal](#segredos-via-kubeseal)
       - [Charts](#charts)
   - [Criar novo chart](#criar-novo-chart)
@@ -121,6 +122,16 @@ Copie os arquivos de exemplo a adapte-os para o seu caso. Leia os arquivos de ex
 - Para _searches_, use 3 réplicas nos _nodes_ `master` e `data`.
 
 Em ambiente de _staging_ ou outros não-produtivos, pode-se usar apenas 1 réplica para os itens acima.
+
+#### Prune resources
+
+Por segurança, recursos removidos nos _blueprints_ não são apagados automaticamente. Para fazê-lo:
+- Acesse a URL do _Argo CD_ 
+- Selecione o _Application_ correspondente ao seu _blueprint_
+- Pressione _Refresh_ para garantir que a útlima versão do _blueprint_ seja lida
+- Pressione _Sync_ com as opções _Prune_ e _Dry Run_ selecionadas. Ao final, você poderá verificar quais recursos serão apagados.
+- Estando de acordo, execute novamente _Sync_ com _Prune_ ativado, e sem _Dry Run_.
+- Você pode conferir pelo _k9s_ as operações no cluster _Kubernetes_.
 
 #### Segredos via kubeseal
 
