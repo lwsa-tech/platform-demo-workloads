@@ -45,8 +45,8 @@ dbServers:
     type: psmdb
     plan: micro
     size: 100Gi
-    restoreFrom:
-      name: wekan-3
+    # restoreFrom:
+    #   name: wekan-3
 
 # volumes:
 #   - name: wekan-files
