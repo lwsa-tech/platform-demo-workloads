@@ -40,13 +40,13 @@ dbServers:
     #     - "187.0.0.0/8"
     #     - "185.0.0.0/8"
     #     - "177.0.0.0/8"
-    
-  - name: wekan-banco-novo
-    type: psmdb
-    plan: micro
-    size: 100Gi
-    restoreFrom:
-      name: wekan-banco
+
+  # - name: wekan-banco-novo
+  #   type: psmdb
+  #   plan: micro
+  #   size: 100Gi
+  #   restoreFrom:
+  #     name: wekan-banco
 
 volumes:
   - name: wekan-files
