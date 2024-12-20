@@ -26,7 +26,7 @@ dbServers:
     size: 100Gi
     replicas: 3
 
-  - name: wekan-3
+  - name: wekan-5
     type: psmdb
     plan: micro
     size: 100Gi
@@ -41,10 +41,10 @@ dbServers:
         - "185.0.0.0/8"
         - "177.0.0.0/8"
 
-  - name: wekan-4
-    type: psmdb
-    plan: micro
-    size: 100Gi
+  # - name: wekan-4
+  #   type: psmdb
+  #   plan: micro
+  #   size: 100Gi
     # restoreFrom:
     #   name: wekan-3
 
