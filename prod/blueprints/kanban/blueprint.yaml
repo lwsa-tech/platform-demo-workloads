@@ -42,26 +42,6 @@ dbServers:
         - "177.0.0.0/8"
         - "179.0.0.0/8"
 
-  - name: wekan-6
-    type: psmdb
-    plan: micro
-    size: 100Gi
-    # restoreFrom:
-    #   name: wekan-5
-
-  - name: wekan-9
-    type: psmdb
-    plan: micro
-    size: 100Gi
-    # restoreFrom:
-    #   name: wekan-5
-
-  - name: wekan-10
-    type: psmdb
-    plan: micro
-    size: 100Gi
-    restoreFrom:
-      name: wekan-5
 
 # volumes:
 #   - name: wekan-files
