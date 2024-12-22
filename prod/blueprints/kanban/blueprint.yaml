@@ -28,7 +28,7 @@ dbServers:
 
   - name: wekan-5
     type: psmdb
-    plan: micro
+    plan: small
     size: 100Gi
     replicas: 1
     pause: false
@@ -44,7 +44,7 @@ dbServers:
 
   - name: wekan-11
     type: psmdb
-    plan: micro
+    plan: small
     size: 100Gi
     # restoreFrom:
     #   name: wekan-5
