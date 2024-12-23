@@ -1,4 +1,12 @@
 services:
+  - name: ubuntu
+    plan: micro
+    image: ubuntu
+    command:
+      - /bin/sh
+      - -c
+      - while :; do sleep 86400; done
+
   # - name: wekan
   #   plan: micro
   #   port: 8080
