@@ -42,7 +42,7 @@ dbServers:
         - "177.0.0.0/8"
         - "179.0.0.0/8"
 
-  - name: wekan-13
+  - name: wekan-14
     type: psmdb
     plan: small
     size: 100Gi
