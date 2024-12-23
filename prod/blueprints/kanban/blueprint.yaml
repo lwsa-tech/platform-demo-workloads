@@ -46,8 +46,8 @@ dbServers:
     type: psmdb
     plan: small
     size: 100Gi
-    restoreFrom:
-      name: wekan-12
+    # restoreFrom:
+    #   name: wekan-12
     expose:
       enabled: true
       sourceRanges:
