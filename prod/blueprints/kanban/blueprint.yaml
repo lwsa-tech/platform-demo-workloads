@@ -36,7 +36,7 @@ dbServers:
 
   - name: wekan-12
     type: psmdb
-    plan: small
+    plan: medium
     size: 100Gi
     replicas: 1
     pause: false
