@@ -64,10 +64,12 @@ services:
 
   - name: echo
     plan: nano
-    # port: 80
+    port: 3000 # porta onde o container ouve, default 10000
+    # usar expose no lugar de ingress se desejar expor via IP público diretamente.
+    # neste caso não suporta emissão automática de certificados
     expose:
       enabled: true
-      # port: 80
+      port: 80 # porta a ser exposta ao mundo, default igual à porta do container
       sourceRanges:
         - "189.0.0.0/8"
         - "186.0.0.0/8"
