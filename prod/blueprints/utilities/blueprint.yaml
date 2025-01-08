@@ -64,7 +64,7 @@ services:
 
   - name: echo
     plan: nano
-    port: 80
+    # port: 80
     expose:
       enabled: true
       # port: 80
