@@ -64,9 +64,10 @@ services:
 
   - name: echo
     plan: nano
+    port: 80
     expose:
       enabled: true
-      port: 80
+      # port: 80
       sourceRanges:
         - "189.0.0.0/8"
         - "186.0.0.0/8"
