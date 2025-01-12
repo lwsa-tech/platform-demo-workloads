@@ -265,7 +265,27 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "type", "plan", "size"],
+        "required": ["name", "type", "plan"],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": { 
+                  "enum": ["pxc", "cnpg", "psmdb", "ferretdb"]
+                }
+              }
+            },
+            "then": {
+              "required": ["size"],
+              "properties": {
+                "size": {
+                  "type": "string",
+                  "pattern": "^[0-9]+Gi$"
+                }
+              }
+            }
+          }
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -280,10 +300,6 @@
           "plan": {
             "type": "string",
             "enum": ["nano", "micro", "small", "medium", "large", "2xlarge"]
-          },
-          "size": {
-            "type": "string",
-            "pattern": "^[0-9]+Gi$"
           },
           "replicas": {
             "type": "integer",
