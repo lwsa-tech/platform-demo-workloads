@@ -405,7 +405,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "data"],
+        "required": ["name", "namespace", "data"],
         "properties": {
           "name": {
             "type": "string"
