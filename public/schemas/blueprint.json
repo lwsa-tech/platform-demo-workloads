@@ -113,6 +113,7 @@
           },
           "envVarsFrom": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "secrets": {
                 "type": "array",
