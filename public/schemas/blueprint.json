@@ -270,17 +270,89 @@
           {
             "if": {
               "properties": {
-                "type": { 
-                  "enum": ["pxc", "cnpg", "psmdb", "ferretdb"]
-                }
+                "type": { "const": "pxc" }
               }
             },
             "then": {
-              "required": ["size"],
+              "required": ["version", "size"],
               "properties": {
-                "size": {
+                "version": {
                   "type": "string",
-                  "pattern": "^[0-9]+Gi$"
+                  "enum": ["8.0", "5.7"]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": { "const": "cnpg" }
+              }
+            },
+            "then": {
+              "required": ["version", "size"],
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "pattern": "^(\\d+|\\d+\\.\\d+)$"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": { "const": "ferretdb" }
+              }
+            },
+            "then": {
+              "required": ["version", "size"],
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "pattern": "^(\\d+|\\d+\\.\\d+)$"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": { "const": "dragonfly" }
+              }
+            },
+            "then": {
+              "properties": {
+                "memcached": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": ["enabled"]
+                },
+                "snapshot": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "size": {
+                      "type": "string",
+                      "pattern": "^[0-9]+Gi$"
+                    }
+                  },
+                  "required": ["enabled"]
+                },
+                "passwordAuth": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": ["enabled"]
                 }
               }
             }
@@ -294,12 +366,13 @@
             "type": "string",
             "enum": ["pxc", "cnpg", "dragonfly", "psmdb", "ferretdb"]
           },
-          "version": {
-            "type": "string"
-          },
           "plan": {
             "type": "string",
             "enum": ["nano", "micro", "small", "medium", "large", "2xlarge"]
+          },
+          "size": {
+            "type": "string",
+            "pattern": "^[0-9]+Gi$"
           },
           "replicas": {
             "type": "integer",
@@ -326,34 +399,6 @@
               }
             },
             "required": ["enabled"]
-          },
-          "memcached": {
-            "type": "object",
-            "properties": {
-              "enabled": {
-                "type": "boolean"
-              }
-            }
-          },
-          "snapshot": {
-            "type": "object",
-            "properties": {
-              "enabled": {
-                "type": "boolean"
-              },
-              "size": {
-                "type": "string",
-                "pattern": "^[0-9]+Gi$"
-              }
-            }
-          },
-          "passwordAuth": {
-            "type": "object",
-            "properties": {
-              "enabled": {
-                "type": "boolean"
-              }
-            }
           },
           "restoreFrom": {
             "type": "object",
