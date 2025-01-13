@@ -16,6 +16,10 @@
   - [Criar novo blueprint](#criar-novo-blueprint)
     - [Catálogo de planos](#catálogo-de-planos)
     - [Recomendações para produção](#recomendações-para-produção)
+    - [Variáveis de ambiente `dbServers` e `searches`](#variáveis-de-ambiente-dbservers-e-searches)
+      - [`pxc` e `cnpg`](#pxc-e-cnpg)
+      - [`ferretdb` e `psmdb`](#ferretdb-e-psmdb)
+      - [`elasticsearch`](#elasticsearch)
     - [Prune resources](#prune-resources)
     - [Segredos via kubeseal](#segredos-via-kubeseal)
       - [Charts](#charts)
@@ -122,6 +126,36 @@ Copie os arquivos de exemplo a adapte-os para o seu caso. Leia os arquivos de ex
 - Para _searches_, use 3 réplicas nos _nodes_ `master` e `data`.
 
 Em ambiente de _staging_ ou outros não-produtivos, pode-se usar apenas 1 réplica para os itens acima.
+
+#### Variáveis de ambiente `dbServers` e `searches`
+As variáveis de ambiente abaixo são disponibilizadas automaticamente ao usar a chave `envVarsFrom.dbServers` e `envVarsFrom.searches` e podem ser acessadas diretamente do ambiente do _container_ que acessa o banco. Também podem ser mapeadas via a chave `mappings` para outras variáveis.
+
+##### `pxc` e `cnpg`
+
+- `DB_HOST`
+- `DB_HOST_READ`
+- `DB_USER`
+- `DB_PASSWORD`
+- `DB_NAME`
+- `DATABASE_URL`
+
+##### `ferretdb` e `psmdb`
+
+- `MONGODB_HOST`
+- `MONGODB_USERNAME`
+- `MONGODB_PASSWORD`
+- `MONGODB_DATABASE`
+- `MONGODB_URI`
+
+##### `elasticsearch`
+
+- `ELASTICSEARCH_HOST`
+- `ELASTICSEARCH_PORT`
+- `ELASTICSEARCH_USER`
+- `ELASTICSEARCH_PASSWORD`
+- `ELASTICSEARCH_URL`
+
+Veja os exemplos para entender como usar.
 
 #### Prune resources
 
