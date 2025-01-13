@@ -353,7 +353,7 @@
                       "pattern": "^[0-9]+Gi$"
                     }
                   },
-                  "required": ["enabled"]
+                  "required": ["enabled", "size"]
                 },
                 "passwordAuth": {
                   "type": "object",
