@@ -1,6 +1,7 @@
+# yaml-language-server: $schema=https://lwsa-idp.github.io/demo-workloads/schemas/blueprint.json
 services:
   - name: nextcloud
-    plan: pico
+    plan: micro
     port: 80
     ingress:
       enabled: true
@@ -25,7 +26,7 @@ services:
             REDIS_HOST_PASSWORD: REDIS_PASSWORD
 
   - name: ubuntu
-    plan: femto
+    plan: micro
     image: ubuntu
     command:
       - /bin/sh
@@ -36,14 +37,14 @@ dbServers:
   - name: nextcloud-db
     type: cnpg
     version: "15"
-    plan: nano
-    size: 20Gi
+    plan: micro
+    size: 50Gi
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
 
   - name: redis
     type: dragonfly
-    plan: pico
+    plan: micro
     passwordAuth:
       enabled: true
     # Default 1 replica. Para prod usar ao menos 2
@@ -51,4 +52,4 @@ dbServers:
 
 volumes:
   - name: nextcloud-vol
-    size: 20Gi
+    size: 50Gi

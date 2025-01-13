@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://lwsa-idp.github.io/demo-workloads/schemas/blueprint.json
 # WordPress, com volume persistente, MySQL com 3 replicas e memcached com 2 replicas
 # Replicas podem ser usadas em services e dbServers, se não especificadas se assume 1 replica por default
 # Acessível incluster via via http://<name>.<namespace> ex. http://wp.portal
@@ -23,7 +24,7 @@ services:
     # Número de replicas, default 1. Não pode ser maior que 1 se o serviço monta volumes, como é o caso aqui.
     # replicas: 1
     port: 80
-    plan: micro
+    plan: small
     envVarsFrom:
       dbServers:
         # name e type sempre obrigatórios e devem bater com as definições em dbServers abaixo
@@ -50,10 +51,10 @@ services:
 dbServers:
   - name: wp-db
     type: pxc
-    replicas: 1
+    replicas: 3
     # "8,0" ou "5.7"
     version: "8.0"
-    plan: micro
+    plan: small
     size: 60Gi
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
@@ -61,11 +62,14 @@ dbServers:
   - name: cache
     type: dragonfly
     # Default 1 replica. Para prod usar ao menos 2
-    replicas: 1
-    plan: pico
+    replicas: 2
+    plan: micro
     memcached:
       enabled: true
+    snapshot:
+      enabled: true
+      size: 2Gi
 
 volumes:
   - name: wp-vol
-    size: 30Gi
+    size: 100Gi
