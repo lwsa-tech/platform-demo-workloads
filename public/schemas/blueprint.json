@@ -318,6 +318,16 @@
           {
             "if": {
               "properties": {
+                "type": { "const": "psmdb" }
+              }
+            },
+            "then": {
+              "required": ["size"]
+            }
+          },
+          {
+            "if": {
+              "properties": {
                 "type": { "const": "dragonfly" }
               }
             },
