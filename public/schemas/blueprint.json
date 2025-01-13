@@ -449,7 +449,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "type", "version"],
+        "required": ["name", "type", "version", "nodes"],
         "properties": {
           "name": {
             "type": "string"
