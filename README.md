@@ -123,7 +123,7 @@ Copie os arquivos de exemplo a adapte-os para o seu caso. Leia os arquivos de ex
 #### Recomendações para produção
 - Para bancos de dados `cnpg` (_Postgres_) e `pxc` (_MySQL_), use sempre 3 réplicas.
 - Para bancos de dados `dragongly` (_Redis_), use ao menos 2 réplicas.
-- Para serviços sem estado, use 2 ao menos réplicas. Para serviços com estado, que montam volumes, só é possível usar 1 réplica.
+- Para serviços sem estado, use ao menos 2 réplicas. Para serviços com estado, que montam volumes, só é possível usar 1 réplica.
 - Para _searches_, use 3 réplicas nos _nodes_ `master` e `data`.
 
 Em ambiente de _staging_ ou outros não-produtivos, pode-se usar apenas 1 réplica para os itens acima.
