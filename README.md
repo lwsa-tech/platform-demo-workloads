@@ -18,6 +18,7 @@
     - [Recomendações para produção](#recomendações-para-produção)
     - [Variáveis de ambiente `dbServers` e `searches`](#variáveis-de-ambiente-dbservers-e-searches)
       - [`pxc` e `cnpg`](#pxc-e-cnpg)
+      - [`dragonfly`](#dragonfly)
       - [`ferretdb` e `psmdb`](#ferretdb-e-psmdb)
       - [`elasticsearch`](#elasticsearch)
     - [Prune resources](#prune-resources)
@@ -138,6 +139,13 @@ As variáveis de ambiente abaixo são disponibilizadas automaticamente ao usar a
 - `DB_PASSWORD`
 - `DB_NAME`
 - `DATABASE_URL`
+
+##### `dragonfly`
+
+- `REDIS_HOST`
+- `REDIS_PASSWORD`
+- `REDIS_URL`
+- `MEMCACHED_HOST`
 
 ##### `ferretdb` e `psmdb`
 
