@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://lwsa-idp.github.io/demo-workloads/schemas/blueprint.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-idp/static/main/schemas/blueprint.json
 # WordPress, com volume persistente, MySQL com 3 replicas e memcached com 2 replicas
 # Replicas podem ser usadas em services e dbServers, se não especificadas se assume 1 replica por default
 # Acessível incluster via via http://<name>.<namespace> ex. http://wp.portal
