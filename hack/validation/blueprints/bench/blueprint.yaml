@@ -1,0 +1,29 @@
+# Horizontal Pod Autoscaler
+# Aumenta/dimunui replicas com gatilho de 200% requested CPU (dimensionado de acordo com overselling)
+# Services aceitam `command` e `args` assim como containers. O comando inserido serve para container não ser encerrado
+# Instruções: shell into console e execute "while sleep 0.01; do wget -q -O- http://webserver; done" digitando Ctrl-C para interromper
+# Observe aumento/diminuição de replicas durante a execução
+#
+# Demonstramos também como abrir comunicação com outros serviços. Usar em conjunto com o exemplo no namespace "portal"
+# Instruções: shell into console e execute "wget http://wp.portal" com e sem a configuração comentada abaixo
+# (observe que a config. correspondente `allowFromServices` já foi colocada no blueprint do portal)
+
+services: # Optional. If defined, should contain one or more entries
+  - name: console # should be unique amongst services
+    image: busybox # mandatory
+    plan: nano # mandatory
+    command: # optional. If defined, children should be list of strings
+      - /bin/sh
+      - -c
+      - while :; do sleep 86400; done
+    allowToServices: # optional. If defined. should contain a list of namespace/name pairs like below
+      - namespace: portal
+        name: wp
+
+  - name: webserver
+    image: registry.k8s.io/hpa-example
+    plan: nano
+    port: 80 # optional, numeric
+    # Para alta disponibilidade recomendado mínimo 2 replicas
+    minReplicas: 2 # optional, numeric
+    maxReplicas: 10 # optional, numeric

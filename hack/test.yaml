@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-idp/static/main/schemas/blueprint.json
+
+services:
+  - name: wordpress
+    image: wordpress:latest
+    plan: small
+    port: 80
+    ingress:
+      enabled: true
+      hosts:
+        - wordpress.example.com
+    mountVolumes:
+      - name: wp-content
+        path: /var/www/html
+    envVarsFrom:
+      dbServers:
+        - name: wordpress-db
+          type: pxc
+          mappings:
+            WORDPRESS_DB_HOST: DB_HOST
+            WORDPRESS_DB_USER: DB_USER
+            WORDPRESS_DB_PASSWORD: DB_PASSWORD
+            WORDPRESS_DB_NAME: DB_NAME
+
+dbServers:
+  - name: wordpress-db
+    type: pxc
+    plan: small
+    version: "8.0"
+    size: "20Gi"
+    replicas: 1
+
+volumes:
+  - name: wp-content
+    size: "20Gi"

@@ -1,0 +1,55 @@
+services:
+  - name: nextcloud
+    plan: micro
+    port: 80
+    ingress: # optional
+      enabled: true # mandatory, boolean
+    image: nextcloud:29.0.8
+    mountVolumes: # optional. If defined, should contain a list of name/path pairs
+      - name: nextcloud-vol
+        path: /var/www/html
+    envVarsFrom: # optional. Subkeys should be one of: secrets, configMaps, dbServers, searches
+      dbServers: # list
+        - name: nextcloud-db # mandatory
+          type: cnpg # mandatory, should be one of pxc, cnpg, dragonfly, psmdb, ferretdb
+          mappings: # optional
+            POSTGRES_HOST: DB_HOST
+            POSTGRES_READ: DB_HOST_READ
+            POSTGRES_USER: DB_USER
+            POSTGRES_PASSWORD: DB_PASSWORD
+            POSTGRES_DB: DB_NAME
+            CONNECTION_STRING: DATABASE_URL
+        - name: redis
+          type: dragonfly
+          mappings:
+            REDIS_HOST_PASSWORD: REDIS_PASSWORD
+
+  - name: ubuntu
+    plan: micro
+    image: ubuntu
+    command:
+      - /bin/sh
+      - -c
+      - while :; do sleep 86400; done
+
+dbServers:
+  - name: nextcloud-db
+    type: cnpg
+    # version should be either a single number like "15", "16" or major/minor like "15.1"
+    version: "15"
+    plan: micro
+    size: 50Gi
+    # Default 1 replica. Para prod usar sempre 3
+    # replicas: 3
+
+  - name: redis
+    type: dragonfly
+    plan: micro
+    passwordAuth: # optional, if defined should contain the enabled key below
+      enabled: true # boolean
+    # Default 1 replica. Para prod usar ao menos 2
+    replicas: 1 # optional, default 1
+
+volumes: # optional. If defined, should contain list of name/size pairs
+  - name: nextcloud-vol
+    size: 50Gi
