@@ -20,8 +20,6 @@ services:
     allowToServices:
       - namespace: portal
         name: wp
-      - namespace: blog
-        name: wp
 
   - name: webserver
     image: registry.k8s.io/hpa-example

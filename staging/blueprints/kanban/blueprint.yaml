@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-idp/static/main/schemas/blueprint.json
+
 services:
   - name: ubuntu
     plan: micro
@@ -45,21 +46,15 @@ dbServers:
         - "179.0.0.0/8"
         - "191.0.0.0/8"
 
-  - name: wekan-2
-    type: psmdb
-    plan: small
-    size: 100Gi
+  # - name: wekan-copy
+  #   type: psmdb
+  #   plan: small
+  #   size: 50Gi
+  #   replicas: 3
+  #   expose:
+  #     enabled: true
     # restoreFrom:
     #   name: wekan
-    expose:
-      enabled: true
-      sourceRanges:
-        - "189.0.0.0/8"
-        - "186.0.0.0/8"
-        - "187.0.0.0/8"
-        - "185.0.0.0/8"
-        - "177.0.0.0/8"
-        - "179.0.0.0/8"
 
 # volumes:
 #   - name: wekan-files

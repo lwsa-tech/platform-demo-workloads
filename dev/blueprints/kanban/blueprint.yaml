@@ -46,13 +46,13 @@ dbServers:
         - "179.0.0.0/8"
         - "191.0.0.0/8"
 
-  - name: wekan-5
-    type: psmdb
-    plan: small
-    size: 50Gi
-    replicas: 3
-    expose:
-      enabled: true
+  # - name: wekan-copy
+  #   type: psmdb
+  #   plan: small
+  #   size: 50Gi
+  #   replicas: 3
+  #   expose:
+  #     enabled: true
     # restoreFrom:
     #   name: wekan
 

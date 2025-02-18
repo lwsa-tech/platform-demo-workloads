@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-idp/static/main/schemas/blueprint.json
+
 configmaps:
   - name: mapa
     data:
@@ -117,23 +118,23 @@ dbServers:
   #     name: mydb
 
   - name: newdb
-    replicas: 3
+    replicas: 1
     type: pxc
     version: "8.0"
-    plan: 2xlarge
+    plan: medium
     size: 600Gi
     expose:
       enabled: true
 
   - name: pg
     type: cnpg
-    version: "16"
-    plan: 2xlarge
+    version: "16.6"
+    plan: medium
     size: 300Gi
     expose:
       enabled: true
     pause: false
-    replicas: 3
+    replicas: 1
 
   # - name: pg-copy
   #   type: cnpg

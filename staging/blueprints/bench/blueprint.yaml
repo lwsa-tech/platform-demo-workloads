@@ -12,7 +12,7 @@
 services:
   - name: console
     image: busybox
-    plan: small
+    plan: micro
     command:
       - /bin/sh
       - -c

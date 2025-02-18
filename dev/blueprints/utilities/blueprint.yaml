@@ -118,30 +118,34 @@ dbServers:
   #   restoreFrom:
   #     name: mydb
 
+  # usado para teste de carga (sysbench). Escalar para 3 replicas e 2xlarge para testar.
   - name: newdb
     replicas: 1
     type: pxc
     version: "8.0"
-    plan: 2xlarge
+    plan: large
     size: 600Gi
     expose:
       enabled: true
 
+  # usado para teste de carga (sysbench). Escalar para 3 replicas e 2xlarge para testar.
   - name: pg
     type: cnpg
-    version: "16.6"
-    plan: 2xlarge
+    version: "16"
+    plan: large
     size: 300Gi
     expose:
       enabled: true
     pause: false
-    replicas: 3
+    replicas: 1
 
   # - name: pg-copy
   #   type: cnpg
   #   version: "16"
   #   plan: micro
   #   size: 90Gi
+  #   restoreFrom:
+  #     name: pg
 
   - name: docdb
     type: ferretdb
@@ -161,7 +165,7 @@ dbServers:
 searches:
   - name: mysearch
     type: elasticsearch
-    version: "8.15.2"
+    version: "8.17.2"
     expose:
       enabled: true
       sourceRanges:
