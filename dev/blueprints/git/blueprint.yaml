@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-idp/static/main/schemas/blueprint.json
+
+services:
+  - name: gitea
+    image: docker.io/gitea/gitea:1.23.4
+    plan: micro
+    port: 3000
+    mountVolumes:
+      - name: data
+        path: /data
+    envVars:
+      GITEA__database__DB_TYPE: postgres
+      GITEA__database__HOST: "db-rw:5432"
+    envVarsFrom:
+      dbServers:
+        - name: db
+          type: cnpg
+          mappings:
+            GITEA__database__NAME: DB_NAME
+            GITEA__database__USER: DB_USER
+            GITEA__database__PASSWD: DB_PASSWORD
+
+dbServers:
+  - name: db
+    type: cnpg
+    plan: micro
+    size: 50Gi
+    version: "17"
+
+volumes:
+  - name: data
+    size: 50Gi
