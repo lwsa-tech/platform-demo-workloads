@@ -5,6 +5,8 @@ services:
     image: docker.io/gitea/gitea:1.23.4
     plan: micro
     port: 3000
+    ingress:
+      enabled: true
     mountVolumes:
       - name: data
         path: /data
