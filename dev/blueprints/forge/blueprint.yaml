@@ -52,5 +52,5 @@ dbServers:
 volumes:
   - name: data
     size: 50Gi
-  - name: runner-data
+  - name: act-runner-vol
     size: 50Gi
