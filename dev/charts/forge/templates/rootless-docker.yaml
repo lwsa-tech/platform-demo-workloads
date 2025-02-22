@@ -29,11 +29,11 @@ spec:
         # command: ["sh", "-c", "while ! nc -z localhost 2376 </dev/null; do echo 'waiting for docker daemon...'; sleep 5; done; /sbin/tini -- /opt/act/run.sh"]
         resources:
           limits:
-            cpu: "1"
-            memory: 1Gi
+            cpu: "2"
+            memory: 4Gi
           requests:
-            cpu: 75m
-            memory: 1Gi
+            cpu: 300m
+            memory: 4Gi
         env:
         - name: DOCKER_HOST
           value: tcp://localhost:2376
