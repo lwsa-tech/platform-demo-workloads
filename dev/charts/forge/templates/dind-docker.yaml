@@ -69,3 +69,15 @@ spec:
         volumeMounts:
         - name: docker-certs
           mountPath: /certs
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: act-runner
+spec:
+  egress:
+  - toEntities:
+    - world
+  endpointSelector:
+    matchLabels:
+      app: act-runner
