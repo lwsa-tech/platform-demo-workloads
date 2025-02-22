@@ -45,8 +45,8 @@ spec:
         - name: GITEA_RUNNER_REGISTRATION_TOKEN
           valueFrom:
             secretKeyRef:
-              name: runner-secret
-              key: token
+              name: token
+              key: GITEA_RUNNER_REGISTRATION_TOKEN
         volumeMounts:
         - name: docker-certs
           mountPath: /certs
