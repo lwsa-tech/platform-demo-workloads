@@ -18,6 +18,12 @@ secrets:
       chave: AgDF2Oe7Ni4wqpUMHMdnnBbfaAMDw62AoWFWAck0ychDdaFQirHfDtVqO7/n/keIChxaXAfMk8dI3yy09Fa/wNW8Rjde36Ki7UD/TiBKsHEAkTk6wwnqKdnlY67DQNcQFa+Q1LZwITkPKj5K3bEDJak3a7rXjGBTg5otzRXfQ9pnvyNjiIwvTWmkMu4G9effz0MyNFpHhrVZswu789WlNNfEHMFUC/XUigqbwZbbQhIzRer1FIcPVO4hA+M0r1QSJBDvZkudoMGUDC45jQQRnaw7st4ovW3tJLelfrVFgFufobcS+mj1hw8B6Qj8QmlaPyfaeSWgJ9iEUV+cgSeou/dwpbGJrkHg+n4shrHmxP0zO6RjaH0lalVAdzEWqWmnHHJSipJ7B2enj1JIqE3ewvAngv+YWeQLsh2UOxuje0mD4bPK3vaJg0O8B7823d1SaSzFu15zJLOPv9aZp41UdkZFrXX8wePfWeJBfUQEDn8CQdkI7m7FiqSdvIL6m2VSAlzPz5AuCzuufPqIVxCKrBPMbTUWeLLi8TrT6E7tG4yBd0DjsBwSIIwmB8DYviNuwp7ZGGgXNHVa4dT8cPXICFrJzbhu+LyUH+Zoly9/8xjGoKoY8nLDAM1+lk8VYsxJh3gC4EJ36Fq510Ch3ZCdCjnk/oJUNB4sdrV4igI5soyt53l0YmNut0dFsBvyZu3Q4OVZumrS
 
 services:
+  - name: python-web-app
+    plan: nano
+    image: forge-gitea.global.dev.lwsa-idp-testbed.ingress.sh/giba/python-web-app:1.0.0
+    ingress:
+      enabled: true
+      
   - name: console
     plan: medium
     image: ubuntu
