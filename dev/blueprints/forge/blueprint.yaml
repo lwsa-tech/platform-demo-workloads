@@ -7,6 +7,10 @@ services:
     port: 3000
     ingress:
       enabled: true
+    additionalPorts:
+      - port: 22
+        expose:
+          enabled: true
     mountVolumes:
       - name: data
         path: /data
