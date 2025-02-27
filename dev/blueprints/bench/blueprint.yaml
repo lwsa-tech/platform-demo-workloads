@@ -20,6 +20,8 @@ services:
     allowToServices:
       - namespace: portal
         name: wp
+      - namespace: utilities
+        name: python-web-app
 
   - name: webserver
     image: registry.k8s.io/hpa-example

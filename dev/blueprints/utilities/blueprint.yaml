@@ -23,6 +23,9 @@ services:
     image: forge-gitea.global.dev.lwsa-idp-testbed.ingress.sh/giba/python-web-app:1.0.0
     ingress:
       enabled: true
+    allowFromServices:
+      - namespace: bench
+        name: console
       
   - name: console
     plan: medium
