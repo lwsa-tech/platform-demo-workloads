@@ -18,7 +18,7 @@ services:
       GITEA__database__DB_TYPE: postgres
       GITEA__database__HOST: "db-rw:5432"
       GITEA__service__ALLOW_ONLY_EXTERNAL_REGISTRATION: "true"
-      GITEA__server__SSH_DOMAIN: "191.252.224.48.nip.io"
+      GITEA__server__SSH_DOMAIN: "k8s-forge-gitea22e-283ee904ef-ab89fc8575a5feda.elb.us-east-2.amazonaws.com"
     envVarsFrom:
       dbServers:
         - name: db
