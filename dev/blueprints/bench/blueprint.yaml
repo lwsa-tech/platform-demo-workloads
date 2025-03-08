@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-idp/static/main/schemas/blueprint.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
 # Horizontal Pod Autoscaler
 # Aumenta/dimunui replicas com gatilho de 200% requested CPU (dimensionado de acordo com overselling)
 # Services aceitam `command` e `args` assim como containers. O comando inserido serve para container não ser encerrado
