@@ -54,7 +54,7 @@ curl -fsSL https://get.jetify.com/devbox | bash
 ```
 
 #### Baixar repositório
-Crie um _fork_ do respositório https://github.com/lwsa-idp/demo-workloads.git onde você definirá seus _workloads_ baseados no exemplo.
+Crie um _fork_ do respositório https://github.com/lwsa-tech/platform-demo-workloads.git onde você definirá seus _workloads_ baseados no exemplo.
 ```bash
 git clone <seu repo>
 ```
