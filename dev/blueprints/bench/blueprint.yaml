@@ -31,8 +31,8 @@ services:
     minReplicas: 2
     maxReplicas: 10
     # abaixo opcional. Default 200% utilização (por ser baseado em requests e fazermos overselling)
-    scaleTriggers:
-      - type: cpu
-        metricType: Utilization
-        metadata:
-          value: "90"
+    # scaleTriggers:
+    #   - type: cpu
+    #     metricType: Utilization
+    #     metadata:
+    #       value: "90"
