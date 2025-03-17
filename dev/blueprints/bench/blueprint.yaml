@@ -30,3 +30,9 @@ services:
     # Para alta disponibilidade recomendado mínimo 2 replicas
     minReplicas: 2
     maxReplicas: 10
+    # abaixo opcional. Default 200% utilização (por ser baseado em requests e fazermos overselling)
+    scaleTriggers:
+      - type: cpu
+        metricType: Utilization
+        metadata:
+          value: "90"
