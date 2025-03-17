@@ -30,8 +30,3 @@ services:
     # Para alta disponibilidade recomendado mínimo 2 replicas
     minReplicas: 2
     maxReplicas: 10
-    scaleTriggers:
-      - type: cpu
-        metricType: Utilization
-        metadata:
-          value: "70"
