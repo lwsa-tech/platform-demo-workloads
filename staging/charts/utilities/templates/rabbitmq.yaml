@@ -1,0 +1,31 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: production-ready
+spec:
+  replicas: 3
+  resources:
+    requests:
+      cpu: 75m
+      memory: 1Gi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+  rabbitmq:
+    additionalConfig: |
+      cluster_partition_handling = pause_minority
+      disk_free_limit.relative = 1.0
+      collect_statistics_interval = 10000
+  persistence:
+    storageClassName: {{ $.Values.global.dbStorageClassName }}
+    storage: "50Gi"
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+              - production-ready
+        topologyKey: kubernetes.io/hostname
