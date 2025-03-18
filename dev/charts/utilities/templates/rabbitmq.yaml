@@ -40,13 +40,16 @@ spec:
       app.kubernetes.io/component: rabbitmq
       app.kubernetes.io/name: production-ready
   ingress:
-  - fromEndpoints:
-    - matchLabels:
-        app.kubernetes.io/component: rabbitmq-operator
-        io.kubernetes.pod.namespace: rabbitmq-system
-    toPorts:
-    - ports:
-      - port: "15672" # HTTP API
-        protocol: TCP
-      - port: "15671" # HTTP API + TLS
-        protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/component: rabbitmq-operator
+            io.kubernetes.pod.namespace: rabbitmq-system
+      toPorts:
+        - ports:
+            - port: "15672" # HTTP API
+              protocol: TCP
+            - port: "15671" # HTTP API + TLS
+              protocol: TCP
+  egress:
+    - toEntities:
+        - kube-apiserver
