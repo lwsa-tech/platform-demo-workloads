@@ -3,6 +3,16 @@ kind: RabbitmqCluster
 metadata:
   name: production-ready
 spec:
+  service:
+    type: LoadBalancer
+    loadBalancerSourceRanges:
+      - "189.0.0.0/8"
+      - "186.0.0.0/8"
+      - "187.0.0.0/8"
+      - "201.0.0.0/8"
+      - "70.0.0.0/8"
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
   replicas: 3
   resources:
     requests:
@@ -30,6 +40,8 @@ spec:
               - production-ready
         topologyKey: kubernetes.io/hostname
 ---
+# Ver https://github.com/rabbitmq/cluster-operator/tree/main/docs/examples/network-policies
+# Obs. mostrou-se necessário acesso apiserver para clusters com mais de 1 replica
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
@@ -49,6 +61,15 @@ spec:
             - port: "15672" # HTTP API
               protocol: TCP
             - port: "15671" # HTTP API + TLS
+              protocol: TCP
+    # para keda scaled poderem medir tamanho de filas
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: keda-operator
+            io.kubernetes.pod.namespace: keda
+      toPorts:
+        - ports:
+            - port: "5672"
               protocol: TCP
   egress:
     - toEntities:
