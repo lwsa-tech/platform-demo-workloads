@@ -187,3 +187,17 @@ searches: # optional. If defined, should contain one or more entries
         - "177.0.0.0/8"
       replicas: 1 # optional, default 1
       plan: small
+
+messageBrokers:
+  - name: myrabbitcluster # mandatory
+    type: rabbitmq # mandatory enum. Only option is "rabbitmq"
+    plan: micro # mandatory, choose from usual list
+    size: 50Gi # mandatory, has to contain the same units as the other definition
+    replicas: 3 # optional, default 3
+    expose: # optional. If defined, should contain the enable key
+      enable: true # boolean
+      sourceRanges: # optional. If defined, should contain list of CIDRs
+        - "189.0.0.0/8"
+        - "186.0.0.0/8"
+        - "187.0.0.0/8"
+        - "201.0.0.0/8"
