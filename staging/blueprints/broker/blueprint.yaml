@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
+
+services:
+  - name: consumer
+    image: ghcr.io/kedacore/rabbitmq-client:v1.0
+    plan: nano
+    envVarsFrom:
+      messageBrokers:
+        - name: mycluster
+          type: rabbitmq
+    command:
+      - receive
+    args:
+      - $(RABBITMQ_URL)
+    scaleTriggers:
+      - metadata:
+          hostFromEnv: RABBITMQ_URL
+          queueName: hello
+          queueLength: "5"    
+        type: rabbitmq
+
+messageBrokers:
+  - name: mycluster
+    type: rabbitmq
+    plan: micro
+    size: 10Gi
+    replicas: 3
+    expose:
+      enabled: true
+      sourceRanges:
+        - 189.0.0.0/8
