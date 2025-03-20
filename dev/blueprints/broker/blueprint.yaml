@@ -8,12 +8,8 @@ services:
       messageBrokers:
         - name: mycluster
           type: rabbitmq
-    command:
-      - /bin/sh
-      - -c
-      - "sleep 3600"
-    # args:
-    #   - "$RABBITMQ_URL"
+    # command:
+    #   - receive
 
 messageBrokers:
   - name: mycluster
