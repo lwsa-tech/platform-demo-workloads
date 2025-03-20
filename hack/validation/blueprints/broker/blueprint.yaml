@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
+
+services:
+  - name: consumer
+    image: ghcr.io/kedacore/rabbitmq-client:v1.0
+    plan: nano
+    envVarsFrom:
+      messageBrokers:
+        - name: mycluster
+          type: rabbitmq
+    command:
+      - receive
+      - $RABBITMQ_URL
+
+messageBrokers:
+  - name: mycluster # mandatory
+    type: rabbitmq # mandatory enum. Only option is "rabbitmq"
+    plan: micro # mandatory, choose from usual list
+    size: 50Gi # mandatory, has to contain the same units as the other definition
+    replicas: 3 # optional, default 3
+    expose: # optional. If defined, should contain the enable key
+      enabled: true # boolean
+      sourceRanges: # optional. If defined, should contain list of CIDRs
+        - "189.0.0.0/8"
+        - "186.0.0.0/8"
+        - "187.0.0.0/8"
+        - "201.0.0.0/8"
