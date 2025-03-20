@@ -29,3 +29,4 @@ messageBrokers:
       enabled: true
       sourceRanges:
         - 189.0.0.0/8
+        - 10.0.0.0/8
