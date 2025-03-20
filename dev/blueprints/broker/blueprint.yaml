@@ -10,7 +10,7 @@ services:
           type: rabbitmq
     command:
       - receive
-      - $RABBITMQ_URL
+      - "$RABBITMQ_URL"
 
 messageBrokers:
   - name: mycluster
