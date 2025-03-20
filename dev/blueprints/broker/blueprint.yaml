@@ -9,6 +9,8 @@ services:
         - name: mycluster
           type: rabbitmq
     command:
+      - /bin/sh
+      - -c
       - receive
     args:
       - "$RABBITMQ_URL"
