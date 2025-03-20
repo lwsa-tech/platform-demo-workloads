@@ -11,9 +11,9 @@ services:
     command:
       - /bin/sh
       - -c
-      - receive
-    args:
-      - "$RABBITMQ_URL"
+      - "sleep 3600"
+    # args:
+    #   - "$RABBITMQ_URL"
 
 messageBrokers:
   - name: mycluster
