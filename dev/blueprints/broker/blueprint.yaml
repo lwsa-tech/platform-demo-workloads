@@ -9,8 +9,7 @@ services:
         - name: mycluster
           type: rabbitmq
     command:
-      - receive
-      - "$RABBITMQ_URL"
+      - sleep 1576800000
 
 messageBrokers:
   - name: mycluster
