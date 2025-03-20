@@ -12,7 +12,12 @@ services:
       - receive
     args:
       - $(RABBITMQ_URL)
-      # - "amqp://default_user_lcGb0-ccU3zDVUI5pbs:CT3pVw_O_x9VOdavTsWEpthdeuJXoRVL@mycluster-rabbitmq.broker.svc:5672"
+    scaleTriggers:
+      - metadata:
+          hostFromEnv: RABBITMQ_URL
+          queueName: hello
+          queueLength: "5"    
+        type: rabbitmq
 
 messageBrokers:
   - name: mycluster
