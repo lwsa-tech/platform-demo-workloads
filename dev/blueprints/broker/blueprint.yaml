@@ -8,8 +8,10 @@ services:
       messageBrokers:
         - name: mycluster
           type: rabbitmq
-    # command:
-    #   - receive
+    command:
+      - receive
+    args:
+      - "amqp://default_user_lcGb0-ccU3zDVUI5pbs:CT3pVw_O_x9VOdavTsWEpthdeuJXoRVL@mycluster-rabbitmq.broker.svc:5672"
 
 messageBrokers:
   - name: mycluster
@@ -19,3 +21,5 @@ messageBrokers:
     replicas: 3
     expose:
       enabled: true
+      sourceRanges:
+        - 189.0.0.0/8
