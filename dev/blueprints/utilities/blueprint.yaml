@@ -137,15 +137,15 @@ dbServers:
       enabled: true
 
   # usado para teste de carga (sysbench). Escalar para 3 replicas e 2xlarge para testar.
-  - name: pg
-    type: cnpg
-    version: "16"
-    plan: large
-    size: 300Gi
-    expose:
-      enabled: true
-    pause: false
-    replicas: 1
+  # - name: pg
+  #   type: cnpg
+  #   version: "16"
+  #   plan: large
+  #   size: 300Gi
+  #   expose:
+  #     enabled: true
+  #   pause: false
+  #   replicas: 1
 
   # - name: pg-copy
   #   type: cnpg
