@@ -12,12 +12,13 @@ services:
       - receive
     args:
       - $(RABBITMQ_URL)
+    # Ref https://keda.sh/docs/2.16/scalers/
     scaleTriggers:
-      - metadata:
+      - type: rabbitmq
+        metadata:
           hostFromEnv: RABBITMQ_URL
           queueName: hello
-          queueLength: "5"    
-        type: rabbitmq
+          queueLength: "5"
 
 messageBrokers:
   - name: mycluster
