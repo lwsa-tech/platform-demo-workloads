@@ -2,7 +2,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: rabbitmq-publish
-  namespace: utilities
 spec:
   ttlSecondsAfterFinished: 1576800000
   template:
