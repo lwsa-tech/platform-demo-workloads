@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rabbitmq-publish
+  namespace: utilities
+spec:
+  ttlSecondsAfterFinished: 1576800000
+  template:
+    spec:
+      containers:
+        - name: rabbitmq-client
+          image: ghcr.io/kedacore/rabbitmq-client:v1.0
+          imagePullPolicy: Always
+          env:
+            - name: RABBITMQ_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: mycluster-rabbitmq-default-user
+                  key: connection_string
+          command:
+            [
+              "send",
+              "$(RABBITMQ_CONNECTION_STRING)",
+              "300",
+            ]
+      restartPolicy: Never
+  backoffLimit: 4
