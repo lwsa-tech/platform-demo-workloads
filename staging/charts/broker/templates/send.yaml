@@ -1,26 +1,30 @@
 apiVersion: batch/v1
-kind: Job
+kind: CronJob
 metadata:
   name: rabbitmq-publish
 spec:
-  ttlSecondsAfterFinished: 1576800000
-  template:
+  schedule: "*/15 * * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
     spec:
-      containers:
-        - name: rabbitmq-client
-          image: ghcr.io/kedacore/rabbitmq-client:v1.0
-          imagePullPolicy: Always
-          env:
-            - name: RABBITMQ_CONNECTION_STRING
-              valueFrom:
-                secretKeyRef:
-                  name: mycluster-rabbitmq-default-user
-                  key: connection_string
-          command:
-            [
-              "send",
-              "$(RABBITMQ_CONNECTION_STRING)",
-              "300",
-            ]
-      restartPolicy: Never
-  backoffLimit: 4
+      template:
+        spec:
+          containers:
+            - name: rabbitmq-client
+              image: ghcr.io/kedacore/rabbitmq-client:v1.0
+              imagePullPolicy: Always
+              env:
+                - name: RABBITMQ_CONNECTION_STRING
+                  valueFrom:
+                    secretKeyRef:
+                      name: mycluster-rabbitmq-default-user
+                      key: connection_string
+              command:
+                [
+                  "send",
+                  "$(RABBITMQ_CONNECTION_STRING)",
+                  "100",
+                ]
+          restartPolicy: Never
+      backoffLimit: 4
