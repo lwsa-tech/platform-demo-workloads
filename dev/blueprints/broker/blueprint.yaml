@@ -3,7 +3,7 @@
 services:
   - name: consumer
     image: ghcr.io/kedacore/rabbitmq-client:v1.0
-    plan: nano
+    plan: pico
     envVarsFrom:
       messageBrokers:
         - name: mycluster
@@ -19,14 +19,6 @@ services:
           hostFromEnv: RABBITMQ_URL
           queueName: hello
           queueLength: "5"
-
-  - name: ubuntu
-    plan: pico
-    image: ubuntu
-    command:
-      - /bin/sh
-      - -c
-      - while :; do sleep 86400; done
 
 messageBrokers:
   - name: mycluster
