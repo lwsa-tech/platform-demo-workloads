@@ -20,6 +20,20 @@ services:
           queueName: hello
           queueLength: "5"
 
+cronjobs:
+  - name: publish
+    image: ghcr.io/kedacore/rabbitmq-client:v1.0
+    plan: pico
+    schedule: "*/10 * * * *"
+    envVarsFrom:
+      messageBrokers:
+        - name: mycluster
+          type: rabbitmq
+    command:
+      - "send"
+      - "$(RABBITMQ_URL)"
+      - "100"
+
 messageBrokers:
   - name: mycluster
     type: rabbitmq
