@@ -2,7 +2,7 @@
 
 services:
   - name: nextcloud
-    plan: micro
+    plan: nano
     port: 80
     ingress:
       enabled: true
@@ -27,7 +27,7 @@ services:
             REDIS_HOST_PASSWORD: REDIS_PASSWORD
 
   - name: ubuntu
-    plan: micro
+    plan: pico
     image: ubuntu
     command:
       - /bin/sh

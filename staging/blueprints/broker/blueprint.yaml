@@ -20,10 +20,25 @@ services:
           queueName: hello
           queueLength: "5"
 
+cronjobs:
+  - name: publish
+    image: ghcr.io/kedacore/rabbitmq-client:v1.0
+    plan: pico
+    # Cooldown default é de 5 minutos, por isso espaçamos a cada 10 para garantir tempo necessário
+    schedule: "*/10 * * * *"
+    envVarsFrom:
+      messageBrokers:
+        - name: mycluster
+          type: rabbitmq
+    command:
+      - "send"
+      - "$(RABBITMQ_URL)"
+      - "100"
+
 messageBrokers:
   - name: mycluster
     type: rabbitmq
-    plan: micro
+    plan: nano
     size: 10Gi
     replicas: 3
     expose:

@@ -2,7 +2,7 @@
 
 services:
   - name: ubuntu
-    plan: micro
+    plan: pico
     image: ubuntu
     command:
       - /bin/sh

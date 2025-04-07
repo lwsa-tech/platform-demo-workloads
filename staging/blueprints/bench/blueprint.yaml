@@ -12,7 +12,7 @@
 services:
   - name: console
     image: busybox
-    plan: micro
+    plan: pico
     command:
       - /bin/sh
       - -c
@@ -23,7 +23,7 @@ services:
 
   - name: webserver
     image: registry.k8s.io/hpa-example
-    plan: nano
+    plan: pico
     port: 80
     # Para alta disponibilidade recomendado mínimo 2 replicas
     minReplicas: 2

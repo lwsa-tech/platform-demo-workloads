@@ -17,9 +17,32 @@ secrets:
       # Conteúdo do segredo deve ser criptografado via kubeseal
       chave: AgBvMIMfNr1P1r61zAdRpZO7wMNx4VLdcCJnExcseg1up5h3lE2L4P0gqFwKLZSFW3B6KJCZPLFeOezYv8QpCz4iVBF1UTQkjVX+glvt9hZRkOJxnr01dFF5AM0sMRCITLQEJPyvzIITa84Vq/mgtS9++bfMynfbwZES/hlEa4rjIJQhfcsqRdSVe8aX6/o1m4+kbKPERKUMrcaYob/jU5Fw60z/ZFQ3QI4pH3YtG8G2USlHcSyCpLd5qfWHq7vOo+Z/+n+dRHh3GtvWVfWPI6xr6mZ3lqDJ/SEG/h5ENfE7rHYxoGLKWnWNywqwCvY8K8lnyCpygXVwhYn08gUpAine8LoVMfYkpJZiZfuxLMcs4ZyLeZcUuvm4EXmk7pIC9ei8VGR9ktyVrXzaL3E8eKRLfCowvasyfABQaJ0GDKBEbK54tCPbh+DhRYp9n77NYFe+72V+SFA9YG2qvZajfAAryzXvA4O4lPROva/0NEIrwK6PknRyh8SglggkaPJj+yADWVzAuhQM+peYaCwjA/eDiWAXuF/XAYD0b0owCGNqfoUlMIX5yUR+9Pz5EVo6lqOiCJrtMV/zkqGye6BzJM/nsJktdk0ZuF3tEhAPEJXO4MoGUSn14uE/uvXKfZ0LUsYDOSamdK0GWuVzDvRdB99sCIPrxcOMLKOAUL1opaHWES6GMWe6HtFS8v2IYLPcNd3bnsGRHnvxI/gBFd5x
 
+cronjobs:
+  - name: test-cron
+    image: ubuntu
+    plan: pico
+    schedule: "*/1 * * * * "
+    command:
+      - /bin/sh
+      - "-c"
+      - echo "Teste $a" # imprimir "Teste b"
+    allowToServices:
+      - namespace: portal
+        name: blog
+    egress:
+      enabled: true
+      toCIDRs:
+        - range: "185.0.0.0/8"
+    envVarsFrom:
+      dbServers:
+        - name: docdb
+          type: ferretdb
+    envVars:
+      a: b
+
 services:
   - name: console
-    plan: micro
+    plan: pico
     image: ubuntu
     command:
       - /bin/sh
@@ -65,7 +88,7 @@ services:
           type: ferretdb
 
   - name: echo
-    plan: nano
+    plan: pico
     # porta onde o container ouve, default 10000
     port: 3000
     # usar expose no lugar de ingress se desejar expor via IP público diretamente.
@@ -99,7 +122,7 @@ dbServers:
     replicas: 1
     type: pxc
     version: "8.0"
-    plan: large
+    plan: small
     size: 200Gi
     expose:
       enabled: true
@@ -119,7 +142,7 @@ dbServers:
     replicas: 1
     type: pxc
     version: "8.0"
-    plan: medium
+    plan: small
     size: 600Gi
     expose:
       enabled: true
@@ -127,7 +150,7 @@ dbServers:
   - name: pg
     type: cnpg
     version: "16.6"
-    plan: medium
+    plan: nano
     size: 300Gi
     expose:
       enabled: true
@@ -145,7 +168,7 @@ dbServers:
   - name: docdb
     type: ferretdb
     version: "17"
-    plan: micro
+    plan: nano
     size: 90Gi
     replicas: 3
     expose:
@@ -160,7 +183,7 @@ dbServers:
 searches:
   - name: mysearch
     type: elasticsearch
-    version: "8.15.2"
+    version: "8.17.2"
     expose:
       enabled: true
       sourceRanges:

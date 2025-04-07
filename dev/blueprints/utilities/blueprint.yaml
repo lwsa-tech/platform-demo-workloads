@@ -25,7 +25,7 @@ cronjobs:
     command:
       - /bin/sh
       - "-c"
-      - echo "Teste $a"
+      - echo "Teste $a" # imprimir "Teste b"
     allowToServices:
       - namespace: portal
         name: blog
