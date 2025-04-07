@@ -21,6 +21,7 @@
       - [`dragonfly`](#dragonfly)
       - [`ferretdb` e `psmdb`](#ferretdb-e-psmdb)
       - [`elasticsearch`](#elasticsearch)
+      - [`rabbitmq`](#rabbitmq)
     - [Prune resources](#prune-resources)
     - [Segredos via kubeseal](#segredos-via-kubeseal)
       - [Charts](#charts)
@@ -162,6 +163,14 @@ As variáveis de ambiente abaixo são disponibilizadas automaticamente ao usar a
 - `ELASTICSEARCH_USER`
 - `ELASTICSEARCH_PASSWORD`
 - `ELASTICSEARCH_URL`
+
+##### `rabbitmq`
+
+- `RABBITMQ_HOST`
+- `RABBITMQ_PORT`
+- `RABBITMQ_USER`
+- `RABBITMQ_PASSWORD`
+- `RABBITMQ_URL`
 
 Veja os exemplos para entender como usar.
 
