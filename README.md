@@ -16,7 +16,7 @@
   - [Criar novo blueprint](#criar-novo-blueprint)
     - [Catálogo de planos](#catálogo-de-planos)
     - [Recomendações para produção](#recomendações-para-produção)
-    - [Variáveis de ambiente `dbServers` e `searches`](#variáveis-de-ambiente-dbservers-e-searches)
+    - [Variáveis de ambiente `dbServers`, `searches` e `messageBrokers`](#variáveis-de-ambiente-dbservers-searches-e-messagebrokers)
       - [`pxc` e `cnpg`](#pxc-e-cnpg)
       - [`dragonfly`](#dragonfly)
       - [`ferretdb` e `psmdb`](#ferretdb-e-psmdb)
@@ -129,8 +129,8 @@ Copie os arquivos de exemplo a adapte-os para o seu caso. Leia os arquivos de ex
 
 Em ambiente de _staging_ ou outros não-produtivos, pode-se usar apenas 1 réplica para os itens acima.
 
-#### Variáveis de ambiente `dbServers` e `searches`
-As variáveis de ambiente abaixo são disponibilizadas automaticamente ao usar a chave `envVarsFrom.dbServers` e `envVarsFrom.searches` e podem ser acessadas diretamente do ambiente do _container_ que acessa o banco. Também podem ser mapeadas via a chave `mappings` para outras variáveis.
+#### Variáveis de ambiente `dbServers`, `searches` e `messageBrokers`
+As variáveis de ambiente abaixo são disponibilizadas automaticamente ao usar a chave `envVarsFrom.dbServers`, `envVarsFrom.searches` e `envVarsFrom.messageBrokers` e podem ser acessadas diretamente do ambiente do _container_ que acessa o banco. Também podem ser mapeadas via a chave `mappings` para outras variáveis.
 
 ##### `pxc` e `cnpg`
 
