@@ -24,6 +24,7 @@ cronjobs:
   - name: publish
     image: ghcr.io/kedacore/rabbitmq-client:v1.0
     plan: pico
+    # Cooldown default é de 5 minutos, por isso espaçamos a cada 10 para garantir tempo necessário
     schedule: "*/10 * * * *"
     envVarsFrom:
       messageBrokers:
