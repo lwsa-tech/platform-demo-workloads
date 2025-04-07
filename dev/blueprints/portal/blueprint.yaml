@@ -24,7 +24,7 @@ services:
     # Número de replicas, default 1. Não pode ser maior que 1 se o serviço monta volumes, como é o caso aqui.
     # replicas: 1
     port: 80
-    plan: small
+    plan: pico
     envVarsFrom:
       dbServers:
         # name e type sempre obrigatórios e devem bater com as definições em dbServers abaixo
@@ -54,7 +54,7 @@ dbServers:
     replicas: 3
     # "8,0" ou "5.7"
     version: "8.0"
-    plan: small
+    plan: micro
     size: 60Gi
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3

@@ -42,7 +42,7 @@ cronjobs:
         
 services:
   - name: python-web-app
-    plan: nano
+    plan: pico
     image: forge-gitea.global.dev.lwsa-idp-testbed.ingress.sh/giba/python-web-app:1.0.0
     ingress:
       enabled: true
@@ -51,7 +51,7 @@ services:
         name: console
       
   - name: console
-    plan: medium
+    plan: pico
     image: ubuntu
     replicas: 2
     command:
@@ -98,7 +98,7 @@ services:
           type: ferretdb
 
   - name: echo
-    plan: nano
+    plan: pico
     # porta onde o container ouve, default 10000
     port: 3000
     # usar expose no lugar de ingress se desejar expor via IP público diretamente.
@@ -133,7 +133,7 @@ dbServers:
     replicas: 1
     type: pxc
     version: "8.0"
-    plan: large
+    plan: small
     size: 200Gi
     expose:
       enabled: true
@@ -154,7 +154,7 @@ dbServers:
     replicas: 1
     type: pxc
     version: "8.0"
-    plan: large
+    plan: small # large para sysbench com 30 GB dados
     size: 600Gi
     expose:
       enabled: true
@@ -163,7 +163,7 @@ dbServers:
   - name: pg
     type: cnpg
     version: "16"
-    plan: large
+    plan: nano # large para sysbench 30 GB dados
     size: 300Gi
     expose:
       enabled: true
@@ -181,7 +181,7 @@ dbServers:
   - name: docdb
     type: ferretdb
     version: "17"
-    plan: micro
+    plan: nano
     size: 90Gi
     replicas: 3
     expose:

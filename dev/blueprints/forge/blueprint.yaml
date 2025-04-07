@@ -3,7 +3,7 @@
 services:
   - name: gitea
     image: docker.io/gitea/gitea:1.23.4
-    plan: micro
+    plan: nano
     port: 3000
     ingress:
       enabled: true
@@ -51,7 +51,7 @@ secrets:
 dbServers:
   - name: db
     type: cnpg
-    plan: micro
+    plan: nano
     size: 50Gi
     version: "17"
 

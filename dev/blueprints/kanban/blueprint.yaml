@@ -2,7 +2,7 @@
 
 services:
   - name: ubuntu
-    plan: nano
+    plan: pico
     image: ubuntu
     command:
       - /bin/sh
@@ -31,7 +31,7 @@ services:
 dbServers:
   - name: wekan
     type: psmdb
-    plan: small
+    plan: micro
     size: 100Gi
     replicas: 1
     pause: false

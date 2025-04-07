@@ -37,7 +37,7 @@ cronjobs:
 messageBrokers:
   - name: mycluster
     type: rabbitmq
-    plan: micro
+    plan: pico
     size: 10Gi
     replicas: 3
     expose:

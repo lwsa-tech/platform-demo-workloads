@@ -2,7 +2,7 @@
 
 services:
   - name: nextcloud
-    plan: micro
+    plan: pico
     port: 80
     ingress:
       enabled: true
@@ -27,7 +27,7 @@ services:
             REDIS_HOST_PASSWORD: REDIS_PASSWORD
 
   - name: ubuntu
-    plan: micro
+    plan: pico
     image: ubuntu
     command:
       - /bin/sh
@@ -38,14 +38,14 @@ dbServers:
   - name: nextcloud-db
     type: cnpg
     version: "15.10"
-    plan: micro
+    plan: nano
     size: 50Gi
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
 
   - name: redis
     type: dragonfly
-    plan: micro
+    plan: nano
     passwordAuth:
       enabled: true
     # Default 1 replica. Para prod usar ao menos 2
