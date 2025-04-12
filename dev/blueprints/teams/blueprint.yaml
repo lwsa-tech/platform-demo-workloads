@@ -4,7 +4,7 @@ dbServers:
   - name: db
     type: cnpg
     plan: nano
-    version: "16"
+    version: "14"
     size: 20Gi
 
   - name: memcached
@@ -40,7 +40,7 @@ services:
     plan: small
     port: 80
     envVars:
-      SSL_CERTIFICATE_GENERATION: "self-signed"
+      DISABLE_HTTPS: "True"
       SETTING_EXTERNAL_HOST: "teams-zulip.global.staging.platform-tools.ingress.sh"
       SETTING_ZULIP_ADMINISTRATOR: "gilberto.mautner@locaweb.com.br"
       SETTING_EMAIL_HOST: "smtplw.com.br"
