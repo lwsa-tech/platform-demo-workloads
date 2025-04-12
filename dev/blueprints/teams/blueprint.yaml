@@ -39,6 +39,7 @@ services:
     image: zulip/docker-zulip:10.1-0
     plan: small
     envVars:
+      SSL_CERTIFICATE_GENERATION: "self-signed"
       SETTING_EXTERNAL_HOST: "teams-zulip.global.staging.platform-tools.ingress.sh"
       SETTING_ZULIP_ADMINISTRATOR: "gilberto.mautner@locaweb.com.br"
       SETTING_EMAIL_HOST: "smtplw.com.br"
