@@ -63,7 +63,7 @@ services:
         - name: memcached
           type: dragonfly
           mappings:
-            SETTING_MEMCACHED_LOCATION: $(MEMCACHED_HOST):11211
+            SETTING_MEMCACHED_LOCATION: "memcached:11211"
         - name: redis
           type: dragonfly
           mappings:
