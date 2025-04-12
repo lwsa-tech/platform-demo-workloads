@@ -38,6 +38,7 @@ services:
   - name: zulip
     image: zulip/docker-zulip:10.1-0
     plan: small
+    port: 80
     envVars:
       SSL_CERTIFICATE_GENERATION: "self-signed"
       SETTING_EXTERNAL_HOST: "teams-zulip.global.staging.platform-tools.ingress.sh"
