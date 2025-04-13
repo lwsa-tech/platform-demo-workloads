@@ -52,6 +52,7 @@ services:
       SETTING_SOCIAL_AUTH_GOOGLE_KEY: "43375459534-qd8b28300dm7l4rdhrejkrm3nofgip7b.apps.googleusercontent.com"
       ZULIP_AUTH_BACKENDS: "GoogleAuthBackend"
       LOADBALANCER_IPS: "10.0.0.0/8"
+      SETTING_POSTGRESQL_MISSING_DICTIONARIES: "True"
     envVarsFrom:
       secrets:
         - name: zulip
