@@ -96,9 +96,10 @@ services:
     envVars:
       POSTGRES_DB: zulip
       POSTGRES_USER: zulip
+      PGDATA: /mnt/postgres-data/pgdata
     mountVolumes:
       - name: database
-        path: /var/lib/postgresql/data
+        path: /mnt/postgres-data
 
 volumes:
   - name: data
