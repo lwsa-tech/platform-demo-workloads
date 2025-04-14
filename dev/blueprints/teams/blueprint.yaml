@@ -43,6 +43,7 @@ services:
       enabled: true
     envVars:
       DISABLE_HTTPS: "True"
+      SSL_CERTIFICATE_GENERATION: "self-signed"f
       SETTING_EXTERNAL_HOST: "teams-zulip.global.dev.lwsa-idp-testbed.ingress.sh"
       SETTING_ZULIP_ADMINISTRATOR: "gilberto.mautner@locaweb.com.br"
       SETTING_EMAIL_HOST: "smtplw.com.br"
