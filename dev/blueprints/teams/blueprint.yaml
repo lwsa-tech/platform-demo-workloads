@@ -61,7 +61,7 @@ services:
         - name: zulip
           mappings:
             SECRETS_postgres_password: SECRETS_secret_key
-      # dbServers:
+      dbServers:
       #   - name: db
       #     type: cnpg
       #     mappings:
