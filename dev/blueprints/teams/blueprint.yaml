@@ -88,6 +88,7 @@ services:
   - name: database
     image: zulip/zulip-postgresql:14
     plan: nano
+    port: 5432
     envVarsFrom:
       secrets:
         - name: zulip
