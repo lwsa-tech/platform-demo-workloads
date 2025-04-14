@@ -43,7 +43,7 @@ services:
       enabled: true
     envVars:
       DISABLE_HTTPS: "True"
-      SETTING_EXTERNAL_HOST: "teams-zulip.global.staging.platform-tools.ingress.sh"
+      SETTING_EXTERNAL_HOST: "teams-zulip.global.dev.lwsa-idp-testbed.ingress.sh"
       SETTING_ZULIP_ADMINISTRATOR: "gilberto.mautner@locaweb.com.br"
       SETTING_EMAIL_HOST: "smtplw.com.br"
       SETTING_EMAIL_HOST_USER: "gmautner3"
@@ -57,6 +57,7 @@ services:
       DB_HOST: database
       DB_HOST_PORT: "5432"
       DB_USER: "zulip"
+      SETTING_MEMCACHED_LOCATION: "memcached"
       # SETTING_POSTGRESQL_MISSING_DICTIONARIES: "1"
     envVarsFrom:
       secrets:
@@ -68,10 +69,10 @@ services:
       #     type: cnpg
       #     mappings:
       #       SECRETS_postgres_password: DB_PASSWORD
-        - name: memcached
-          type: dragonfly
-          mappings:
-            SETTING_MEMCACHED_LOCATION: "memcached"
+        # - name: memcached
+        #   type: dragonfly
+        #   mappings:
+        #     SETTING_MEMCACHED_LOCATION: "memcached"
         - name: redis
           type: dragonfly
           mappings:
