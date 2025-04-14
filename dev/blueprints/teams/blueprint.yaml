@@ -39,6 +39,8 @@ services:
     image: zulip/docker-zulip:10.1-0
     plan: small
     port: 80
+    ingress:
+      enabled: true
     envVars:
       DISABLE_HTTPS: "True"
       SETTING_EXTERNAL_HOST: "teams-zulip.global.staging.platform-tools.ingress.sh"
