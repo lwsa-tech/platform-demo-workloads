@@ -7,11 +7,11 @@ dbServers:
   #   version: "14"
   #   size: 20Gi
 
-  - name: memcached
-    type: dragonfly
-    plan: nano
-    memcached:
-      enabled: true
+  # - name: memcached
+  #   type: dragonfly
+  #   plan: nano
+  #   memcached:
+  #     enabled: true
 
   - name: redis
     type: dragonfly
@@ -65,6 +65,7 @@ services:
         - name: zulip
           mappings:
             SECRETS_postgres_password: SECRETS_secret_key
+            SECRETS_memcached_password: SECRETS_secret_key
       dbServers:
       #   - name: db
       #     type: cnpg
@@ -105,6 +106,26 @@ services:
     mountVolumes:
       - name: database
         path: /mnt/postgres-data
+
+  - name: memcached
+    plan: medium
+    image: memcached:alpine
+    command:
+      - "sh"
+      - "-euc"
+      - |
+        echo 'mech_list: plain' > "$$SASL_CONF_PATH"
+        echo "zulip@$$HOSTNAME:$$MEMCACHED_PASSWORD" > "$$MEMCACHED_SASL_PWDB"
+        echo "zulip@localhost:$$MEMCACHED_PASSWORD" >> "$$MEMCACHED_SASL_PWDB"
+        exec memcached -S
+    envVars:
+      SASL_CONF_PATH: "/home/memcache/memcached.conf"
+      MEMCACHED_SASL_PWDB: "/home/memcache/memcached-sasl-db"
+    envVarsFrom:
+      secrets:
+        - name: zulip
+          mappings:
+            MEMCACHED_PASSWORD: SECRETS_secret_key
 
 volumes:
   - name: data
