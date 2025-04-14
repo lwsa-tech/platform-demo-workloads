@@ -53,6 +53,7 @@ services:
       ZULIP_AUTH_BACKENDS: "GoogleAuthBackend"
       LOADBALANCER_IPS: "10.0.0.0/8"
       SETTING_POSTGRESQL_MISSING_DICTIONARIES: "True"
+      ZULIP_CUSTOM_SETTINGS: "SETTING_POSTGRESQL_MISSING_DICTIONARIES='True'"
     envVarsFrom:
       secrets:
         - name: zulip
