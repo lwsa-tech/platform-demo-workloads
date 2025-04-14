@@ -1,11 +1,11 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
 
 dbServers:
-  - name: db
-    type: cnpg
-    plan: nano
-    version: "14"
-    size: 20Gi
+  # - name: db
+  #   type: cnpg
+  #   plan: nano
+  #   version: "14"
+  #   size: 20Gi
 
   - name: memcached
     type: dragonfly
@@ -52,16 +52,20 @@ services:
       SETTING_SOCIAL_AUTH_GOOGLE_KEY: "43375459534-qd8b28300dm7l4rdhrejkrm3nofgip7b.apps.googleusercontent.com"
       ZULIP_AUTH_BACKENDS: "GoogleAuthBackend"
       LOADBALANCER_IPS: "10.0.0.0/8"
-      SETTING_POSTGRESQL_MISSING_DICTIONARIES: "1"
-      ZULIP_CUSTOM_SETTINGS: "PUPPET_CLASSES = 'zulip::profile::standalone_nodb'"
+      DB_HOST: database
+      DB_HOST_PORT: "5432"
+      DB_USER: "zulip"
+      # SETTING_POSTGRESQL_MISSING_DICTIONARIES: "1"
     envVarsFrom:
       secrets:
         - name: zulip
-      dbServers:
-        - name: db
-          type: cnpg
           mappings:
-            SECRETS_postgres_password: DB_PASSWORD
+            SECRETS_postgres_password: SECRETS_secret_key
+      # dbServers:
+      #   - name: db
+      #     type: cnpg
+      #     mappings:
+      #       SECRETS_postgres_password: DB_PASSWORD
         - name: memcached
           type: dragonfly
           mappings:
@@ -81,6 +85,24 @@ services:
       - name: data
         path: "/data"
 
+  - name: database
+    image: zulip/zulip-postgresql:14
+    plan: nano
+    envVarsFrom:
+      secrets:
+        - name: zulip
+          mappings:
+            POSTGRES_PASSWORD: SECRETS_secret_key
+    envVars:
+      POSTGRES_DB: zulip
+      POSTGRES_USER: zulip
+    mountVolumes:
+      - name: database
+        path: /var/lib/postgresql/data
+
 volumes:
   - name: data
     size: 20Gi
+
+  - name: database
+    size: 100Gi
