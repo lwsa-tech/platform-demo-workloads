@@ -85,7 +85,7 @@ services:
           type: rabbitmq
           mappings:
             SETTING_RABBITMQ_HOST: RABBITMQ_HOST
-            RABBITMQ_USERNAMEf: RABBITMQ_USER
+            RABBITMQ_USERNAME: RABBITMQ_USER
             SECRETS_rabbitmq_password: RABBITMQ_PASSWORD
     mountVolumes:
       - name: data
