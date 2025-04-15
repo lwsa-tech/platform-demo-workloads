@@ -117,6 +117,7 @@ services:
   - name: memcached
     plan: medium
     image: memcached:alpine
+    port: 11211
     command:
       - "sh"
       - "-euc"
