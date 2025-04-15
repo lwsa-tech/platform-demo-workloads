@@ -7,13 +7,13 @@ dbServers:
   #   version: "14"
   #   size: 20Gi
 
-  # - name: memcached
-  #   type: dragonfly
-  #   plan: nano
-  #   memcached:
-  #     enabled: true
-  #   passwordAuth:
-  #     enabled: true
+  - name: cache
+    type: dragonfly
+    plan: nano
+    memcached:
+      enabled: true
+    passwordAuth:
+      enabled: true
 
   - name: redis
     type: dragonfly
