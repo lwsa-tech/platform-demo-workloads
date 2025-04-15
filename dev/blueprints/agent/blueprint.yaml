@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
+
+services:
+  - name: n8n
+    image: docker.n8n.io/n8nio/n8n
+    plan: nano
+    port: 5678
+    ingress:
+      enabled: true
+    mountVolumes:
+      - name: n8n
+        path: /home/node/.n8n
+    envVars:
+      DB_TYPE: postgresdb
+    envVarsFrom:
+      dbServers:
+        - name: db
+          type: cnpg
+          mappings:
+            DB_POSTGRESDB_HOST: DB_HOST
+            DB_POSTGRESDB_DATABASE: DB_NAME
+            DB_POSTGRESDB_USER: DB_USER
+            DB_POSTGRESDB_PASSWORD: DB_PASSWORD
+
+dbServers:
+  - name: db
+    type: cnpg
+    plan: nano
+    size: 50Gi
+    version: "16"
+
+volumes:
+  - name: n8n
+    size: 50Gi
