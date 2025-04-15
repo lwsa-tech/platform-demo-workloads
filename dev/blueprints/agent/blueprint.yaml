@@ -5,6 +5,11 @@ services:
     image: docker.n8n.io/n8nio/n8n
     plan: nano
     port: 5678
+    command:
+      - /bin/sh
+    args:
+      - -c
+      - sleep 5; n8n start
     ingress:
       enabled: true
     mountVolumes:
