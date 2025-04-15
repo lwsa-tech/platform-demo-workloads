@@ -60,7 +60,7 @@ services:
       DB_HOST: database
       DB_HOST_PORT: "5432"
       DB_USER: "zulip"
-      SETTING_MEMCACHED_LOCATION: "memcached"
+      # SETTING_MEMCACHED_LOCATION: "memcached"
       # SETTING_POSTGRESQL_MISSING_DICTIONARIES: "1"
     envVarsFrom:
       secrets:
@@ -68,9 +68,9 @@ services:
           mappings:
             SECRETS_postgres_password: SECRETS_secret_key
             # SECRETS_memcached_password: SECRETS_secret_key
-        - name: memcached-dragonfly-auth
-          mappings:
-            SECRETS_memcached_password: password
+        # - name: memcached-dragonfly-auth
+        #   mappings:
+        #     SECRETS_memcached_password: password
       dbServers:
       #   - name: db
       #     type: cnpg
