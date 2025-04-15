@@ -68,6 +68,9 @@ services:
           mappings:
             SECRETS_postgres_password: SECRETS_secret_key
             # SECRETS_memcached_password: SECRETS_secret_key
+        - name: memcached-dragonfly-auth
+          mappings:
+            SECRETS_memcached_password: password
       dbServers:
       #   - name: db
       #     type: cnpg
