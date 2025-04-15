@@ -1,0 +1,137 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
+
+dbServers:
+  # - name: db
+  #   type: cnpg
+  #   plan: nano
+  #   version: "14"
+  #   size: 20Gi
+
+  # - name: memcached
+  #   type: dragonfly
+  #   plan: nano
+  #   memcached:
+  #     enabled: true
+
+  - name: redis
+    type: dragonfly
+    plan: nano
+    passwordAuth:
+      enabled: true
+
+messageBrokers:
+  - name: queue
+    type: rabbitmq
+    plan: nano
+    size: 20Gi
+    replicas: 1
+
+secrets:
+  - name: zulip
+    namespace: teams
+    data:
+      SECRETS_email_password: AgC5ZTV6iwpRyrKoRk80lsN2EC2QaQG5ZU9szIpqjsY3PNILNT9Lf2G2OLzaQAHMeIFzRkfcAL8M6Fn056T1h3LhAc9uB6Ad5JzJMupu0reNnaEt24LVbybFRe8DQLOm89+ZNPrcnrTWVLZ66O/mOf/3anbPMGQPFS6nkoxkei/hbTttTH+jTpe5iJEIYte4BoqRLLyaFyXLzRUdIm5gcvADdhyyqA+92E1Lhs1TIDVnZxeNlTEDvleDKb7xQmaCH/qwBuXTjzfhcbwsImbkpM4SehBXkV2a0NAGFpa2G/7EnnJ6C8+n0JXVC60F+5VevmH5FEFBQUKFO32kOSFKh0zC7MJeaXWym7qjH7ZwUxKlBdMnR/VAbBDhlUWsKr6Tseut7PNKYw45g9g4E9XaNWlk2rQYDZNHtawfAoo0QUc/0Z0T8/2YoSrBW680RL0wMlRQ0PTMAxMA2woZrSZyf8q7z0FhuXhqCHrOkR2kqbLv5V3ov70KV/qjjOSOv6oZr9lmYd1EkfmZBayDhhO0MJg8nTLdlZNOQNPk7xSNtuRmaWNbJc+/lsAZM+GMaYBgUhDME+pa3Y0au59OFlMU58XAf0DqOvRkeKLJrlCcRxiaqTEU4d+q2/O9xpBQ+wTkAqt6BZuXaSGxheyOHza3JHm6ESWC+WO4v7oPrcvZou/DX2h2EBrtDyYH6xtBHuNkvTai8520CNAutomJZOA=
+      SECRETS_secret_key: AgAbfBaBioOnzf+OUDfwBDDAnEKS8FPH9yojQsW7Zs+TRIcvu5AFfGae4/t07u+hHGlI8qbW6gRenCsTweLzMTK7rCIYr6Du4hO+aW0KCdwAjaGxyqN8YLr1sKgqoYJr2M2qSElewOkcqid827UU8ZGu7tbPxY+uCF2fL2UqDwBUnosxdO7O4GeJQ6plCPNtJthzCm56ORtUTrfj+R6moNAX8x5effV7VMinkOCjaUeev1gY5IlgdEmSuN5RopvrAtse0qcT0h7oyQOlw5go/HSwQzkyQ4GX3zOyb9pacQCBT9jQdF1+J4BtBeaFex4+E5T67Tw5cebqhCM+DUAzydcHLlxUio2lBmpetmuBNo80xk3HQDDORYcsk4F8Jm+hvyoJzl4wb7P6iYHkjfs1kIJBjAsAA4wanYl03wpgX6mHY0bGZON4JE5WiTE78+bg8dU7yK0N0s/HKU15f1oFc8wgFC+bQRo329nhjSR4WAatZkvnJbACfqIji/+KL2Esi4LcDprrMeOJSGR2qO4GxXp0VesS62Tqf4Hvf2hhs7E1bzuyZp1gdKtRgkVOz92upaR2hEGUDHOVUBhQn6v+Jpf4HZEhGnk6E6k9I/MkmOZiQDxg2+Bu1b66pbEnEF7V7Qg3udeAld5gxtYlExO/NzVbthS8RlFdGszsT7KF2lRqh50pvDSbDkBXQwC+WW3dSAZAtk58zmc3pVKHG0EfjT/yafAfX9T/muVpyojjv1SDcQpLDApSoJhptLyMKg8=
+      SECRETS_social_auth_google_secret: AgAIi8DC4WC/0TU2yIh/fyP4EbxS4qQnEnGOpKvg414FW1EvHH/6vJFXHCohbPpl8lpZp0ea35ydxuaZhjkjQbSwsyiwCtM5rAyj9tMPNKCEY6/EaD2io6u+MhFopeYdMczd5DfpK0fAiKkkqGL7hJKJEgwrzVy6N+q4ned9eTUbVKnO6+EjBsxSH5aIn7fQvRuGLMDqOuuuAtx9dRgCbCuSSgEuEicumKFLWCLGa026jVI+ryciwc/5i6khEyvpw6dNwMllTgTyDaYeG5qI9GV9VKPvapihHZswBoT4N5b5AvcZWB/C0KIyKdAhF0UI83l2zYjxVOKbWQ9rp+aHagcVDy+l7b1Fv4Zr8w5H0cLz5HAEW4pJLfTJkgxGQtxL62Sch2KS/IEn8cnBrxohg5MGLD6E2C+C+UyhOqLuxEAVS06bywrjX06vJMe6Aw98FUKbh6wmxl/bUyK7nA48bDXdroMDVWSguAkJr6SZVKnmfxl2gdCwkDYIUKD95HeuE9nNypwGHBSbra7IBeuBeJa0tAKBNQwlHid64N4/PLAtlFkf/bEOE5acyurVXU18LSBd9qGURvnagmKf9RTcGJLjjEtlq3hLeIzaGjxB77Nh/vKONRSqU4lzl0+hG+RsiTDNflb0LU62tSTq/V++0ekEgeW4uBysxN64P1dwL4yHspk6D1hwpmNjH9KWW4UuHMhrLJDESxO6GR6SIB4pLdbHYu8l23O7CG1ImEqWfmJ3ZdkGbg==
+
+services:
+  - name: zulip
+    image: zulip/docker-zulip:10.1-0
+    plan: medium
+    port: 80
+    ingress:
+      enabled: true
+    envVars:
+      DISABLE_HTTPS: "True"
+      SSL_CERTIFICATE_GENERATION: "self-signed"
+      SETTING_EXTERNAL_HOST: "teams-zulip.global.dev.lwsa-idp-testbed.ingress.sh"
+      SETTING_ZULIP_ADMINISTRATOR: "gilberto.mautner@locaweb.com.br"
+      SETTING_EMAIL_HOST: "smtplw.com.br"
+      SETTING_EMAIL_HOST_USER: "gmautner3"
+      SETTING_NOREPLY_EMAIL_ADDRESS: "zulip@mail.giba.tech"
+      SETTING_EMAIL_PORT: "465"
+      SETTING_EMAIL_USE_SSL: "False"
+      SETTING_EMAIL_USE_TLS: "True"
+      SETTING_SOCIAL_AUTH_GOOGLE_KEY: "43375459534-qd8b28300dm7l4rdhrejkrm3nofgip7b.apps.googleusercontent.com"
+      ZULIP_AUTH_BACKENDS: "GoogleAuthBackend"
+      LOADBALANCER_IPS: "10.0.0.0/8"
+      DB_HOST: database
+      DB_HOST_PORT: "5432"
+      DB_USER: "zulip"
+      SETTING_MEMCACHED_LOCATION: "memcached"
+      # SETTING_POSTGRESQL_MISSING_DICTIONARIES: "1"
+    envVarsFrom:
+      secrets:
+        - name: zulip
+          mappings:
+            SECRETS_postgres_password: SECRETS_secret_key
+            SECRETS_memcached_password: SECRETS_secret_key
+      dbServers:
+      #   - name: db
+      #     type: cnpg
+      #     mappings:
+      #       SECRETS_postgres_password: DB_PASSWORD
+        # - name: memcached
+        #   type: dragonfly
+        #   mappings:
+        #     SETTING_MEMCACHED_LOCATION: "memcached"
+        - name: redis
+          type: dragonfly
+          mappings:
+            SETTING_REDIS_HOST: REDIS_HOST
+            SECRETS_redis_password: REDIS_PASSWORD
+      messageBrokers:
+        - name: queue
+          type: rabbitmq
+          mappings:
+            SETTING_RABBITMQ_HOST: RABBITMQ_HOST
+            SETTING_RABBITMQ_USERNAME: RABBITMQ_USER
+            SETTING_RABBITMQ_USER: RABBITMQ_USER
+            SECRETS_rabbitmq_password: RABBITMQ_PASSWORD
+    mountVolumes:
+      - name: data
+        path: "/data"
+
+  - name: database
+    image: zulip/zulip-postgresql:14
+    plan: nano
+    port: 5432
+    envVarsFrom:
+      secrets:
+        - name: zulip
+          mappings:
+            POSTGRES_PASSWORD: SECRETS_secret_key
+    envVars:
+      POSTGRES_DB: zulip
+      POSTGRES_USER: zulip
+      PGDATA: /mnt/postgres-data/pgdata
+    mountVolumes:
+      - name: database
+        path: /mnt/postgres-data
+
+  - name: memcached
+    plan: medium
+    image: memcached:alpine
+    command:
+      - "sh"
+      - "-euc"
+      - |
+        echo 'mech_list: plain' > "$$SASL_CONF_PATH"
+        echo "zulip@$$HOSTNAME:$$MEMCACHED_PASSWORD" > "$$MEMCACHED_SASL_PWDB"
+        echo "zulip@localhost:$$MEMCACHED_PASSWORD" >> "$$MEMCACHED_SASL_PWDB"
+        exec memcached -S
+    envVars:
+      SASL_CONF_PATH: "/home/memcache/memcached.conf"
+      MEMCACHED_SASL_PWDB: "/home/memcache/memcached-sasl-db"
+    envVarsFrom:
+      secrets:
+        - name: zulip
+          mappings:
+            MEMCACHED_PASSWORD: SECRETS_secret_key
+
+volumes:
+  - name: data
+    size: 20Gi
+
+  - name: database
+    size: 100Gi
