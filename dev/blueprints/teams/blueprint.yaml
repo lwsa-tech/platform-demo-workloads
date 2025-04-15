@@ -12,6 +12,8 @@ dbServers:
     plan: nano
     memcached:
       enabled: true
+    passwordAuth:
+      enabled: true
 
   - name: redis
     type: dragonfly
