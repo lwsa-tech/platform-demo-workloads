@@ -15,6 +15,7 @@ services:
     mountVolumes:
       - name: n8n
         path: /home/node/.n8n
+        ownership: "1000:1000"
     envVars:
       DB_TYPE: postgresdb
     envVarsFrom:
