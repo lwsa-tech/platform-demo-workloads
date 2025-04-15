@@ -37,7 +37,7 @@ secrets:
 services:
   - name: zulip
     image: zulip/docker-zulip:10.1-0
-    plan: medium
+    plan: large
     port: 80
     ingress:
       enabled: true
