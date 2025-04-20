@@ -47,7 +47,7 @@ No repositório que você criou para _blueprints_ e _charts_, adicione o _deploy
 ### Instalar ferramentas
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - [Kubelogin](https://github.com/int128/kubelogin?tab=readme-ov-file#setup)
-- [KR9s](https://k9scli.io/)
+- [K9s](https://k9scli.io/)
 - [Kubeseal](https://github.com/bitnami-labs/sealed-secrets?tab=readme-ov-file#kubeseal) 
 #### Devbox
 Alternativamente, o _Devbox_ permite uma instalação rápida de todas as ferramentas sem intereferir no funcionamento dos demais programas do seu computador. Funciona em _Windows (WSL)_, _Mac OS_ e _Linux_.
