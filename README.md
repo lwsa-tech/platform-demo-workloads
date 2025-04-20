@@ -1,13 +1,11 @@
 - [Inputs](#inputs)
 - [Setup](#setup)
   - [Deploy Key](#deploy-key)
-    - [GitHub](#github)
+    - [GitHub ou Gitea](#github-ou-gitea)
     - [Azure DevOps](#azure-devops)
     - [GitLab](#gitlab)
-  - [Devbox](#devbox)
-    - [Instalar Devbox](#instalar-devbox)
-    - [Baixar repositório](#baixar-repositório)
-- [Iniciar sessão](#iniciar-sessão)
+  - [Instalar ferramentas](#instalar-ferramentas)
+    - [Devbox](#devbox)
   - [Kubeconfig](#kubeconfig)
   - [Grafana](#grafana)
   - [Argo CD](#argo-cd)
@@ -35,7 +33,7 @@ Preencha o form em https://forms.gle/kDXiZ9zpygpkcPbTA
 ## Setup
 ### Deploy Key
 No repositório que você criou para _blueprints_ e _charts_, adicione o _deploy key_ informado da seguinte forma:
-#### GitHub
+#### GitHub ou Gitea
 - Clique em _Settings_, _Deploy keys_, _Add deploy key_
 - Em _Title_ e _Key_ coloque os dados recebidos
 - Manter desativado _Allow write access_ e adicionar.
@@ -46,24 +44,21 @@ No repositório que você criou para _blueprints_ e _charts_, adicione o _deploy
 - Acesse _Settings_, _Repository_
 - Em _Deploy keys_, selecione _Add new key_
 - Complete os campos, mantendo desativado _Grant write permissions..._
-### Devbox
-Para operar o _cluster_  uma série de ferramentas de linha de comando precisa ser instalada. O _Devbox_ permite uma instalação rápida e sem intereferir no funcionamento dos demais programas do seu computador. Funciona em _Windows (WSL)_, _Mac OS_ e _Linux_.
+### Instalar ferramentas
+- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+- [Kubelogin](https://github.com/int128/kubelogin?tab=readme-ov-file#setup)
+- [k9s](https://k9scli.io/)
+- [Kubeseal](https://github.com/bitnami-labs/sealed-secrets?tab=readme-ov-file#kubeseal) 
+#### Devbox
+Alternativamente, o _Devbox_ permite uma instalação rápida de todas as ferramentas sem intereferir no funcionamento dos demais programas do seu computador. Funciona em _Windows (WSL)_, _Mac OS_ e _Linux_.
 
-#### Instalar Devbox
+- Instalar Devbox
 ```bash
 curl -fsSL https://get.jetify.com/devbox | bash
 ```
-
-#### Baixar repositório
-Crie um _fork_ do respositório https://github.com/lwsa-tech/platform-demo-workloads.git onde você definirá seus _workloads_ baseados no exemplo.
-```bash
-git clone <seu repo>
-```
-
-## Iniciar sessão
-
+- Copie [devbox.json](devbox.json) para a raiz do seu repo GitOps.
+- Iniciar sessão
 Para iniciar uma sessão, mude para o diretório do repositório, onde se encontra o arquivo _devbox.json_, e carregar o ambiente com:
-
 ```bash
 devbox shell
 ```
