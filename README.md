@@ -61,7 +61,7 @@ curl -fsSL https://get.jetify.com/devbox | bash
 ```bash
 devbox shell
 ```
-- Para finalizar a sessão, digite `exit`.
+- Para finalizar a sessão digite `exit`.
 
 ### Kubeconfig
 
