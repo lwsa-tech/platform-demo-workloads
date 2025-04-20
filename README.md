@@ -57,11 +57,11 @@ Alternativamente, o _Devbox_ permite uma instalação rápida de todas as ferram
 curl -fsSL https://get.jetify.com/devbox | bash
 ```
 - Copie [devbox.json](devbox.json) para a raiz do seu repo GitOps.
-- Iniciar sessão
-Para iniciar uma sessão, mude para o diretório do repositório, onde se encontra o arquivo _devbox.json_, e carregar o ambiente com:
+- Para iniciar uma sessão, mude para o diretório do repositório, onde se encontra o arquivo _devbox.json_, e carregar o ambiente com:
 ```bash
 devbox shell
 ```
+- Para finalizar a sessão, digite `exit`.
 
 ### Kubeconfig
 
