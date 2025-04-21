@@ -185,11 +185,11 @@ Usamos a ferramenta _Sealed Secrets_ para permitir a publicação de segredos de
 
 Você receberá um arquivo `cert.pem` contendo um certificado para criptogarfar e publicar seus segredos. Para isto:
 - Salve o certificado recebido em `~/cert.pem`.
-- Digitar: `(secret=$(read -s; echo $REPLY); echo -n "$secret" | kubeseal --raw --name <nome do segredo> --namespace <namespace> --cert ~/cert.pem)`
+- Digitar: `read -s value; kubeseal --raw --name <nome do segredo> -n <namespace> --cert ~/cert-dev.pem <<<"$value"`
 
 Por exemplo:
-```
-(secret=$(read -s; echo $REPLY); echo -n "$secret" | kubeseal --raw --name segredo --namespace portal --cert ~/cert.pem)
+```bash
+read -s value; kubeseal --raw --name segredo --namespace portal --cert ~/cert-dev.pem <<<"$value"
 ```
 E preencher o segredo a ser criptografado. O valor obtido (sem o `%` final, que só demarca o fim da string), deve ser copiado para `blueprint.yaml`.
 
@@ -207,7 +207,7 @@ __Nota__: Como o _namespace_ faz parte do valor criptografado, é necessário in
 
 ##### Charts
 
-Digitar: `(secret=$(read -s; echo $REPLY); echo -n "$secret" | kubectl create secret generic mysecret --namespace=giba --dry-run=client --from-file=foo=/dev/stdin -o yaml | kubeseal --cert ~/cert.pem)`
+Para incluir segredos em charts: `(secret=$(read -s; echo $REPLY); echo -n "$secret" | kubectl create secret generic mysecret --namespace=giba --dry-run=client --from-file=foo=/dev/stdin -o yaml | kubeseal --cert ~/cert.pem)`
 
 (substitua `giba`, `mysecret` e `foo` pelo _namespace_, segredo e chave respectivos)
 
