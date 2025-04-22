@@ -24,7 +24,7 @@ services:
       ROOT_URL: "https://kanban-wekan.global.prod.demo.ingress.sh"
     envVarsFrom:
       dbServers:
-        - name: wekan-banco
+        - name: wekan
           type: psmdb
           mappings:
             MONGO_URL: MONGODB_URI
