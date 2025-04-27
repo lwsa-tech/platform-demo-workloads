@@ -5,5 +5,4 @@ services:
     image: gitea.platform.lwsa.tech/gilbertomautner1971/python-web-app:nightly
     plan: pico
     ingress:
-      enabled: true
-    
+      enabled: true    
