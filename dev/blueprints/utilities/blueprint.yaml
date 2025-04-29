@@ -62,9 +62,9 @@ jobs:
       dbServers:
         - name: docdb
           type: ferretdb
-    mountVolumes:
-      - name: test-vol
-        path: /data
+    # mountVolumes:
+    #   - name: test-vol
+    #     path: /data
     command:
       - "/bin/sh"
     args:
