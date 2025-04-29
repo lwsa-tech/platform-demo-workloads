@@ -40,48 +40,48 @@ cronjobs:
     envVars:
       a: b
 
-# jobs:
-#   - name: a-job
-#     image: ubuntu
-#     plan: pico
-#     hook: PreSync
-#     envVars:
-#       FOO: bar
-#     envVarsFrom:
-#       secrets:
-#         - name: segredo
-#           mappings:
-#             VALOR: chave
-#       configMaps:
-#         - name: mapa
-#           mappings:
-#             NAME: nome
-#       searches:
-#         - name: mysearch
-#           type: elasticsearch
-#       dbServers:
-#         - name: docdb
-#           type: ferretdb
-#     mountVolumes:
-#       - name: test-vol
-#         path: /data
-#     command:
-#       - "/bin/sh"
-#     args:
-#       - "-c"
-#       - |
-#         echo "VALOR=$VALOR"
-#         echo "chave=$chave"
-#         echo "NAME=$NAME"
-#         echo "nome=$nome"
-#         echo "ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST"
-#         echo "MONGODB_URI=$MONGODB_URI"
-#         echo "Current time:"
-#         date
-#         echo "Appending time to log..."
-#         date >> /data/log.txt
-#         echo "Contents of /data/log.txt:"
-#         cat /data/log.txt
+jobs:
+  - name: a-job
+    image: ubuntu
+    plan: pico
+    hook: PreSync
+    envVars:
+      FOO: bar
+    envVarsFrom:
+      secrets:
+        - name: segredo
+          mappings:
+            VALOR: chave
+      configMaps:
+        - name: mapa
+          mappings:
+            NAME: nome
+      searches:
+        - name: mysearch
+          type: elasticsearch
+      dbServers:
+        - name: docdb
+          type: ferretdb
+    mountVolumes:
+      - name: test-vol
+        path: /data
+    command:
+      - "/bin/sh"
+    args:
+      - "-c"
+      - |
+        echo "VALOR=$VALOR"
+        echo "chave=$chave"
+        echo "NAME=$NAME"
+        echo "nome=$nome"
+        echo "ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST"
+        echo "MONGODB_URI=$MONGODB_URI"
+        echo "Current time:"
+        date
+        echo "Appending time to log..."
+        date >> /data/log.txt
+        echo "Contents of /data/log.txt:"
+        cat /data/log.txt
       
 volumes:
   - name: test-vol
