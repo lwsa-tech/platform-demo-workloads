@@ -4,7 +4,7 @@ configmaps:
   - name: mapa
     data:
       nome: Giba
-      empresa: LWSA
+      empresa: Locaweb
 
   - name: outromapa
     data:
