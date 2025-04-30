@@ -23,6 +23,10 @@ jobs:
     plan: pico
     hook: PreSync
     command: ["flask", "db", "upgrade"]
+    envVarsFrom:
+      dbServers:
+        - name: flask-todo
+          type: cnpg
 
 dbServers:
   - name: flask-todo
