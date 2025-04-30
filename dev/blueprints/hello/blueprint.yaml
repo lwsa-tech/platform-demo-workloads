@@ -5,4 +5,28 @@ services:
     image: gitea.platform.lwsa.tech/gilbertomautner1971/python-web-app:sha-6328727
     plan: pico
     ingress:
-      enabled: true    
+      enabled: true
+
+  - name: flask-todo
+    image: gitea.platform.lwsa.tech/labs/flask-todo:main
+    plan: pico
+    ingress:
+      enabled: true
+    envVarsFrom:
+      dbServers:
+        - name: flask-todo
+          type: cnpg
+
+jobs:
+  - name: migrate-flask-todo
+    image: gitea.platform.lwsa.tech/labs/flask-todo:main
+    plan: pico
+    hook: PreSync
+    command: ["flask", "db", "upgrade"]
+
+dbServers:
+  - name: flask-todo
+    type: cnpg
+    plan: nano
+    version: "17"
+    size: 10Gi
