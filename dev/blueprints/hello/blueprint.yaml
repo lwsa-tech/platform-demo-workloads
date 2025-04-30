@@ -21,6 +21,7 @@ jobs:
   - name: migrate-flask-todo
     image: gitea.platform.lwsa.tech/labs/flask-todo:main
     plan: pico
+    # https://argo-cd.readthedocs.io/en/stable/user-guide/resource_hooks/
     hook: PostSync
     command: ["flask", "db", "upgrade"]
     envVarsFrom:
