@@ -2,7 +2,7 @@
 
 services:
   - name: python-web-app
-    image: gitea.platform.lwsa.tech/gilbertomautner1971/python-web-app:sha-6328727
+    image: registry.gitlab.platform.lwsa.tech/labs/python-web-app:latest # gitea.platform.lwsa.tech/gilbertomautner1971/python-web-app:sha-6328727
     plan: pico
     ingress:
       enabled: true
