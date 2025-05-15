@@ -45,7 +45,7 @@ jobs:
   - name: a-job
     image: ubuntu
     plan: pico
-    hook: PreSync
+    hook: PostSync
     envVars:
       FOO: bar
     envVarsFrom:
