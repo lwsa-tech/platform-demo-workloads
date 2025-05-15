@@ -66,6 +66,10 @@ jobs:
     mountVolumes:
       - name: test-vol
         path: /data
+    allowTo:
+      services:
+        - namespace: portal
+          name: wp
     command:
       - "/bin/sh"
     args:
