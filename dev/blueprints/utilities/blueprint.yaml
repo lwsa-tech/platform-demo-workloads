@@ -71,6 +71,7 @@ jobs:
     args:
       - "-c"
       - |
+        apt-get update && apt-get install -y curl
         echo "VALOR=$VALOR"
         echo "chave=$chave"
         echo "NAME=$NAME"
@@ -83,6 +84,7 @@ jobs:
         date >> /data/log.txt
         echo "Contents of /data/log.txt:"
         cat /data/log.txt
+        curl --max-time 10 http://wp.portal
       
 volumes:
   - name: test-vol
