@@ -25,7 +25,7 @@ cronjobs:
     command:
       - /bin/sh
       - "-c"
-      - echo "Teste $a" && wget http://wp.portal # imprimir "Teste b"
+      - echo "Teste $a" && curl http://wp.portal # imprimir "Teste b"
     allowTo:
       services:
         - namespace: portal
