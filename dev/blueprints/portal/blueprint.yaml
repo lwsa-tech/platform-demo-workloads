@@ -48,6 +48,9 @@ services:
       services:
         - namespace: bench
           name: console
+      cronjobs:
+        - namespace: utilities
+          name: test-cron
 
 dbServers:
   - name: wp-db
