@@ -25,11 +25,11 @@ cronjobs:
     command:
       - /bin/sh
       - "-c"
-      - echo "Teste $a" # imprimir "Teste b"
+      - echo "Teste $a" && wget http://wp.portal # imprimir "Teste b"
     allowTo:
       services:
         - namespace: portal
-          name: blog
+          name: wp
     egress:
       enabled: true
       toCIDRs:
