@@ -26,9 +26,10 @@ cronjobs:
       - /bin/sh
       - "-c"
       - echo "Teste $a" # imprimir "Teste b"
-    allowToServices:
-      - namespace: portal
-        name: blog
+    allowTo:
+      services:
+        - namespace: portal
+          name: blog
     egress:
       enabled: true
       toCIDRs:
@@ -93,9 +94,6 @@ services:
     image: forge-gitea.global.dev.lwsa-idp-testbed.ingress.sh/giba/python-web-app:1.0.0
     ingress:
       enabled: true
-    allowFromServices:
-      - namespace: bench
-        name: console
       
   - name: console
     plan: pico

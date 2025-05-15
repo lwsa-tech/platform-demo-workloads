@@ -6,7 +6,7 @@
 #
 # Demonstramos também como abrir comunicação com outros serviços. Usar em conjunto com o exemplo no namespace "portal"
 # Instruções: shell into console e execute "wget http://wp.portal" com e sem a configuração comentada abaixo
-# (observe que a config. correspondente `allowFromServices` já foi colocada no blueprint do portal)
+# (observe que a config. correspondente `allowFrom.services` já foi colocada no blueprint do portal)
 
 services: # Optional. If defined, should contain one or more entries
   - name: console # should be unique amongst services
@@ -16,9 +16,10 @@ services: # Optional. If defined, should contain one or more entries
       - /bin/sh
       - -c
       - while :; do sleep 86400; done
-    allowToServices: # optional. If defined. should contain a list of namespace/name pairs like below
-      - namespace: portal
-        name: wp
+    allowTo: # optional. If defined. should contain a list of namespace/name pairs like below
+      services:
+        - namespace: portal
+          name: wp
 
   - name: webserver
     image: registry.k8s.io/hpa-example

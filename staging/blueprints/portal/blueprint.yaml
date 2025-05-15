@@ -44,9 +44,10 @@ services:
       - name: wp-vol
         path: /var/www/html
     # Usado em conjunto com o exemplo no namespace "bench"
-    allowFromServices:
-      - namespace: bench
-        name: console
+    allowFrom:
+      services:
+        - namespace: bench
+          name: console
 
 dbServers:
   - name: wp-db
