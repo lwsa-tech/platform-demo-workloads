@@ -51,9 +51,6 @@ services:
       cronjobs:
         - namespace: utilities
           name: test-cron
-      jobs:
-        - namespace: utilities
-          name: a-job
 
 dbServers:
   - name: wp-db
