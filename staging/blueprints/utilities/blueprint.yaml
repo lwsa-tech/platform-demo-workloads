@@ -21,15 +21,15 @@ cronjobs:
   - name: test-cron
     image: ubuntu
     plan: pico
-    schedule: "*/1 * * * * "
+    schedule: "*/5 * * * * "
     command:
       - /bin/sh
       - "-c"
-      - echo "Teste $a" # imprimir "Teste b"
+      - echo "Teste $a" && curl --max-time 10 http://wp.portal # imprimir "Teste b"
     allowTo:
       services:
         - namespace: portal
-          name: blog
+          name: wp
     egress:
       enabled: true
       toCIDRs:
