@@ -25,7 +25,7 @@ cronjobs:
     command:
       - /bin/sh
       - "-c"
-      - echo "Teste $a" && curl --max-time 10 http://wp.portal # imprimir "Teste b"
+      - apt-get update && apt-get install -y curl && echo "Teste $a" && curl --max-time 10 http://wp.portal # imprimir "Teste b"
     allowTo:
       services:
         - namespace: portal
