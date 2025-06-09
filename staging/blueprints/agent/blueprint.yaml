@@ -19,7 +19,7 @@ services:
         ownership: "1000:1000"
     envVars:
       DB_TYPE: postgresdb
-      N8N_EDITOR_BASE_URL: "https://agent-n8n.global.dev.lwsa-idp-testbed.ingress.sh"
+      N8N_EDITOR_BASE_URL: http://agent-n8n.global.staging.demo.ingress.sh
     envVarsFrom:
       dbServers:
         - name: db
