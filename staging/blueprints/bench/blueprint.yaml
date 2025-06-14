@@ -23,7 +23,7 @@ services:
           name: wp
 
   - name: webserver
-    image: registry.k8s.io/hpa-example
+    image: registry.gitlab.platform.lwsa.tech/labs/hpa-example/main:latest
     plan: pico
     port: 80
     # Para alta disponibilidade recomendado mínimo 2 replicas
