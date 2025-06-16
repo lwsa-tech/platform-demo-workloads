@@ -34,7 +34,6 @@ cronjobs:
       enabled: true
       toFQDNs:
         - pattern: '*.ubuntu.com'
-          port: 443
     envVarsFrom:
       dbServers:
         - name: docdb
