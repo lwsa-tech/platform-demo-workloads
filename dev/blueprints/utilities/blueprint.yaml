@@ -32,8 +32,9 @@ cronjobs:
           name: wp
     egress:
       enabled: true
-      toCIDRs:
-        - range: "185.0.0.0/8"
+      toFQDNs:
+        - pattern: '*.ubuntu.com'
+          port: 443
     envVarsFrom:
       dbServers:
         - name: docdb
