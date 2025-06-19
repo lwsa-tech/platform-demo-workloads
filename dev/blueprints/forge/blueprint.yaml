@@ -2,7 +2,7 @@
 
 services:
   - name: gitea
-    image: docker.io/gitea/gitea:1.23.4
+    image: docker.io/gitea/gitea:1.23.8
     plan: nano
     port: 3000
     ingress:
