@@ -45,7 +45,7 @@ dbServers:
 
   - name: redis
     type: dragonfly
-    plan: pico
+    plan: micro
     passwordAuth:
       enabled: true
     # Default 1 replica. Para prod usar ao menos 2
