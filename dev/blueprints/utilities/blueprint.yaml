@@ -157,6 +157,8 @@ services:
         - "70.0.0.0/8"
         - "177.0.0.0/8"
     ingress:
+      hosts:
+        - echo.giba.tech
       enabled: true
       sourceRanges:
         - "189.0.0.0/8"
