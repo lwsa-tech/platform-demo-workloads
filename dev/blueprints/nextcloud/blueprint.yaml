@@ -6,7 +6,7 @@ services:
     port: 80
     ingress:
       enabled: true
-    image: nextcloud:29.0.8
+    image: nextcloud:29.0.16
     mountVolumes:
       - name: nextcloud-vol
         path: /var/www/html
