@@ -239,13 +239,13 @@ dbServers:
         - "185.0.0.0/8"
         - "177.0.0.0/8"
 
-  - name: docdb-new
-    type: ferretdb
-    version: "17"
-    plan: nano
-    size: 29Gi
-    restoreFrom:
-      name: docdb
+  # - name: docdb-new
+  #   type: ferretdb
+  #   version: "17"
+  #   plan: nano
+  #   size: 29Gi
+  #   restoreFrom:
+  #     name: docdb
 
 searches:
   - name: mysearch
