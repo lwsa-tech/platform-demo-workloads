@@ -19,6 +19,7 @@ services:
     envVarsFrom:
       secrets:
         - name: kanban-blueprint-backup-creds
+        - name: wekan-psmdb-secrets-system
 
   - name: wekan
     plan: micro
