@@ -12,6 +12,10 @@ services:
   - name: alpine
     plan: nano
     image: alpine:3
+    command:
+      - /bin/sh
+      - -c
+      - while :; do sleep 86400; done
 
   - name: wekan
     plan: micro
