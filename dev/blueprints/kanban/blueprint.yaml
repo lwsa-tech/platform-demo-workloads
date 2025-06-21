@@ -9,6 +9,10 @@ services:
       - -c
       - while :; do sleep 86400; done
 
+  - name: alpine
+    plan: nano
+    image: alpine:3
+
   - name: wekan
     plan: micro
     port: 8080
