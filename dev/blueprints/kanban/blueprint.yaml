@@ -11,11 +11,14 @@ services:
 
   - name: backup
     plan: nano
-    image: amazon/aws-cli:2.27.40
+    image: alpine:3
     command:
       - "sh"
       - "-euc"
       - |
+        apk update
+        apk add --no-cache aws-cli
+        apk add --no-cache mongodb-tools
         sleep infinity
     envVarsFrom:
       secrets:
@@ -24,11 +27,14 @@ services:
 
   - name: recover
     plan: nano
-    image: amazon/aws-cli:2.27.40
+    image: alpine:3
     command:
       - "sh"
       - "-euc"
       - |
+        apk update
+        apk add --no-cache aws-cli
+        apk add --no-cache mongodb-tools
         sleep infinity
     envVarsFrom:
       secrets:
