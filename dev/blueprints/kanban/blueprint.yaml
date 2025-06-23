@@ -9,7 +9,19 @@ services:
       - -c
       - while :; do sleep 86400; done
 
-  - name: alpine
+  - name: backup
+    plan: nano
+    image: alpine:3
+    command:
+      - /bin/sh
+      - -c
+      - while :; do sleep 86400; done
+    envVarsFrom:
+      secrets:
+        - name: kanban-blueprint-backup-creds
+        - name: wekan-psmdb-secrets-system
+
+  - name: recover
     plan: nano
     image: alpine:3
     command:
