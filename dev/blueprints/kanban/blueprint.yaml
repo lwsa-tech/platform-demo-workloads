@@ -16,7 +16,6 @@ services:
       - "sh"
       - "-euc"
       - |
-        yum install -y mongodb-database-tools
         sleep infinity
     envVarsFrom:
       secrets:
@@ -30,7 +29,6 @@ services:
       - "sh"
       - "-euc"
       - |
-        yum install -y mongodb-database-tools
         sleep infinity
     envVarsFrom:
       secrets:
