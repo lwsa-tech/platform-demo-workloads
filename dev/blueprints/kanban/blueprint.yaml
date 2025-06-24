@@ -25,21 +25,21 @@ services:
         - name: kanban-blueprint-backup-creds
         - name: wekan-psmdb-secrets-system
 
-  - name: recover
-    plan: nano
-    image: alpine:3
-    command:
-      - "sh"
-      - "-euc"
-      - |
-        apk update
-        apk add --no-cache aws-cli
-        apk add --no-cache mongodb-tools
-        sleep infinity
-    envVarsFrom:
-      secrets:
-        - name: kanban-blueprint-recovery-creds
-        - name: wekan-psmdb-secrets-system
+  # - name: recover
+  #   plan: nano
+  #   image: alpine:3
+  #   command:
+  #     - "sh"
+  #     - "-euc"
+  #     - |
+  #       apk update
+  #       apk add --no-cache aws-cli
+  #       apk add --no-cache mongodb-tools
+  #       sleep infinity
+  #   envVarsFrom:
+  #     secrets:
+  #       - name: kanban-blueprint-recovery-creds
+  #       - name: wekan-psmdb-secrets-system
 
   - name: wekan
     plan: micro
