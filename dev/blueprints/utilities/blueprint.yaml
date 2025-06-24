@@ -25,7 +25,14 @@ cronjobs:
     command:
       - /bin/sh
       - "-c"
-      - apt-get update && apt-get install -y curl && echo "Teste $a" && curl --max-time 10 http://wp.portal # imprimir "Teste b"
+      - |
+        export DEBIAN_FRONTEND=noninteractive
+        timeout --foreground 180s \
+          apt-get update \
+          && apt-get install -y curl \
+          || { echo "apt-get failed"; exit 1; }
+        echo "Teste $a" # imprimir "Teste b"
+        curl --max-time 10 http://wp.portal
     allowTo:
       services:
         - namespace: portal
