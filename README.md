@@ -123,11 +123,15 @@ services:
 ```
 9) Salve o arquivo e faça o _commit_ com a mensagem `feat: add teste service` e _push_ para o repositório _GitOps_.
 10) Na página do _Cockpit_ acesse a URL do _Argo CD_ e selecione o _Application_ correspondente ao seu _blueprint_.
-11) Nos detalhes do _Application_ clique no link do serviço, por exemplo, http://meu-aplicativo.global.dev.playground.ingress.sh/
+11) Nos detalhes do _Application_ clique no link do serviço, por exemplo, https://teste.meu-aplicativo.global.dev.playground.ingress.sh/
+
+Veja o vídeo abaixo para um passo a passo visual de como criar e editar um blueprint. As chaves são exibidas com `Ctrl+Space`:
+
+![Blueprint Demo](./blueprint.gif)
 
 Para conhecer todos os recursos disponíveis, consulte a pasta [dev/blueprints](dev/blueprints) e adapte os arquivos para o seu caso. Leia os exemplos disponíveis para entender as opções.
 
-Para cada pasta criada, os recursos serão criados num _namespace_ com o mesmo nome. O tráfego de rede entre _namespaces_ é bloqueado por padrão, e pode ser seletivamente liberado usando `allowTo`/`allowFrom` conforme exemplos.
+Para cada pasta criada, os recursos serão criados num _namespace_ com o mesmo nome. O tráfego de rede entre _namespaces_ é bloqueado por padrão, e pode ser seletivamente liberado usando `allowTo`/`allowFrom` conforme exemplos, para habilitar a comunicação entre serviços de _namespaces_ diferentes.
 
 #### Catálogo de planos
 
