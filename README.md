@@ -10,7 +10,7 @@
   - [Argo CD](#argo-cd)
     - [Webhook](#webhook)
 - [Operação](#operação)
-  - [Criar novo blueprint](#criar-novo-blueprint)
+  - [Blueprints](#blueprints)
     - [Catálogo de planos](#catálogo-de-planos)
     - [Recomendações para produção](#recomendações-para-produção)
     - [Variáveis de ambiente `dbServers`, `searches` e `messageBrokers`](#variáveis-de-ambiente-dbservers-searches-e-messagebrokers)
@@ -79,7 +79,7 @@ E alternar entre os clusters via `kubectl config use-context <nome do cluster>` 
 
 ### Grafana
 
-Use a _URL_ fornecida para acessar o _Grafana_. Para persistir _dashboards_, salve-os no formato _json_ e encaminhe para o time de _Platform Engineering_.
+Use a _URL_ fornecida para acessar o _Grafana_.
 
 _Dashboards_ recomendados:
 - _Kubernetes / Compute Resources / Cluster_: para monitorar capacidade agregada do _cluster_
@@ -99,9 +99,35 @@ Mais informações: https://argo-cd.readthedocs.io/en/stable/operator-manual/web
 
 ## Operação
 
-### Criar novo blueprint
+### Blueprints
 
-Consulte a pasta [dev/blueprints](dev/blueprints) e adapte os arquivos para o seu caso. Leia os exemplos disponíveis para entender as opções.
+0) Accesse a página do _Cockpit_ do projeto, por exemplo https://poc.object-storage.sh:9000/playground-public/cockpit.html e escolha o ambiente desejado, por exemplo `dev`
+1) Clone o repositório _GitOps_ conforme instruções na página e abra-o no _VS Code_ ou _Cursor_
+2) Instale a extensão __YAML Language Support by Red Hat__ para melhorar a experiência de edição.
+3) Mude para o diretório indicado no _Cockpit_ para o ambiente desejado, exemplo `dev/blueprints`
+4) Crie uma nova pasta sob este diretório, por exemplo `dev/blueprints/meu-aplicativo`. Um _namespace_ correspondente será criado no _cluster_ com o mesmo nome (exemplo `meu-aplicativo`)
+5) Crie um arquivo `blueprint.yaml` sob esta pasta, por exemplo `dev/blueprints/meu-aplicativo/blueprint.yaml`.
+6) Na primeira linha do arquivo `blueprint.yaml` coloque:
+```yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
+```
+7) Ao carregar o esquema _json_, você pode começar a editar o arquivo usando o atalho de teclado `Ctrl+Space` para obter a lista de propriedades disponíveis. Para começar, adicione a chave `services`.
+8) Complete a chave `services` conforme exemplo:
+```yaml
+services:
+  - name: teste
+    image: cilium/echoserver
+    plan: nano
+    ingress:
+      enabled: true
+```
+9) Salve o arquivo e faça o _commit_ com a mensagem `feat: add teste service` e _push_ para o repositório _GitOps_.
+10) Na página do _Cockpit_ acesse a URL do _Argo CD_ e selecione o _Application_ correspondente ao seu _blueprint_.
+11) Nos detalhes do _Application_ clique no link do serviço, por exemplo, http://meu-aplicativo.global.dev.playground.ingress.sh/
+
+Para conhecer todos os recursos disponíveis, consulte a pasta [dev/blueprints](dev/blueprints) e adapte os arquivos para o seu caso. Leia os exemplos disponíveis para entender as opções.
+
+Para cada pasta criada, os recursos serão criados num _namespace_ com o mesmo nome. O tráfego de rede entre _namespaces_ é bloqueado por padrão, e pode ser seletivamente liberado usando `allowTo`/`allowFrom` conforme exemplos.
 
 #### Catálogo de planos
 
