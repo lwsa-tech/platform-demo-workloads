@@ -6,3 +6,6 @@ services:
     plan: nano
     ingress:
       enabled: true
+    expose:
+      enabled: true
+      

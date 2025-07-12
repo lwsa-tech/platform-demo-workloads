@@ -11,6 +11,9 @@
     - [Webhook](#webhook)
 - [Operação](#operação)
   - [Blueprints](#blueprints)
+    - [Funcionamento da chave `port`](#funcionamento-da-chave-port)
+    - [Diferença entre `expose` e `ingress`](#diferença-entre-expose-e-ingress)
+    - [Tráfego de saída](#tráfego-de-saída)
     - [Catálogo de planos](#catálogo-de-planos)
     - [Recomendações para produção](#recomendações-para-produção)
     - [Variáveis de ambiente `dbServers`, `searches` e `messageBrokers`](#variáveis-de-ambiente-dbservers-searches-e-messagebrokers)
@@ -132,6 +135,65 @@ Veja o vídeo abaixo para um passo a passo visual de como criar e editar um blue
 Para conhecer todos os recursos disponíveis, consulte a pasta [dev/blueprints](dev/blueprints) e adapte os arquivos para o seu caso. Leia os exemplos disponíveis para entender as opções.
 
 Para cada pasta criada, os recursos serão criados num _namespace_ com o mesmo nome. O tráfego de rede entre _namespaces_ é bloqueado por padrão, e pode ser seletivamente liberado usando `allowTo`/`allowFrom` conforme exemplos, para habilitar a comunicação entre serviços de _namespaces_ diferentes.
+
+#### Funcionamento da chave `port`
+
+Ao especificar a chave `port`, por exemplo:
+
+```yaml
+services:
+  - name: teste
+    image: cilium/echoserver
+    plan: nano
+    port: 8080
+    ingress:
+      enabled: true
+```
+
+A plataforma irá direcionar requisições para a porta 8080 do _container_. Caso o _container_ esteja configurado para escutar em outra porta, por exemplo 80, o parâmetro `port` deverá apontar para esta outra porta.
+
+Quando esta chave é especificada, o _container_ também receberá a variável de ambiente `PORT` com o valor especificado. É uma boa prática codificar o _container_ para que escute na porta especificada por esta variável. O valor _default_ é 10000.
+
+Caso o _container_ use a variável de ambiente `PORT` para configurar em qual porta escutará, não é necessário especificar explicitamente a chave `port`.
+
+#### Diferença entre `expose` e `ingress`
+
+Note que é possível especificar `expose.enabled: true` ou `ingress.enabled: true` para habilitar o acesso ao serviço.
+
+Caso use `ingress`, por exemplo:
+
+```yaml
+services:
+  - name: teste
+    image: cilium/echoserver
+    plan: nano
+    port: 8080
+    ingress:
+      enabled: true
+```
+
+- Será criado um _endpoint_ público com o endereço `https://<nome-do-serviço>.<namespace>.global.dev.playground.ingress.sh/` sempre na porta externa 443
+- Será provisionado automaticamento um certificado SSL para o _endpoint_
+- O _container_ receberá requisições na porta 8080.
+
+Caso use `expose`, por exemplo:
+
+```yaml
+services:
+  - name: teste
+    image: cilium/echoserver
+    plan: nano
+    port: 8080
+    expose:
+      enabled: true
+```
+
+- Será provisionado serviço _load balancer_ com nome `<nome-external>` e um IP público dedicado ao serviço na porta 8080 (visível no _Argo CD_ e no _k9s_)
+- O _container_ receberá requisições na porta 8080.
+
+#### Tráfego de saída
+
+O tráfego de saída por ser configurado pela chave `egress.enabled` (_default_: `true`). Veja exemplos em [dev/blueprints](dev/blueprints) de como configurar destinos por faixas de IP ou endereços de _DNS_.
 
 #### Catálogo de planos
 
