@@ -1,4 +1,3 @@
-- [Inputs](#inputs)
 - [Setup](#setup)
   - [Deploy Key](#deploy-key)
     - [GitHub ou Gitea](#github-ou-gitea)
@@ -28,27 +27,30 @@
   - [Slack](#slack)
   - [Horários de backups e reboots](#horários-de-backups-e-reboots)
 
-## Inputs
-Preencha o form em https://forms.gle/kDXiZ9zpygpkcPbTA
 ## Setup
+
 ### Deploy Key
 No repositório que você criou para _blueprints_ e _charts_, adicione o _deploy key_ informado da seguinte forma:
 #### GitHub ou Gitea
 - Clique em _Settings_, _Deploy keys_, _Add deploy key_
 - Em _Title_ e _Key_ coloque os dados recebidos
 - Manter desativado _Allow write access_ e adicionar.
+
 #### Azure DevOps
 - Clique no ícone _User settings_, _SSH public keys_
 - Em _Description_ e _Key data_ coloque os dados recebidos
+
 #### GitLab
 - Acesse _Settings_, _Repository_
 - Em _Deploy keys_, selecione _Add new key_
 - Complete os campos, mantendo desativado _Grant write permissions..._
+
 ### Instalar ferramentas
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - [Kubelogin](https://github.com/int128/kubelogin?tab=readme-ov-file#setup)
 - [K9s](https://k9scli.io/)
 - [Kubeseal](https://github.com/bitnami-labs/sealed-secrets?tab=readme-ov-file#kubeseal) 
+
 #### Devbox
 Alternativamente, o _Devbox_ permite uma instalação rápida de todas as ferramentas sem intereferir no funcionamento dos demais programas do seu computador. Funciona em _Windows (WSL)_, _Mac OS_ e _Linux_.
 
@@ -99,7 +101,7 @@ Mais informações: https://argo-cd.readthedocs.io/en/stable/operator-manual/web
 
 ### Criar novo blueprint
 
-Copie os arquivos de exemplo a adapte-os para o seu caso. Leia os arquivos de exemplo para entender as opções disponíveis.
+Consulte a pasta [dev/blueprints](dev/blueprints) e adapte os arquivos para o seu caso. Leia os exemplos disponíveis para entender as opções.
 
 #### Catálogo de planos
 
