@@ -13,12 +13,14 @@ services:
     args:
       - $(RABBITMQ_URL)
     # Ref https://keda.sh/docs/2.16/scalers/
-    scaleTriggers:
-      - type: rabbitmq
-        metadata:
-          hostFromEnv: RABBITMQ_URL
-          queueName: hello
-          queueLength: "5"
+    autoscaling:
+      enabled: true
+      triggers:
+        - type: rabbitmq
+          metadata:
+            hostFromEnv: RABBITMQ_URL
+            queueName: hello
+            queueLength: "5"
 
 cronjobs:
   - name: publish

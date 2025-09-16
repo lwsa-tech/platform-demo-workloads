@@ -25,6 +25,14 @@ services: # Optional. If defined, should contain one or more entries
     image: registry.k8s.io/hpa-example
     plan: nano
     port: 80 # optional, numeric
-    # Para alta disponibilidade recomendado mínimo 2 replicas
-    minReplicas: 2 # optional, numeric
-    maxReplicas: 10 # optional, numeric
+    autoscaling:
+      enabled: true
+      # Para alta disponibilidade recomendado mínimo 2 replicas
+      minReplicas: 2
+      maxReplicas: 10
+      # abaixo opcional. Default 200% utilização (por ser baseado em requests e fazermos overselling)
+      # triggers:
+      #   - type: cpu
+      #     metricType: Utilization
+      #     metadata:
+      #       value: "90"
