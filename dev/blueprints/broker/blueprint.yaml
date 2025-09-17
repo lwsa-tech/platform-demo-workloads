@@ -12,9 +12,9 @@ services:
       - receive
     args:
       - $(RABBITMQ_URL)
-    # Ref https://keda.sh/docs/2.16/scalers/
     autoscaling:
       enabled: true
+      # Ref https://keda.sh/docs/2.16/scalers/
       triggers:
         - type: rabbitmq
           metadata:
