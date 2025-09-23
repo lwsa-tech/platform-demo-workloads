@@ -217,7 +217,7 @@ dbServers:
   - name: pg
     type: cnpg
     version: "16"
-    plan: nano # large para sysbench 30 GB dados
+    plan: large # large para sysbench 30 GB dados
     size: 300Gi
     expose:
       enabled: true
