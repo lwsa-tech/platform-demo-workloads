@@ -100,7 +100,19 @@ services:
     image: forge-gitea.global.dev.lwsa-idp-testbed.ingress.sh/giba/python-web-app:1.0.0
     ingress:
       enabled: true
-      
+
+  - name: pg-bench
+    plan: micro
+    image: ubuntu
+    command:
+      - /bin/sh
+      - -c
+      - while :; do sleep 86400; done
+    envVarsFrom:
+      dbServers:
+        - name: pg
+          type: cnpg
+
   - name: console
     plan: micro
     image: ubuntu
