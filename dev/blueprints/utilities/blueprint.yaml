@@ -102,7 +102,7 @@ services:
       enabled: true
       
   - name: console
-    plan: pico
+    plan: micro
     image: ubuntu
     replicas: 2
     command:
