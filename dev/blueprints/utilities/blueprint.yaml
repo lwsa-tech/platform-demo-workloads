@@ -234,7 +234,7 @@ dbServers:
     expose:
       enabled: true
     pause: false
-    replicas: 1
+    replicas: 3
 
   # - name: pg-copy
   #   type: cnpg
