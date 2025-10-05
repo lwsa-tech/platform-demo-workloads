@@ -24,7 +24,7 @@ services:
     # Número de replicas, default 1. Não pode ser maior que 1 se o serviço monta volumes, como é o caso aqui.
     # replicas: 1
     port: 80
-    plan: pico
+    plan: nano
     envVarsFrom:
       dbServers:
         # name e type sempre obrigatórios e devem bater com as definições em dbServers abaixo
