@@ -18,6 +18,9 @@ services:
       # Não instala certificado se cluster em recovery ou standby
       # hosts:
       #   - www.giba.tech
+    # Habilita instrumentação com o OpenTelemetry via Beyla (eBPF)
+    autoInstrumentation:
+      enabled: true
     image: wordpress:php8.3-apache
     # Porta interna onde o container ouve, opcional, default 10000
     # Valor é passado via variável de ambiente PORT para o container
