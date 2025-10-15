@@ -12,6 +12,8 @@ services:
     plan: pico
     ingress:
       enabled: true
+    autoInstrumentation:
+      enabled: true
     envVarsFrom:
       dbServers:
         - name: flask-todo
