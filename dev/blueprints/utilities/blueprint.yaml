@@ -236,6 +236,12 @@ dbServers:
     pause: false
     replicas: 3
 
+  - name: deleteme
+    type: cnpg
+    plan: small
+    version: "16"
+    size: 10Gi
+  
   # - name: pg-copy
   #   type: cnpg
   #   version: "16"
