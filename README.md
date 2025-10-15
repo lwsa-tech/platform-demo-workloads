@@ -268,8 +268,8 @@ Veja os exemplos para entender como usar.
 
 O OpenTelemetry pode ser habilitado de duas formas:
 
-1. Via chave `autoInstrumentation.enabled` dentro do serviço no _blueprint_. Neste caso, a instrumentação será feita via eBPF sem necessidade de codificação.
-2. Usando chamadas padrão do OpenTelemetry via SDK. A variável de ambiente `OTEL_EXPORTER_OTLP_ENDPOINT` é disponibilizada automaticamente para o container.
+1. Via chave `autoInstrumentation.enabled` dentro do serviço no _blueprint_. Neste caso, a instrumentação será feita automaticamente via eBPF sem necessidade de codificação.
+2. Usando chamadas padrão do OpenTelemetry via SDK. A variável de ambiente `OTEL_EXPORTER_OTLP_ENDPOINT` é disponibilizada automaticamente para o container. Testado em diversas linguagens, seguir exemplos em [OpenTelemetry Demo](https://opentelemetry.io/docs/demo/).
 
 #### Prune resources
 
