@@ -22,6 +22,7 @@
       - [`ferretdb` e `psmdb`](#ferretdb-e-psmdb)
       - [`elasticsearch`](#elasticsearch)
       - [`rabbitmq`](#rabbitmq)
+    - [OpenTelemetry](#opentelemetry)
     - [Prune resources](#prune-resources)
     - [Segredos via kubeseal](#segredos-via-kubeseal)
       - [Charts](#charts)
@@ -262,6 +263,13 @@ As variáveis de ambiente abaixo são disponibilizadas automaticamente ao usar a
 - `RABBITMQ_URL`
 
 Veja os exemplos para entender como usar.
+
+#### OpenTelemetry
+
+O OpenTelemetry pode ser habilitado de duas formas:
+
+1. Via chave `autoInstrumentation.enabled` dentro do serviço no _blueprint_. Neste caso, a instrumentação será feita via eBPF sem necessidade de codificação.
+2. Usando chamadas padrão do OpenTelemetry via SDK. A variável de ambiente `OTEL_EXPORTER_OTLP_ENDPOINT` é disponibilizada automaticamente para o container.
 
 #### Prune resources
 
