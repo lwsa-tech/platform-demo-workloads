@@ -126,10 +126,10 @@ opentelemetry-demo:
       enabled: true
       resources:
         requests:
-          cpu: "2"
+          cpu: "300m"
           memory: "4Gi"
         limits:
-          cpu: "300m"
+          cpu: "2"
           memory: "4Gi"
 
     payment:
