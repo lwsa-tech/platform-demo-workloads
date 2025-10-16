@@ -18,6 +18,9 @@ opentelemetry-demo:
   grafana:
     enabled: false
 
+  opensearch:
+    enabled: false
+
   components:
     accounting:
       enabled: true
