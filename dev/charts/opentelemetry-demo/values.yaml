@@ -17,3 +17,203 @@ opentelemetry-demo:
 
   grafana:
     enabled: false
+
+  accounting:
+    enabled: true
+    resources:
+      requests:
+        cpu: "40m"
+        memory: "512Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+  
+  ad:
+    enabled: true
+    resources:
+      requests:
+        cpu: "40m"
+        memory: "512Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+
+  cart:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  checkout:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  currency:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  email:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  fraud-detection:
+    enabled: true
+    resources:
+      requests:
+        cpu: "75m"
+        memory: "1Gi"
+      limits:
+        cpu: "1"
+        memory: "1Gi"
+
+  frontend:
+    enabled: true
+    resources:
+      requests:
+        cpu: "40m"
+        memory: "512Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+
+  frontend-proxy:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  image-provider:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  load-generator:
+    enabled: true
+    resources:
+      requests:
+        cpu: "2"
+        memory: "4Gi"
+      limits:
+        cpu: "300m"
+        memory: "4Gi"
+
+  payment:
+    enabled: true
+    resources:
+      requests:
+        cpu: "40m"
+        memory: "512Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+
+  product-catalog:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  quote:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  recommendation:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  shipping:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  flagd:
+    enabled: true
+    resources:
+      requests:
+        cpu: "75m"
+        memory: "1Gi"
+      limits:
+        cpu: "1"
+        memory: "1Gi"
+
+  kafka:
+    enabled: true
+    resources:
+      requests:
+        cpu: "150m"
+        memory: "2Gi"
+      limits:
+        cpu: "1"
+        memory: "2Gi"
+
+  postgresql:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
+
+  valkey-cart:
+    enabled: true
+    resources:
+      requests:
+        cpu: "20m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "256Mi"
