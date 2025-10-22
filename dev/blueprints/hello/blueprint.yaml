@@ -25,6 +25,12 @@ services:
     ingress:
       enabled: true
 
+  - name: echo2
+    image: cilium/echoserver
+    plan: pico
+    ingress:
+      enabled: true
+
 jobs:
   - name: migrate-flask-todo
     image: gitea.platform.lwsa.tech/labs/flask-todo:main
