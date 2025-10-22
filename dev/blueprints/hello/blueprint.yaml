@@ -18,6 +18,12 @@ services:
       dbServers:
         - name: flask-todo
           type: cnpg
+  
+  - name: echo
+    image: cilium/echoserver
+    plan: pico
+    ingress:
+      enabled: true
 
 jobs:
   - name: migrate-flask-todo
