@@ -264,8 +264,8 @@ dbServers:
     version: "17"
     plan: nano
     size: 35Gi
-    restoreFrom:
-      name: docdb
+    # restoreFrom:
+    #   name: docdb
 
 searches:
   - name: mysearch
