@@ -259,7 +259,7 @@ dbServers:
         - "185.0.0.0/8"
         - "177.0.0.0/8"
 
-  - name: docdb-e
+  - name: docdb-f
     type: ferretdb
     version: "17"
     plan: nano
