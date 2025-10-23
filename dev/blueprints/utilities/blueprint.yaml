@@ -267,6 +267,13 @@ dbServers:
     # restoreFrom:
     #   name: docdb
 
+  - name: teste-1
+    type: cnpg
+    version: "17"
+    plan: nano
+    size: 10Gi
+    replicas: 3
+
 searches:
   - name: mysearch
     type: elasticsearch
