@@ -306,3 +306,20 @@ searches:
         - "70.0.0.0/8"
       replicas: 1 # default 1
       plan: small
+
+  - name: busca
+    type: elasticsearch
+    version: "9.2.0"
+    nodes:
+      master:
+        replicas: 3
+        plan: medium
+        size: 80Gi
+      data:
+        replicas: 3
+        plan: medium
+        size: 80Gi
+    dashboard:
+      enabled: true
+      replicas: 1
+      plan: small
