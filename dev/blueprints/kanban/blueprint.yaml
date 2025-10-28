@@ -64,6 +64,7 @@ services:
 dbServers:
   - name: wekan
     type: psmdb
+    version: "7.0"
     plan: micro
     size: 100Gi
     replicas: 1
