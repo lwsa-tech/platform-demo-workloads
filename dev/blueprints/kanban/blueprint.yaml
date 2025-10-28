@@ -53,7 +53,7 @@ services:
         ownership: "999:999"
     envVars:
       WRITABLE_PATH: "/dados"
-      ROOT_URL: "https://kanban-wekan.global.prod.demo.ingress.sh"
+      ROOT_URL: "https://kanban-wekan.global.dev.lwsa-idp-testbed.ingress.sh"
     envVarsFrom:
       dbServers:
         - name: wekan
