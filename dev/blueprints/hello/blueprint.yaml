@@ -32,6 +32,12 @@ services:
       enabled: true
       hosts:
         - echo2.giba.tech
+  
+  - name: echo3
+    image: cilium/echoserver
+    plan: pico
+    expose:
+      enabled: true
 
 jobs:
   - name: migrate-flask-todo
