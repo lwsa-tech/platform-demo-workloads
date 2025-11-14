@@ -38,7 +38,7 @@ dbServers:
   - name: nextcloud-db
     type: cnpg
     version: "15.10"
-    plan: nano
+    plan: small
     size: 50Gi
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
@@ -46,7 +46,7 @@ dbServers:
   # - name: nextcloud-b
   #   type: cnpg
   #   version: "15.10"
-  #   plan: nano
+  #   plan: micro
   #   size: 50Gi
   #   restoreFrom:
   #     name: nextcloud-db
