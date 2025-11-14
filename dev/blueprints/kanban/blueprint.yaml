@@ -81,12 +81,12 @@ dbServers:
         - "191.0.0.0/8"
         - "70.0.0.0/8"
 
-  - name: wekan-a
+  - name: wekan-b
     type: psmdb
     plan: small
     version: "7.0"
     size: 50Gi
-    replicas: 3
+    replicas: 1
     expose:
       enabled: true
     restoreFrom:
