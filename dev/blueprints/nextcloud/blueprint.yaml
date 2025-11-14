@@ -43,7 +43,7 @@ dbServers:
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
   
-  - name: nextcloud-a
+  - name: nextcloud-b
     type: cnpg
     version: "15.10"
     plan: nano
