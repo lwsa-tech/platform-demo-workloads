@@ -259,13 +259,21 @@ dbServers:
         - "185.0.0.0/8"
         - "177.0.0.0/8"
 
-  - name: docdb-g
+  # - name: docdb-g
+  #   type: ferretdb
+  #   version: "17"
+  #   plan: nano
+  #   size: 35Gi
+  #   restoreFrom:
+  #     name: docdb
+
+  - name: docdb-h
     type: ferretdb
     version: "17"
     plan: nano
     size: 35Gi
-    # restoreFrom:
-    #   name: docdb
+    restoreFrom:
+      name: docdb
 
   - name: teste-1
     type: cnpg
