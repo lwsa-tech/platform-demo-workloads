@@ -267,14 +267,6 @@ dbServers:
   #   restoreFrom:
   #     name: docdb
 
-  - name: docdb-h
-    type: ferretdb
-    version: "17"
-    plan: nano
-    size: 35Gi
-    restoreFrom:
-      name: docdb
-
   - name: teste-1
     type: cnpg
     version: "17"
@@ -306,7 +298,7 @@ searches:
     dashboard:
       enabled: true
       sourceRanges:
-        - "189.0.0.0/8"
+        - "0.0.0.0/0"
         - "186.0.0.0/8"
         - "187.0.0.0/8"
         - "201.0.0.0/8"
