@@ -28,10 +28,10 @@ services:
   - name: echo2
     image: cilium/echoserver
     plan: pico
-    # ingress:
-    #   enabled: true
-    #   hosts:
-    #     - echo2.giba.tech
+    ingress:
+      enabled: true
+      hosts:
+        - echo2.giba.tech
   
   - name: echo3
     image: cilium/echoserver
