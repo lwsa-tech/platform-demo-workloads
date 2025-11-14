@@ -11,7 +11,7 @@
 
 services:
   - name: console
-    image: busybox
+    image: busybox:1.37.0
     plan: pico
     command:
       - /bin/sh
