@@ -222,10 +222,10 @@ dbServers:
 
   # usado para teste de carga (sysbench). Escalar para 3 replicas e 2xlarge para testar.
   - name: newdb
-    replicas: 3
+    replicas: 1
     type: pxc
     version: "8.0"
-    plan: 2xlarge
+    plan: small
     size: 600Gi
     expose:
       enabled: true
