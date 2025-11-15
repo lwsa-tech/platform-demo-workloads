@@ -199,6 +199,18 @@ services:
         - name: newdb
           type: pxc
 
+  - name: sysbench-cnpg
+    image: perconalab/sysbench:latest 
+    plan: medium
+    command:
+      - /bin/sh
+      - -c
+      - while :; do sleep 86400; done
+    envVarsFrom:
+      dbServers:
+        - name: pg
+          type: cnpg
+
 dbServers:
   - name: mydb
     replicas: 1
