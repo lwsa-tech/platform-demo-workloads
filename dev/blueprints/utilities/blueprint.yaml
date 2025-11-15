@@ -222,10 +222,10 @@ dbServers:
 
   # usado para teste de carga (sysbench). Escalar para 3 replicas e 2xlarge para testar.
   - name: newdb
-    replicas: 1
+    replicas: 3
     type: pxc
     version: "8.0"
-    plan: small # large para sysbench com 30 GB dados
+    plan: 2xlarge
     size: 600Gi
     expose:
       enabled: true
@@ -234,7 +234,7 @@ dbServers:
   - name: pg
     type: cnpg
     version: "16"
-    plan: large # large para sysbench 30 GB dados
+    plan: large
     size: 300Gi
     expose:
       enabled: true
