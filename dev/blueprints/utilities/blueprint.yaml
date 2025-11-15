@@ -189,7 +189,7 @@ services:
   
   - name: sysbench
     image: perconalab/sysbench:latest 
-    plan: micro
+    plan: medium
     command:
       - /bin/sh
       - -c
