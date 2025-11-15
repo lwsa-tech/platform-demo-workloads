@@ -186,6 +186,18 @@ services:
       PGADMIN_DEFAULT_EMAIL: gilberto.mautner@locaweb.com.br
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_LISTEN_PORT: "10000"
+  
+  - name: sysbench
+    image: perconalab/sysbench:latest 
+    plan: micro
+    command:
+      - /bin/sh
+      - -c
+      - while :; do sleep 86400; done
+    envVarsFrom:
+      dbServers:
+        - name: newdb
+          type: pxc
 
 dbServers:
   - name: mydb
