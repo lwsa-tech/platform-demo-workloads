@@ -232,7 +232,7 @@ dbServers:
   #   restoreFrom:
   #     name: mydb
 
-  # usado para teste de carga (sysbench). Escalar para 3 replicas e 2xlarge para testar.
+  # usado para teste de carga (sysbench) com base de 130 GB. Escalar para 3 replicas e 2xlarge para testar.
   - name: newdb
     replicas: 1
     type: pxc
@@ -242,11 +242,11 @@ dbServers:
     expose:
       enabled: true
 
-  # usado para teste de carga (sysbench). Escalar para 3 replicas e 2xlarge para testar.
+  # usado para teste de carga (sysbench) com base de 40 GB
   - name: pg
     type: cnpg
     version: "16"
-    plan: large
+    plan: xlarge
     size: 300Gi
     expose:
       enabled: true
