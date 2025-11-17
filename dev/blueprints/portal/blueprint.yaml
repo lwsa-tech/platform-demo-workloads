@@ -86,13 +86,6 @@ dbServers:
       enabled: true
       size: 2Gi
 
-secrets:
-  - name: segredo
-    namespace: portal
-    data:
-      # Conteúdo do segredo deve ser criptografado via kubeseal
-      chave: AgCjiECpkL+mhQcPXMdik1lCf+9iVRU4NpttUvmUHJEqLX2h4snsxDU4UNKLwFftefOu7hFWdoGXdeJSyedIBxelVT06enDgFUxHriyfFuwS+8kJ4ysswCCoZArAhXI8g+2w4X3bx1w9IwmYHp5gep8RLqCjcqopNkmid/X6sP7fE6p/mOfyI8f0ObI2RjnR75Y0R01urZxsajRvZgnVUmWUnbr7fbGKlFyTSz9WRba5RyZTIJc23XQOO8ZgDvny+EEkrVeUokEPl02VColmCLU+n3iqA/AfG6tfevRoHJ1Q+PIkyiqwrzfChwJGv/hSgepn1L0Ava4YWazZCGVAoHEryB3iEFrifmyZIcxH5uab5qLQiMMGWVF9rputGtIaIhyXhtOmjCoRNoFirx/M5IE/RU825YHxV6UE3KFxVm1ZgGu4rfQu7/GhbiUq7oTCROlIw638xKy4bVohftz+5rcolV9ABJD5sDJUJIZv0fbWIdWU5nmF+uXz0m9WIz5zR2WD+nfAeZjqGCFGp6MuG6foVE4o0vuq7wcm2nZRslabfB8U3Fdvlh3dHsrp2sMLRX/YoAKR4O2cyv0XsFWJyvsfc9PITOclezu3sifRFdnen3GKxfD352aWYyYd1vtbxU8Aoc/UQIPs5xfo0pCOYUbcFK8OD7GUFO3b+0ALLQavPpXgCppHMCDMR2eYGIE1cchseh988CCs/Zg=
-
 volumes:
   - name: wp-vol
     size: 100Gi

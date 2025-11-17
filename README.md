@@ -291,7 +291,7 @@ Você receberá um arquivo `cert.pem` contendo um certificado para criptogarfar 
 
 Por exemplo:
 ```bash
-read -s value; kubeseal --raw --name segredo --namespace portal --cert ~/cert-dev.pem <<<"$value"
+read -s value; kubeseal --raw --name segredo --namespace utilities --cert ~/cert-dev.pem <<<"$value"
 ```
 E preencher o segredo a ser criptografado. O valor obtido (sem o `%` final, que só demarca o fim da string), deve ser copiado para `blueprint.yaml`.
 
@@ -300,7 +300,7 @@ Dessa forma o segredo é cadastrado criptografado no _blueprint_ conforme exempl
 ```yaml
 secrets:
   - name: segredo
-    namespace: portal
+    namespace: utilities
     data:
       chave: <valor criptografado acima>
 ```
