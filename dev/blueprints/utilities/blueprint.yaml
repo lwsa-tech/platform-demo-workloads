@@ -213,7 +213,7 @@ services:
 
 secrets:
   - name: segredo
-    namespace: portal
+    namespace: utilities
     data:
       # Conteúdo do segredo deve ser criptografado via kubeseal
       chave: AgCX/Tmq60KW5xSvPcAyjy1KBIhEYbJ34TQvcT8RPotiC4m9NrtDwa5AVExCSMUMQRj4i76hIpwNNVdARSgoh+9JrwhjyKJT60NYlfoOs1lfqFDFIEt+XNZgEf7jNmpIJ2wHwYhci3vnF8cIKB8aktVQ8s5Vvlfq/y2poC02etMT8w11uToVYTfuk0LgRG2P3o+fYKLfnVE3+5mU/FdzVEYCeTRxLV0G4w6zA63dXr+iGwRgXaDpbSw/eokwMKMZRTYx9AFMpKV8an3i9Qa/fHgifyscwf3kNpbnSkrWVRQqBWskU4wysEDbzY63vXDHGGT//04sjAwgZnqON7WeAwRUKbrNQ9D/ervbAbYwOJ/cCkKmN9akv/zRttniHWo3a3Y4QBUY0iwSnErkz29yFKXZ/V/Gf9S1NTU+tCaiIczgKyg5ag8Oa4UfJ6h8VYd9YBp/BxNqrO8Qs5crU9tbl71s6cK0fhKDegn0bEFbKT+ZOAgHoO7dWC4v71xLHlLEN9dg/QjmZ8JuHZP9WfErxG5Ze519tMA5810Sa2gatIeLXxyHURF77vdHIqu2GcajnIX1fhHGXwQx/i7JTmqSLlXFL37dmC2lO2bjJmexrrpe6uUGYKoxb8hEf/2jZGo91EszNCJTAUVcnEFnmnoC8LsqIbfv9g4E7VDEkvGZ2Ff+4NO3b6UPtv0wCim9055Mse7+zqmbCAkH6fc=
