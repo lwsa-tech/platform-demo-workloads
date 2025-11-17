@@ -36,8 +36,8 @@ cronjobs:
         - pattern: '*.ubuntu.com'
     envVarsFrom:
       dbServers:
-        - name: docdb
-          type: ferretdb
+        - name: pg
+          type: cnpg
     envVars:
       a: b
 
@@ -85,8 +85,8 @@ services:
             ES_PASSWORD: ELASTICSEARCH_PASSWORD
             ES_URI: ELASTICSEARCH_URL
       dbServers:
-        - name: docdb
-          type: ferretdb
+        - name: pg
+          type: cnpg
 
   - name: echo
     plan: pico
@@ -165,21 +165,6 @@ dbServers:
   #   size: 90Gi
   #   restoreFrom:
   #     name: pg
-
-  - name: docdb
-    type: ferretdb
-    version: "17"
-    plan: nano
-    size: 90Gi
-    replicas: 3
-    expose:
-      enabled: true
-      sourceRanges:
-        - "189.0.0.0/8"
-        - "186.0.0.0/8"
-        - "187.0.0.0/8"
-        - "185.0.0.0/8"
-        - "177.0.0.0/8"
 
 searches:
   - name: mysearch

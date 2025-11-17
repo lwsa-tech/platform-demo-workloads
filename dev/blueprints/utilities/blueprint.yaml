@@ -36,8 +36,8 @@ cronjobs:
         - pattern: '*.ubuntu.com'
     envVarsFrom:
       dbServers:
-        - name: docdb
-          type: ferretdb
+        - name: pg
+          type: cnpg
     envVars:
       a: b
 
@@ -60,8 +60,8 @@ jobs:
         - name: mysearch
           type: elasticsearch
       dbServers:
-        - name: docdb
-          type: ferretdb
+        - name: pg
+          type: cnpg
     mountVolumes:
       - name: test-vol
         path: /data
@@ -75,7 +75,7 @@ jobs:
         echo "NAME=$NAME"
         echo "nome=$nome"
         echo "ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST"
-        echo "MONGODB_URI=$MONGODB_URI"
+        echo "DATABASE_URL=$DATABASE_URL"
         echo "Current time:"
         date
         echo "Appending time to log..."
@@ -150,8 +150,8 @@ services:
             ES_PASSWORD: ELASTICSEARCH_PASSWORD
             ES_URI: ELASTICSEARCH_URL
       dbServers:
-        - name: docdb
-          type: ferretdb
+        - name: pg
+          type: cnpg
 
   - name: echo
     plan: pico
@@ -260,36 +260,6 @@ dbServers:
   #   size: 90Gi
   #   restoreFrom:
   #     name: pg
-
-  - name: docdb
-    type: ferretdb
-    version: "17"
-    plan: nano
-    size: 90Gi
-    replicas: 3
-    expose:
-      enabled: true
-      sourceRanges:
-        - "189.0.0.0/8"
-        - "186.0.0.0/8"
-        - "187.0.0.0/8"
-        - "185.0.0.0/8"
-        - "177.0.0.0/8"
-
-  # - name: docdb-g
-  #   type: ferretdb
-  #   version: "17"
-  #   plan: nano
-  #   size: 35Gi
-  #   restoreFrom:
-  #     name: docdb
-
-  - name: teste-1
-    type: cnpg
-    version: "17"
-    plan: nano
-    size: 10Gi
-    replicas: 3
 
 searches:
   - name: mysearch
