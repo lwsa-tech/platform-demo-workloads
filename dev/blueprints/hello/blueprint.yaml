@@ -39,13 +39,6 @@ services:
     expose:
       enabled: true
 
-cronjobs:
-  - name: dummy-cron
-    image: busybox
-    plan: nano
-    schedule: "*/1 * * * * "
-    command: ["/bin/sh", "-c", "date"]
-
 jobs:
   - name: migrate-flask-todo
     image: gitea.platform.lwsa.tech/labs/flask-todo:main
@@ -58,11 +51,6 @@ jobs:
         - name: flask-todo
           type: cnpg
   
-  - name: dummy
-    image: busybox
-    plan: nano
-    command: ["/bin/sh", "-c", "date"]
-
 dbServers:
   - name: flask-todo
     type: cnpg
