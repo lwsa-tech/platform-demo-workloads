@@ -1,5 +1,4 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
-
 services:
   - name: consumer
     image: ghcr.io/kedacore/rabbitmq-client:v1.0

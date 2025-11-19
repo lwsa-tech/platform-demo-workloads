@@ -14,7 +14,7 @@ services:
     port: 8080
     ingress:
       enabled: true
-    image: ghcr.io/wekan/wekan:v7.85
+    image: ghcr.io/wekan/wekan:v8.17
     mountVolumes:
       - name: wekan-files
         path: /dados
@@ -32,6 +32,7 @@ services:
 dbServers:
   - name: wekan
     type: psmdb
+    version: "7.0"
     plan: medium
     size: 100Gi
     replicas: 1
