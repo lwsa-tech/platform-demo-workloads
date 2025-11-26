@@ -63,6 +63,8 @@ dbServers:
     version: "8.0"
     plan: micro
     size: 60Gi
+    expose:
+      enabled: true
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
 
