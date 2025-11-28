@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
 
-configmaps:
+configMaps:
   - name: mapa
     data:
       nome: Giba
