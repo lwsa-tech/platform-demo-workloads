@@ -5,6 +5,7 @@ configmaps:
     data:
       nome: Giba
       empresa: LWSA
+      
 
   - name: outromapa
     data:

@@ -5,6 +5,21 @@ configmaps:
     data:
       nome: Giba
       empresa: Locaweb
+  
+  - name: pasta
+    data:
+      arq1.txt: |
+        linha 1
+        linha 2
+        linha 3
+      arq2.txt: |
+        linha 4
+        linha 5
+        linha 6
+      arq3.txt: |
+        linha 7
+        linha 8
+        linha 9
 
   - name: outromapa
     data:
@@ -15,6 +30,9 @@ cronjobs:
     image: ubuntu
     plan: pico
     schedule: "*/5 * * * * "
+    mountConfigMaps:
+      - name: pasta
+        path: /etc/config
     command:
       - /bin/sh
       - "-c"
@@ -26,6 +44,7 @@ cronjobs:
           || { echo "apt-get failed"; exit 1; }
         echo "Teste $a" # imprimir "Teste b"
         curl --max-time 10 http://wp.portal
+        cat /etc/config/arq3.txt
     allowTo:
       services:
         - namespace: portal
@@ -65,6 +84,9 @@ jobs:
     mountVolumes:
       - name: test-vol
         path: /data
+    mountConfigMaps:
+      - name: pasta
+        path: /etc/config
     command:
       - "/bin/sh"
     args:
@@ -82,6 +104,7 @@ jobs:
         date >> /data/log.txt
         echo "Contents of /data/log.txt:"
         cat /data/log.txt
+        cat /etc/config/arq2.txt
       
 volumes:
   - name: test-vol
@@ -114,6 +137,9 @@ services:
       - /bin/sh
       - -c
       - while :; do sleep 86400; done
+    mountConfigMaps:
+      - name: pasta
+        path: /etc/config
     egress:
       enabled: true
       toCIDRs:
