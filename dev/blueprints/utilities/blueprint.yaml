@@ -280,6 +280,8 @@ dbServers:
     type: cnpg
     version: "16"
     plan: xlarge
+    extensions:
+      - vector
     size: 300Gi
     expose:
       enabled: true
