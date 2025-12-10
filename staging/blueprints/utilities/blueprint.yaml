@@ -1,11 +1,26 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
 
 configmaps:
+
   - name: mapa
     data:
       nome: Giba
-      empresa: LWSA
-      
+      empresa: Locaweb
+
+  - name: pasta
+    data:
+      arq1.txt: |
+        linha 1
+        linha 2
+        linha 3
+      arq2.txt: |
+        linha 4
+        linha 5
+        linha 6
+      arq3.txt: |
+        linha 7
+        linha 8
+        linha 9
 
   - name: outromapa
     data:
@@ -23,10 +38,21 @@ cronjobs:
     image: ubuntu
     plan: pico
     schedule: "*/5 * * * * "
+    mountConfigMaps:
+      - name: pasta
+        path: /etc/config
     command:
       - /bin/sh
       - "-c"
-      - apt-get update && apt-get install -y curl && echo "Teste $a" && curl --max-time 10 http://wp.portal # imprimir "Teste b"
+      - |
+        export DEBIAN_FRONTEND=noninteractive
+        timeout --foreground 180s \
+          apt-get update \
+          && apt-get install -y curl \
+          || { echo "apt-get failed"; exit 1; }
+        echo "Teste $a" # imprimir "Teste b"
+        curl --max-time 10 http://wp.portal
+        cat /etc/config/arq3.txt
     allowTo:
       services:
         - namespace: portal
@@ -42,6 +68,56 @@ cronjobs:
     envVars:
       a: b
 
+jobs:
+  - name: a-job
+    image: ubuntu
+    plan: pico
+    envVars:
+      FOO: bar
+    envVarsFrom:
+      secrets:
+        - name: segredo
+          mappings:
+            VALOR: chave
+      configMaps:
+        - name: mapa
+          mappings:
+            NAME: nome
+      searches:
+        - name: mysearch
+          type: elasticsearch
+      dbServers:
+        - name: pg
+          type: cnpg
+    mountVolumes:
+      - name: test-vol
+        path: /data
+    mountConfigMaps:
+      - name: pasta
+        path: /etc/config
+    command:
+      - "/bin/sh"
+    args:
+      - "-c"
+      - |
+        echo "VALOR=$VALOR"
+        echo "chave=$chave"
+        echo "NAME=$NAME"
+        echo "nome=$nome"
+        echo "ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST"
+        echo "DATABASE_URL=$DATABASE_URL"
+        echo "Current time:"
+        date
+        echo "Appending time to log..."
+        date >> /data/log.txt
+        echo "Contents of /data/log.txt:"
+        cat /data/log.txt
+        cat /etc/config/arq2.txt
+      
+volumes:
+  - name: test-vol
+    size: 10Gi
+
 services:
   - name: console
     plan: pico
@@ -50,6 +126,9 @@ services:
       - /bin/sh
       - -c
       - while :; do sleep 86400; done
+    mountConfigMaps:
+      - name: pasta
+        path: /etc/config
     egress:
       enabled: true
       toCIDRs:
@@ -153,6 +232,8 @@ dbServers:
     type: cnpg
     version: "16.6"
     plan: nano
+    extensions:
+      - vector
     size: 300Gi
     expose:
       enabled: true
@@ -196,4 +277,21 @@ searches:
         - "201.0.0.0/8"
         - "177.0.0.0/8"
       replicas: 1 # default 1
+      plan: small
+
+  - name: busca
+    type: elasticsearch
+    version: "9.2.0"
+    nodes:
+      master:
+        replicas: 3
+        plan: medium
+        size: 80Gi
+      data:
+        replicas: 3
+        plan: medium
+        size: 80Gi
+    dashboard:
+      enabled: true
+      replicas: 1
       plan: small
