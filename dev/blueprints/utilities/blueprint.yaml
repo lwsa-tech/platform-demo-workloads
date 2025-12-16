@@ -256,6 +256,12 @@ dbServers:
     # quando true, desliga banco, sem apagar dados. Serve para economizar recursos quando não precisa
     pause: false
 
+  - name: testpxc
+    type: pxc
+    plan: small
+    size: 20Gi
+    version: "8.0"
+    
   # - name: mydb-copy-2
   #   replicas: 1
   #   type: pxc
