@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
+
 # WordPress, com volume persistente, MySQL com 3 replicas e memcached com 2 replicas
 # Replicas podem ser usadas em services e dbServers, se não especificadas se assume 1 replica por default
 # Acessível incluster via via http://<name>.<namespace> ex. http://wp.portal
@@ -21,7 +22,7 @@ services:
     # Habilita instrumentação com o OpenTelemetry via Beyla (eBPF)
     autoInstrumentation:
       enabled: true
-    image: wordpress:php8.3-apache
+    image: wordpress:php8.3-apache-error-test
     # Porta interna onde o container ouve, opcional, default 10000
     # Valor é passado via variável de ambiente PORT para o container
     # Número de replicas, default 1. Não pode ser maior que 1 se o serviço monta volumes, como é o caso aqui.
@@ -91,3 +92,8 @@ dbServers:
 volumes:
   - name: wp-vol
     size: 100Gi
+
+alerting:
+  enabled: true
+  slack:
+    channel: "#giba-portal-alerts"
