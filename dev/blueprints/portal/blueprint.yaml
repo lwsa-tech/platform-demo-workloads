@@ -22,7 +22,7 @@ services:
     # Habilita instrumentação com o OpenTelemetry via Beyla (eBPF)
     autoInstrumentation:
       enabled: true
-    image: wordpress:php8.3-apache-error-test
+    image: wordpress:php8.3-apache
     # Porta interna onde o container ouve, opcional, default 10000
     # Valor é passado via variável de ambiente PORT para o container
     # Número de replicas, default 1. Não pode ser maior que 1 se o serviço monta volumes, como é o caso aqui.
