@@ -23,6 +23,7 @@
       - [`elasticsearch`](#elasticsearch)
       - [`rabbitmq`](#rabbitmq)
     - [OpenTelemetry](#opentelemetry)
+    - [Alerting](#alerting)
     - [Prune resources](#prune-resources)
     - [Segredos via kubeseal](#segredos-via-kubeseal)
       - [Charts](#charts)
@@ -270,6 +271,25 @@ O OpenTelemetry pode ser habilitado de duas formas:
 
 1. Via chave `autoInstrumentation.enabled` dentro do serviço no _blueprint_. Neste caso, a instrumentação será feita automaticamente via eBPF sem necessidade de codificação.
 2. Usando chamadas padrão do OpenTelemetry via SDK. A variável de ambiente `OTEL_EXPORTER_OTLP_ENDPOINT` é disponibilizada automaticamente para o container. Testado em diversas linguagens, seguir exemplos em [OpenTelemetry Demo](https://opentelemetry.io/docs/demo/).
+
+#### Alerting
+
+Opcionalmente, você pode configurar alertas para o _blueprint_. Atualmente apenas o _Slack_ é suportado como destino.
+
+Antes de configurar, crie o canal no _Slack_ e convide o bot com:
+
+```text
+/invite @K8s Alerts Bot
+```
+
+Exemplo de configuração:
+
+```yaml
+alerting:
+  enabled: true
+  slack:
+    channel: "#meu-app-alerts"
+```
 
 #### Prune resources
 
