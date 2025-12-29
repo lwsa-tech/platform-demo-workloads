@@ -239,8 +239,6 @@ dbServers:
       enabled: true
     pause: false
     replicas: 1
-    parameters:
-      max_connections: "200"
 
   # - name: pg-copy
   #   type: cnpg

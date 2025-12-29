@@ -40,6 +40,8 @@ dbServers:
     version: "15"
     plan: micro
     size: 50Gi
+    parameters:
+      max_connections: "150"
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
 
