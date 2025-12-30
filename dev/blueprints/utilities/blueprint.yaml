@@ -293,7 +293,7 @@ dbServers:
       enabled: true
     pause: false
     replicas: 3
-    parameters:
+    postgresqlConf:
       max_connections: "200"
   
   # - name: pg-copy
