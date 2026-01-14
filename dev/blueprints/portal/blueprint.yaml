@@ -69,14 +69,14 @@ dbServers:
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
 
-  # - name: wp-db-d
-  #   type: pxc
-  #   replicas: 1
-  #   version: "8.0"
-  #   plan: micro
-  #   size: 60Gi
-  #   restoreFrom:
-  #     name: wp-db
+  - name: wp-db-e
+    type: pxc
+    replicas: 1
+    version: "8.0"
+    plan: micro
+    size: 60Gi
+    restoreFrom:
+      name: wp-db
 
   - name: cache
     type: dragonfly
