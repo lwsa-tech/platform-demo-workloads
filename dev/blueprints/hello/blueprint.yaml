@@ -38,6 +38,8 @@ services:
     plan: pico
     expose:
       enabled: true
+      sourceRanges:
+        - "70.107.169.90/32"
 
 jobs:
   - name: migrate-flask-todo
