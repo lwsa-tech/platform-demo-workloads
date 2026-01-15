@@ -65,6 +65,8 @@ dbServers:
     size: 60Gi
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
+    expose:
+      enabled: true
 
   - name: cache
     type: dragonfly
