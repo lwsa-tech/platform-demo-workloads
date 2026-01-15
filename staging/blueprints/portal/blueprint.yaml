@@ -68,7 +68,7 @@ dbServers:
     expose:
       enabled: true
       sourceRanges:
-        - "70.0.0.0/8"
+        - "200t.0.0.0/8"
 
   - name: cache
     type: dragonfly
