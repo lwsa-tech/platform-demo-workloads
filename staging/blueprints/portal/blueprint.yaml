@@ -65,10 +65,10 @@ dbServers:
     size: 60Gi
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
-    # expose:
-    #   enabled: true
-    #   sourceRanges:
-    #     - "70.0.0.0/8"
+    expose:
+      enabled: true
+      sourceRanges:
+        - "70.0.0.0/8"
 
   - name: cache
     type: dragonfly
