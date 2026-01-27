@@ -19,6 +19,14 @@ services:
         - name: flask-todo
           type: cnpg
 
+  - name: echo
+    image: cilium/echoserver
+    plan: pico
+    ingress:
+      enabled: true
+      hosts:
+        - echo-a.giba.tech
+
 jobs:
   - name: migrate-flask-todo
     image: registry.gitlab.platform.lwsa.tech/labs/flask-todo
