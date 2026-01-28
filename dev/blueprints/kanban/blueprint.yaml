@@ -46,7 +46,7 @@ services:
     port: 8080
     ingress:
       enabled: true
-    image: ghcr.io/wekan/wekan:v8.24
+    image: ghcr.io/wekan/wekan:v8.23
     mountVolumes:
       - name: wekan-files
         path: /dados
