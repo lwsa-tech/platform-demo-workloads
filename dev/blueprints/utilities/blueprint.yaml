@@ -273,10 +273,10 @@ dbServers:
 
   # usado para teste de carga (sysbench) com base de 130 GB. Escalar para 3 replicas e 2xlarge para testar.
   - name: newdb
-    replicas: 1
+    replicas: 3
     type: pxc
     version: "8.0"
-    plan: small
+    plan: 2xlarge
     size: 600Gi
     expose:
       enabled: true
