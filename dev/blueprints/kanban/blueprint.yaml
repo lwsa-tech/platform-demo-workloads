@@ -81,16 +81,16 @@ dbServers:
         - "191.0.0.0/8"
         - "70.0.0.0/8"
 
-  # - name: wekan-c
-  #   type: psmdb
-  #   plan: small
-  #   version: "7.0"
-  #   size: 50Gi
-  #   replicas: 3
-  #   expose:
-  #     enabled: true
-  #   restoreFrom:
-  #     name: wekan
+  - name: wekan-d
+    type: psmdb
+    plan: small
+    version: "7.0"
+    size: 50Gi
+    replicas: 3
+    expose:
+      enabled: true
+    restoreFrom:
+      name: wekan
 
 volumes:
   - name: wekan-files
