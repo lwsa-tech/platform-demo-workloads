@@ -22,10 +22,10 @@ services:
   - name: echo
     image: cilium/echoserver
     plan: pico
-    # ingress:
-    #   enabled: true
-    #   hosts:
-    #     - echo-a.giba.tech
+    ingress:
+      enabled: true
+      hosts:
+        - echo-a.giba.tech
 
 jobs:
   - name: migrate-flask-todo
