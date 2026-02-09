@@ -76,8 +76,6 @@ dbServers:
     version: "8.0"
     plan: micro
     size: 60Gi
-    restoreFrom:
-      name: wp-db
 
   - name: cache
     type: dragonfly
