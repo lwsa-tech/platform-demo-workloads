@@ -70,6 +70,15 @@ dbServers:
       # sourceRanges:
       #   - "70.0.0.0/8"
 
+  - name: wp-db-f
+    type: pxc
+    replicas: 1
+    version: "8.0"
+    plan: micro
+    size: 60Gi
+    restoreFrom:
+      name: wp-db
+
   - name: cache
     type: dragonfly
     # Default 1 replica. Para prod usar ao menos 2
