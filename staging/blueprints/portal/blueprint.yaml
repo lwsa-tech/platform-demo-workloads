@@ -73,8 +73,8 @@ dbServers:
   - name: cache
     type: dragonfly
     # Default 1 replica. Para prod usar ao menos 2
-    replicas: 2
-    plan: micro
+    replicas: 1
+    plan: nano
     memcached:
       enabled: true
     snapshot:
