@@ -67,8 +67,8 @@ dbServers:
     # replicas: 3
     expose:
       enabled: true
-      sourceRanges:
-        - "70.0.0.0/8"
+      # sourceRanges:
+      #   - "70.0.0.0/8"
 
   - name: cache
     type: dragonfly
