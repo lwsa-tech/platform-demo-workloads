@@ -289,7 +289,7 @@ dbServers:
     size: 300Gi
     expose:
       enabled: true
-    pause: true
+    pause: false
     replicas: 3
     postgresqlConf:
       max_connections: "200"
