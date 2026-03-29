@@ -48,8 +48,6 @@ dbServers:
     version: "15.10"
     plan: micro
     size: 50Gi
-    restoreFrom:
-      name: nextcloud-db
 
   - name: redis
     type: dragonfly
