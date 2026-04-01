@@ -100,8 +100,6 @@ dbServers:
     replicas: 3
     expose:
       enabled: true
-    restoreFrom:
-      name: wekan
 
 volumes:
   - name: wekan-files
