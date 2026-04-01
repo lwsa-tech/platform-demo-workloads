@@ -67,7 +67,7 @@ dbServers:
     expose:
       enabled: true
       sourceRanges:
-        - 10.0.0.1/32
+        - 186.202.110.133/32
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
 
