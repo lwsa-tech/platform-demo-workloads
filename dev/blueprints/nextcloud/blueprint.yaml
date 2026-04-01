@@ -55,6 +55,14 @@ dbServers:
   #   plan: micro
   #   size: 50Gi
 
+  - name: nextcloud-e
+    type: cnpg
+    version: "15.10"
+    plan: micro
+    size: 50Gi
+    restoreFrom:
+      name: nextcloud-db
+
   - name: redis
     type: dragonfly
     plan: micro
