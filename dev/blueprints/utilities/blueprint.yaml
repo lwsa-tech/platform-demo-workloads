@@ -111,12 +111,6 @@ volumes:
     size: 10Gi
 
 services:
-  - name: python-web-app
-    plan: pico
-    image: forge-gitea.global.dev.lwsa-idp-testbed.ingress.sh/giba/python-web-app:1.0.0
-    ingress:
-      enabled: true
-
   - name: pg-bench
     plan: micro
     image: ubuntu

@@ -21,8 +21,6 @@ services:
       services:
         - namespace: portal
           name: wp
-        - namespace: utilities
-          name: python-web-app
 
   - name: webserver
     image: registry.gitlab.platform.lwsa.tech/labs/hpa-example/main:latest
