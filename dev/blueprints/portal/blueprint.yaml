@@ -99,6 +99,15 @@ dbServers:
   #   plan: micro
   #   size: 60Gi
 
+  - name: wp-db-j
+    type: pxc
+    replicas: 1
+    version: "8.0"
+    plan: micro
+    size: 60Gi
+    restoreFrom:
+      name: wp-db
+
   - name: cache
     type: dragonfly
     # Default 1 replica. Para prod usar ao menos 2
