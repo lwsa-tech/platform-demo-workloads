@@ -21,6 +21,12 @@ services:
       hosts:
         - echo-a.giba.tech
 
+  - name: echo3
+    image: cilium/echoserver
+    plan: pico
+    ingress:
+      enabled: true
+
 jobs:
   - name: migrate-flask-todo
     image: registry.gitlab.platform.lwsa.tech/labs/flask-todo
