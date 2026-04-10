@@ -240,7 +240,7 @@ dbServers:
     pause: false
     replicas: 3
     postgresqlConf:
-      max_connections: "100"
+      max_connections: "200"
 
   # - name: pg-copy
   #   type: cnpg
