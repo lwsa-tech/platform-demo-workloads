@@ -65,10 +65,8 @@ dbServers:
     size: 60Gi
     # Default 1 replica. Para prod usar sempre 3
     # replicas: 3
-    expose:
-      enabled: true
-      sourceRanges:
-        - 186.202.110.133/32
+    # expose:
+    #   enabled: true
 
   # - name: wp-db-f
   #   type: pxc
