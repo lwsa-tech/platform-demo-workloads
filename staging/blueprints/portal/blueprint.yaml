@@ -67,6 +67,8 @@ dbServers:
     # replicas: 3
     expose:
       enabled: true
+      sourceRanges:
+        - 10.0.0.1/32
 
   # - name: wp-db-f
   #   type: pxc
