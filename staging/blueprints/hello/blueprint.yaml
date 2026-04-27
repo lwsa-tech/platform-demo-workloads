@@ -26,8 +26,6 @@ services:
     plan: pico
     ingress:
       enabled: true
-      hosts:
-        - echo3.giba.tech
 
 jobs:
   - name: migrate-flask-todo
