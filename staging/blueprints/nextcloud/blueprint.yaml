@@ -59,11 +59,11 @@ dbServers:
   #   plan: micro
   #   size: 50Gi
 
-  - name: nextcloud-f
-    type: cnpg
-    version: "15.10"
-    plan: micro
-    size: 50Gi
+  # - name: nextcloud-f
+  #   type: cnpg
+  #   version: "15.10"
+  #   plan: micro
+  #   size: 50Gi
 
   - name: redis
     type: dragonfly
