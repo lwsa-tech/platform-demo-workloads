@@ -68,7 +68,7 @@ dbServers:
     expose:
       enabled: true
       sourceRanges:
-        - 10.0.0.1/32
+        - 186.202.110.133/32
 
   # - name: wp-db-f
   #   type: pxc
