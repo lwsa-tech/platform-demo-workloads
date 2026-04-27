@@ -84,6 +84,15 @@ dbServers:
   #   plan: small
   #   size: 60Gi
 
+  - name: wp-db-h
+    type: pxc
+    replicas: 1
+    version: "8.0"
+    plan: small
+    size: 60Gi
+    restoreFrom:
+      name: wp-db
+
   - name: cache
     type: dragonfly
     # Default 1 replica. Para prod usar ao menos 2
