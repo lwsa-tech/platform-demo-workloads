@@ -26,7 +26,7 @@ dbServers:
 messageBrokers:
   - name: queue
     type: rabbitmq
-    plan: nano
+    plan: micro
     size: 20Gi
     replicas: 1
 
