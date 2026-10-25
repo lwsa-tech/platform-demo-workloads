@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/lwsa-tech/platform-static/main/schemas/blueprint.json
 services:
   - name: consumer
-    image: ghcr.io/kedacore/rabbitmq-client:v1.0
+    image: ghcr.io/gmautner/rabbitmq-test-client:v2.0.1
     plan: pico
     envVarsFrom:
       messageBrokers:
@@ -23,7 +23,7 @@ services:
 
 cronjobs:
   - name: publish
-    image: ghcr.io/kedacore/rabbitmq-client:v1.0
+    image: ghcr.io/gmautner/rabbitmq-test-client:v2.0.1
     plan: pico
     # Cooldown default é de 5 minutos, por isso espaçamos a cada 10 para garantir tempo necessário
     schedule: "*/10 * * * *"
